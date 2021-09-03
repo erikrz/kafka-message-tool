@@ -256,7 +256,7 @@ public class FromPojoConverterSpecification {
 
     @BeforeMethod
     private void setup() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     private FromPojoConverter getConverter() {

@@ -3,7 +3,7 @@ import org.testng.annotations.Test
 
 import java.util.regex.Pattern
 
-import static RegexSyntaxHighlightingPatterns.*;
+import static application.constants.RegexSyntaxHighlightingPatterns.*;
 
 
 class GroovyStringRegexpPattersSpecification {
