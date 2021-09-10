@@ -1,13 +1,13 @@
 package application.customfxwidgets;
 
+import java.io.IOException;
+import java.net.URL;
+
 import application.utils.AppUtils;
 import application.utils.GuiUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
-
-import java.io.IOException;
-import java.net.URL;
 
 public class CustomFxWidgetsLoader {
     public static void loadAnchorPane(AnchorPane node, String fxmlFile ) throws IOException {

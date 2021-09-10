@@ -1,15 +1,15 @@
 package application.kafka.cluster;
 
-import application.exceptions.ClusterConfigurationError;
-import application.logging.Logger;
-import application.utils.HostPortValue;
+import java.util.Properties;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
 
 import org.apache.kafka.clients.admin.Admin;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 
-import java.util.Properties;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeoutException;
+import application.exceptions.ClusterConfigurationError;
+import application.logging.Logger;
+import application.utils.HostPortValue;
 
 public class KafkaClusterProxyFactory {
 

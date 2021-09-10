@@ -1,12 +1,12 @@
 package application.kafka.dto;
 
-import org.apache.kafka.clients.admin.ConfigEntry;
-import org.apache.kafka.common.TopicPartitionInfo;
-import org.apache.kafka.common.config.TopicConfig;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
+import org.apache.kafka.clients.admin.ConfigEntry;
+import org.apache.kafka.common.TopicPartitionInfo;
+import org.apache.kafka.common.config.TopicConfig;
 
 public class ClusterTopicInfo {
 

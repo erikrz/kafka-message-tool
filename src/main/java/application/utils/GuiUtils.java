@@ -1,5 +1,9 @@
 package application.utils;
 
+import java.net.URL;
+import java.util.function.Consumer;
+import java.util.function.Function;
+
 import application.constants.ApplicationConstants;
 import application.globals.AppGlobals;
 import application.logging.Logger;
@@ -14,10 +18,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import java.net.URL;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 public class GuiUtils {
     private static final PseudoClass INVALID_DATA_PSEUDO_CLASS =

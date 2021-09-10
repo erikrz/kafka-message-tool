@@ -1,10 +1,10 @@
 package application.utils;
 
-import application.constants.ApplicationConstants;
-import application.logging.Logger;
-
 import java.io.InputStream;
 import java.util.Properties;
+
+import application.constants.ApplicationConstants;
+import application.logging.Logger;
 
 
 public class ApplicationVersionProvider {

@@ -1,5 +1,7 @@
 package application.model.modelobjects;
 
+import java.util.UUID;
+
 import application.model.KafkaOffsetResetType;
 import application.model.ModelConfigObject;
 import application.model.RelatedConfigHolder;
@@ -9,8 +11,6 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
-import java.util.UUID;
 
 import static application.constants.ApplicationConstants.DEFAULT_CONSUMER_GROUP_ID;
 import static application.constants.ApplicationConstants.DEFAULT_FETCH_TIMEOUT;

@@ -1,12 +1,15 @@
 package application.root;
 
+import java.awt.Font;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.text.DefaultCaret;
+
 import javafx.application.Platform;
 import javafx.embed.swing.SwingNode;
 import javafx.scene.Node;
-
-import javax.swing.*;
-import javax.swing.text.DefaultCaret;
-import java.awt.*;
 
 public class SwingTextAreaWrapper implements TextAreaWrapper {
 

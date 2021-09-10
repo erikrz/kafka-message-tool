@@ -1,6 +1,7 @@
+import org.testng.annotations.Test;
+
 import application.utils.ValidationStatus;
 import autofixture.publicinterface.Any;
-import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;

@@ -1,11 +1,12 @@
 package application.utils;
 
-import application.logging.Logger;
-import application.root.Executable;
-import org.apache.kafka.clients.admin.ConfigEntry;
-
 import java.net.URL;
 import java.util.Collection;
+
+import org.apache.kafka.clients.admin.ConfigEntry;
+
+import application.logging.Logger;
+import application.root.Executable;
 
 public class AppUtils {
     public static String realHash(Object o) {

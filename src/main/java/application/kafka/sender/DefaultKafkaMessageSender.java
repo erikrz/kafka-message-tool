@@ -1,19 +1,20 @@
 package application.kafka.sender;
 
-import application.logging.Logger;
-import application.model.MessageOnTopicDto;
-import application.utils.HostInfo;
-import application.utils.kafka.KafkaProducers;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
-
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.RecordMetadata;
+
+import application.logging.Logger;
+import application.model.MessageOnTopicDto;
+import application.utils.HostInfo;
+import application.utils.kafka.KafkaProducers;
 
 public final class DefaultKafkaMessageSender implements KafkaMessageSender {
     public static final String KAFKA_STRING_SERIALIZER_CLASS_NAME = "org.apache.kafka.common.serialization.StringSerializer";

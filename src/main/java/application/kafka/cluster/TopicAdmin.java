@@ -1,14 +1,14 @@
 package application.kafka.cluster;
 
-import application.constants.ApplicationConstants;
-import application.exceptions.TopicAlreadyExistsError;
-import application.exceptions.TopicMarkedForDeletionError;
-import application.kafka.dto.ClusterTopicInfo;
-import application.kafka.dto.TopicToAdd;
-import application.logging.Logger;
-import application.utils.AppUtils;
-import com.google.common.base.Throwables;
-import kafka.server.KafkaConfig;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import org.apache.kafka.clients.admin.Admin;
 import org.apache.kafka.clients.admin.Config;
@@ -28,15 +28,16 @@ import org.apache.kafka.common.config.TopicConfig;
 import org.apache.kafka.common.errors.TopicExistsException;
 import org.apache.kafka.common.errors.UnknownTopicOrPartitionException;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import com.google.common.base.Throwables;
+
+import application.constants.ApplicationConstants;
+import application.exceptions.TopicAlreadyExistsError;
+import application.exceptions.TopicMarkedForDeletionError;
+import application.kafka.dto.ClusterTopicInfo;
+import application.kafka.dto.TopicToAdd;
+import application.logging.Logger;
+import application.utils.AppUtils;
+import kafka.server.KafkaConfig;
 
 import static java.util.Collections.singleton;
 

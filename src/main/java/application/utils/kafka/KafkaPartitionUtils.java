@@ -1,8 +1,8 @@
 package application.utils.kafka;
 
-import org.apache.kafka.common.utils.Utils;
-
 import java.nio.charset.Charset;
+
+import org.apache.kafka.common.utils.Utils;
 
 public class KafkaPartitionUtils {
 

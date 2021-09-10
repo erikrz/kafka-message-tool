@@ -1,6 +1,7 @@
+import org.testng.annotations.Test;
+
 import application.persistence.GlobalSettings;
 import autofixture.publicinterface.Any;
-import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -1,5 +1,15 @@
 package application.kafka.cluster;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.apache.kafka.clients.admin.ConfigEntry;
+
 import application.customfxwidgets.consumergroupview.ConsumerGroupDetailRecord;
 import application.kafka.dto.AssignedConsumerInfo;
 import application.kafka.dto.ClusterNodeInfo;
@@ -8,15 +18,6 @@ import application.kafka.dto.TopicAggregatedSummary;
 import application.kafka.dto.UnassignedConsumerInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.apache.kafka.clients.admin.ConfigEntry;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public final class ClusterStateSummary {
 

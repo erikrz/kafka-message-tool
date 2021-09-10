@@ -1,11 +1,13 @@
 package application.controllers.confighandlers;
 
+import java.util.Optional;
+
 import application.constants.ApplicationConstants;
 import application.controllers.ControllerProvider;
 import application.controllers.helpers.ListViewActionsHandler;
+import application.controllers.helpers.TabPaneSelectionInformer;
 import application.controllers.helpers.TemplateGuiActionsHandler;
 import application.customfxwidgets.listenerconfig.ListenerConfigView;
-import application.controllers.helpers.TabPaneSelectionInformer;
 import application.customfxwidgets.listenerconfig.ToFileSaver;
 import application.kafka.listener.Listeners;
 import application.model.FromPojoConverter;
@@ -15,8 +17,6 @@ import application.model.modelobjects.KafkaListenerConfig;
 import application.model.modelobjects.KafkaTopicConfig;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
-
-import java.util.Optional;
 
 public class ListenerConfigGuiActionsHandler extends TemplateGuiActionsHandler<KafkaListenerConfig> {
 

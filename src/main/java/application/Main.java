@@ -1,8 +1,8 @@
 package application;
 
 import application.logging.Logger;
-import application.root.KafkaMessageToolApplication;
 import application.root.ApplicationRoot;
+import application.root.KafkaMessageToolApplication;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

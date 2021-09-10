@@ -1,13 +1,13 @@
 package application.persistence;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import application.model.XmlElementNames;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @EqualsAndHashCode
 @ToString

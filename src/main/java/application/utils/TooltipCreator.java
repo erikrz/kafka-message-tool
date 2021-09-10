@@ -1,5 +1,11 @@
 package application.utils;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.Optional;
+
+import org.apache.commons.lang3.StringUtils;
+
 import application.model.ModelDataProxy;
 import application.model.modelobjects.KafkaBrokerConfig;
 import application.model.modelobjects.KafkaTopicConfig;
@@ -7,11 +13,6 @@ import application.model.modelobjects.ToolTipInfoProvider;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Tooltip;
-import org.apache.commons.lang3.StringUtils;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.util.Optional;
 
 
 public class TooltipCreator {

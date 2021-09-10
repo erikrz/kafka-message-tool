@@ -1,5 +1,8 @@
 package application.persistence;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import application.logging.LogLevel;
 import application.model.XmlElementNames;
 import javafx.beans.property.ObjectProperty;
@@ -8,9 +11,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
 
 @EqualsAndHashCode

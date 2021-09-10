@@ -1,5 +1,10 @@
 package application.customfxwidgets;
 
+import java.io.IOException;
+import java.util.Set;
+
+import org.apache.kafka.clients.admin.ConfigEntry;
+
 import application.utils.TableUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -8,10 +13,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TitledPane;
-import org.apache.kafka.clients.admin.ConfigEntry;
-
-import java.io.IOException;
-import java.util.Set;
 
 
 public class ConfigEntriesView extends TitledPane {

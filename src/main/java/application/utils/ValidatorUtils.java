@@ -1,16 +1,17 @@
 package application.utils;
 
+import java.text.DecimalFormat;
+import java.text.ParsePosition;
+import java.util.function.Consumer;
+import java.util.function.Function;
+
+import org.apache.commons.lang3.StringUtils;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
-import org.apache.commons.lang3.StringUtils;
-
-import java.text.DecimalFormat;
-import java.text.ParsePosition;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 public class ValidatorUtils {
 

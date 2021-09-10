@@ -1,7 +1,11 @@
 package application.utils;
 
-import application.logging.Logger;
+import java.lang.reflect.Method;
+import java.util.concurrent.atomic.AtomicLong;
+
 import com.sun.javafx.scene.control.skin.TableViewSkin;
+
+import application.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.SelectionMode;
@@ -15,9 +19,6 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
-
-import java.lang.reflect.Method;
-import java.util.concurrent.atomic.AtomicLong;
 
 public class TableUtils {
 

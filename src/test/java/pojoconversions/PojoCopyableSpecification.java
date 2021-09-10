@@ -1,11 +1,12 @@
 package pojoconversions;
 
-import autofixture.publicinterface.Any;
+import org.testng.annotations.Test;
+
 import application.model.pojos.BrokerConfigPojo;
 import application.model.pojos.ListenerConfigPojo;
 import application.model.pojos.SenderConfigPojo;
 import application.model.pojos.TopicConfigPojo;
-import org.testng.annotations.Test;
+import autofixture.publicinterface.Any;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

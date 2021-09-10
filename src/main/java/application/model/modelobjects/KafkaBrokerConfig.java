@@ -1,14 +1,15 @@
 package application.model.modelobjects;
 
+import java.util.UUID;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.apache.commons.lang3.StringUtils;
+
 import application.model.ModelConfigObject;
 import application.utils.kafka.KafkaBrokerHostInfo;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import org.apache.commons.lang3.StringUtils;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.util.UUID;
 
 @XmlRootElement(name = "KafkaBrokerConfig")
 public class KafkaBrokerConfig implements ModelConfigObject, ToolTipInfoProvider {

@@ -1,5 +1,7 @@
 package application.controllers.confighandlers;
 
+import java.util.Optional;
+
 import application.constants.ApplicationConstants;
 import application.controllers.ControllerProvider;
 import application.controllers.helpers.ListViewActionsHandler;
@@ -13,8 +15,6 @@ import application.model.modelobjects.KafkaBrokerConfig;
 import application.model.modelobjects.KafkaTopicConfig;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
-
-import java.util.Optional;
 
 public class TopicConfigGuiActionsHandler extends TemplateGuiActionsHandler<KafkaTopicConfig> {
 

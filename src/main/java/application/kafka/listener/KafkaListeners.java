@@ -1,10 +1,10 @@
 
 package application.kafka.listener;
 
-import application.model.modelobjects.KafkaListenerConfig;
-
 import java.util.HashSet;
 import java.util.Set;
+
+import application.model.modelobjects.KafkaListenerConfig;
 
 public class KafkaListeners implements Listeners {
 

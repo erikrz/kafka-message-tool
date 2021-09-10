@@ -1,17 +1,18 @@
 package pojoconversions;
 
-import application.model.pojos.BrokerConfigPojo;
-import application.model.pojos.ListenerConfigPojo;
-import application.model.pojos.SenderConfigPojo;
-import application.model.pojos.TopicConfigPojo;
-import org.testng.annotations.Test;
-
+import java.io.StringReader;
+import java.io.StringWriter;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import java.io.StringReader;
-import java.io.StringWriter;
+
+import org.testng.annotations.Test;
+
+import application.model.pojos.BrokerConfigPojo;
+import application.model.pojos.ListenerConfigPojo;
+import application.model.pojos.SenderConfigPojo;
+import application.model.pojos.TopicConfigPojo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

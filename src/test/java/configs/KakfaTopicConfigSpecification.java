@@ -1,8 +1,9 @@
 package configs;
 
+import org.testng.annotations.Test;
+
 import application.model.modelobjects.KafkaBrokerConfig;
 import application.model.modelobjects.KafkaTopicConfig;
-import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

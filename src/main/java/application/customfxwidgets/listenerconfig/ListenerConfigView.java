@@ -1,5 +1,12 @@
 package application.customfxwidgets.listenerconfig;
 
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Optional;
+import javax.swing.JTextArea;
+
+import com.sun.javafx.scene.control.skin.TextFieldSkin;
+
 import application.customfxwidgets.CustomFxWidgetsLoader;
 import application.customfxwidgets.Displayable;
 import application.customfxwidgets.TopicConfigComboBoxConfigurator;
@@ -18,7 +25,6 @@ import application.utils.ConfigNameGenerator;
 import application.utils.GuiUtils;
 import application.utils.ValidatorUtils;
 import application.utils.gui.FXNodeBlinker;
-import com.sun.javafx.scene.control.skin.TextFieldSkin;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.binding.StringExpression;
@@ -40,11 +46,6 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-
-import javax.swing.*;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Optional;
 
 public class ListenerConfigView extends AnchorPane implements Displayable {
 

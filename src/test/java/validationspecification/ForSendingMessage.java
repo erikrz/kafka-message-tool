@@ -1,9 +1,10 @@
 package validationspecification;
 
-import application.utils.ValidationStatus;
-import application.utils.Validations;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import application.utils.ValidationStatus;
+import application.utils.Validations;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;

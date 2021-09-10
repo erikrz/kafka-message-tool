@@ -1,8 +1,8 @@
 package application.logging;
 
-import org.apache.commons.collections4.queue.CircularFifoQueue;
-
 import java.util.Iterator;
+
+import org.apache.commons.collections4.queue.CircularFifoQueue;
 
 public class CyclicStringBuffer {
     public static final int DEFAULT_BUFFER_SIZE = 2000;

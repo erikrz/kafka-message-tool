@@ -1,18 +1,18 @@
 package application.persistence;
 
-import application.constants.ApplicationConstants;
-import application.logging.Logger;
-import application.model.FromPojoConverter;
-import application.model.ModelDataProxy;
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.nio.file.Paths;
+
+import application.constants.ApplicationConstants;
+import application.logging.Logger;
+import application.model.FromPojoConverter;
+import application.model.ModelDataProxy;
 
 public class XmlFileConfig implements LoadableSavable {
 

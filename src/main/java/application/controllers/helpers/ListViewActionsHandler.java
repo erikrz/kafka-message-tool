@@ -1,12 +1,12 @@
 package application.controllers.helpers;
 
+import java.util.Optional;
+
 import application.model.ModelConfigObject;
 import application.utils.UserInteractor;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
-
-import java.util.Optional;
 
 public class ListViewActionsHandler<AppModelObject extends ModelConfigObject> {
 

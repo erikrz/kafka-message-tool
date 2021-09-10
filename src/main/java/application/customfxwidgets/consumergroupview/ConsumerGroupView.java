@@ -1,5 +1,9 @@
 package application.customfxwidgets.consumergroupview;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import application.customfxwidgets.CustomFxWidgetsLoader;
 import application.kafka.cluster.KafkaClusterProxy;
 import application.logging.Logger;
@@ -11,10 +15,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public final class ConsumerGroupView extends AnchorPane {
     private static final String FXML_FILE = "ConsumerGroupView.fxml";

@@ -1,5 +1,7 @@
 package pojoconversions;
 
+import org.testng.annotations.Test;
+
 import application.model.KafkaOffsetResetType;
 import application.model.ToPojoConverter;
 import application.model.modelobjects.KafkaBrokerConfig;
@@ -10,7 +12,6 @@ import application.model.pojos.BrokerConfigPojo;
 import application.model.pojos.ListenerConfigPojo;
 import application.model.pojos.SenderConfigPojo;
 import application.model.pojos.TopicConfigPojo;
-import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

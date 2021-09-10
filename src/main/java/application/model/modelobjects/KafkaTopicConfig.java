@@ -1,5 +1,9 @@
 package application.model.modelobjects;
 
+import java.util.UUID;
+
+import org.apache.commons.lang3.StringUtils;
+
 import application.constants.ApplicationConstants;
 import application.model.ModelConfigObject;
 import application.model.RelatedConfigHolder;
@@ -10,9 +14,6 @@ import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.UUID;
 
 
 public class KafkaTopicConfig implements ModelConfigObject, ToolTipInfoProvider, RelatedConfigHolder<KafkaBrokerConfig> {

@@ -1,5 +1,13 @@
 package application.customfxwidgets.brokerconfig;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.kafka.clients.admin.ConfigEntry;
+
 import application.customfxwidgets.AddTopicDialog;
 import application.customfxwidgets.AlterTopicDialog;
 import application.customfxwidgets.ConfigEntriesView;
@@ -56,13 +64,6 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
-import org.apache.kafka.clients.admin.ConfigEntry;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
 
 
 public class BrokerConfigView extends AnchorPane implements Displayable {

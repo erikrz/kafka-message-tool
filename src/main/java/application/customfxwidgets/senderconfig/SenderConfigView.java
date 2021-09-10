@@ -1,5 +1,16 @@
 package application.customfxwidgets.senderconfig;
 
+import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
+
+import org.apache.commons.lang3.time.DurationFormatUtils;
+import org.controlsfx.control.StatusBar;
+import org.fxmisc.flowless.VirtualizedScrollPane;
+import org.fxmisc.richtext.StyleClassedTextArea;
+
+import com.sun.javafx.scene.control.skin.TextFieldSkin;
+
 import application.constants.GuiStrings;
 import application.customfxwidgets.CustomFxWidgetsLoader;
 import application.customfxwidgets.Displayable;
@@ -22,7 +33,6 @@ import application.utils.ValidationStatus;
 import application.utils.Validations;
 import application.utils.ValidatorUtils;
 import application.utils.kafka.KafkaPartitionUtils;
-import com.sun.javafx.scene.control.skin.TextFieldSkin;
 import javafx.beans.binding.StringExpression;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.StringProperty;
@@ -42,14 +52,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
-import org.apache.commons.lang3.time.DurationFormatUtils;
-import org.controlsfx.control.StatusBar;
-import org.fxmisc.flowless.VirtualizedScrollPane;
-import org.fxmisc.richtext.StyleClassedTextArea;
-
-import java.io.IOException;
-import java.time.Duration;
-import java.time.Instant;
 
 
 public class SenderConfigView extends AnchorPane implements Displayable {

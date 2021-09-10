@@ -1,5 +1,7 @@
 package application.model.modelobjects;
 
+import java.util.UUID;
+
 import application.constants.ApplicationConstants;
 import application.model.ModelConfigObject;
 import application.model.RelatedConfigHolder;
@@ -11,8 +13,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
-import java.util.UUID;
 
 
 public class KafkaSenderConfig implements ModelConfigObject, RelatedConfigHolder<KafkaTopicConfig> {

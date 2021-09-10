@@ -1,12 +1,13 @@
 package application.kafka.listener;
 
-import javafx.beans.property.ObjectProperty;
-import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
-import org.apache.kafka.common.TopicPartition;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
+import org.apache.kafka.common.TopicPartition;
+
+import javafx.beans.property.ObjectProperty;
 
 public class ConsumerPartitionsRebalanceListener implements ConsumerRebalanceListener {
 

@@ -1,12 +1,13 @@
 package application.customfxwidgets.listenerconfig;
 
+import org.apache.commons.lang3.StringUtils;
+
 import application.kafka.listener.AssignedPartitionsInfo;
 import application.logging.Logger;
 import application.model.modelobjects.KafkaListenerConfig;
 import application.utils.gui.ColorChangableLabelWrapper;
 import application.utils.gui.FXNodeBlinker;
 import javafx.scene.control.Label;
-import org.apache.commons.lang3.StringUtils;
 
 public class PartitionAssignmentChangeHandler {
     public static final String DISCONNECTED_FROM_BROKER_STRING = "<DISCONNECTED FROM BROKER>";

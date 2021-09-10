@@ -1,15 +1,16 @@
 package application.customfxwidgets.senderconfig;
 
+import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import org.controlsfx.control.StatusBar;
+
 import application.globals.Timers;
 import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import org.controlsfx.control.StatusBar;
-
-import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class StatusBarNotifier {
     public static final double PERCENTAGE_MAX = 100.0;

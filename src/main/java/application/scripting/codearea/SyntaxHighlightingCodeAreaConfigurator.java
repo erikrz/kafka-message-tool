@@ -1,8 +1,8 @@
 package application.scripting.codearea;
 
-import org.fxmisc.richtext.CodeArea;
-
 import java.util.concurrent.Executor;
+
+import org.fxmisc.richtext.CodeArea;
 
 public class SyntaxHighlightingCodeAreaConfigurator {
 

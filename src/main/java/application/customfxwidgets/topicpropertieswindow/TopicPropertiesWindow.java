@@ -1,5 +1,9 @@
 package application.customfxwidgets.topicpropertieswindow;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import application.constants.ApplicationConstants;
 import application.customfxwidgets.ConfigEntriesView;
 import application.kafka.cluster.TopicsOffsetInfo;
@@ -20,10 +24,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static application.customfxwidgets.CustomFxWidgetsLoader.loadAnchorPane;
 

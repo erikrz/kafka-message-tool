@@ -1,10 +1,10 @@
 package application.root;
 
-import application.exceptions.KafkaToolError;
-import application.exceptions.PrerequisiteNotSatisfiedError;
-
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
+
+import application.exceptions.KafkaToolError;
+import application.exceptions.PrerequisiteNotSatisfiedError;
 
 public class PrerequisiteChecker {
     public static void assertPrerequisites() throws KafkaToolError {

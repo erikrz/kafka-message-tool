@@ -1,12 +1,12 @@
 package application.logging;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 import application.root.Executable;
 import application.root.Restartable;
 import application.root.TextAreaWrapper;
 import application.utils.RepeatableTimer;
 import javafx.application.Platform;
-
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class FixedNumberRecordsCountLogger implements Restartable {
 

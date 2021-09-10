@@ -1,10 +1,10 @@
 package application.utils;
 
-import application.globals.Timers;
-import application.root.Executable;
-
 import java.util.Timer;
 import java.util.TimerTask;
+
+import application.globals.Timers;
+import application.root.Executable;
 
 public final class RepeatableTimer {
     private static final int EXECUTION_DELAY_MS = 0;

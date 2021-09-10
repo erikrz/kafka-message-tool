@@ -1,7 +1,7 @@
 package application.root;
 
-import application.kafka.sender.KafkaMessageSender;
 import application.kafka.listener.Listeners;
+import application.kafka.sender.KafkaMessageSender;
 
 public class DefaultApplicationPorts implements ApplicationPorts {
     private final KafkaMessageSender sender;

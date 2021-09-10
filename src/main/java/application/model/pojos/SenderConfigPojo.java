@@ -1,11 +1,11 @@
 package application.model.pojos;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import application.model.XmlElementNames;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import static application.model.XmlElementNames.CONFIG_NAME;
 import static application.model.XmlElementNames.CONTENT;

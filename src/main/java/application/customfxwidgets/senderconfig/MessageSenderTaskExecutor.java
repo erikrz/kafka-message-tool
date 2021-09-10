@@ -1,11 +1,11 @@
 package application.customfxwidgets.senderconfig;
 
-import application.root.Executable;
-import javafx.beans.property.BooleanProperty;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
+
+import application.root.Executable;
+import javafx.beans.property.BooleanProperty;
 
 public class MessageSenderTaskExecutor {
     private final BooleanProperty startButtonDisabledProperty;

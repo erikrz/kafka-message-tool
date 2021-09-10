@@ -1,24 +1,12 @@
 package configs;
 
-import application.model.modelobjects.KafkaBrokerConfig;
 import org.testng.annotations.Test;
+
+import application.model.modelobjects.KafkaBrokerConfig;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BrokerConfigSpecification {
-    @Test
-    public void shouldNotAllowSettingBlankConfigName() {
-        final KafkaBrokerConfig config = getConfig();
-        final String name = config.getName();
-        assertThat(name).isNotBlank();
-        // WHEN/THEN
-        config.setName(null);
-        assertThat(config.getName()).isEqualTo(name);
-
-        // WHEN/THEN
-        config.setName("");
-        assertThat(config.getName()).isEqualTo(name);
-    }
 
     @Test
     public void shouldNotAllowSettingBlankHostName() {

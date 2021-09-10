@@ -1,9 +1,6 @@
 
 package application.utils;
 
-import application.logging.Logger;
-import org.apache.commons.validator.routines.InetAddressValidator;
-
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -16,6 +13,10 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+
+import org.apache.commons.validator.routines.InetAddressValidator;
+
+import application.logging.Logger;
 
 public class HostnameUtils {
 
