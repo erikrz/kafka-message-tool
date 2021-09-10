@@ -9,7 +9,8 @@ import application.kafka.dto.TopicToAdd;
 import application.kafka.dto.TopicAlterableProperties;
 import application.kafka.dto.UnassignedConsumerInfo;
 import javafx.collections.ObservableList;
-import org.apache.kafka.clients.admin.AdminClient;
+
+import org.apache.kafka.clients.admin.Admin;
 import org.apache.kafka.clients.admin.ConfigEntry;
 
 import java.util.List;
@@ -49,8 +50,7 @@ public interface KafkaClusterProxy {
     int partitionsForTopic(String topicName);
 
     void refresh(TopicAdmin topicAdmin,
-                 AdminClient kafkaClientAdminClient,
-                 kafka.admin.AdminClient kafkaAdminClient) throws
+                 Admin kafkaClientAdminClient) throws
                                                            ClusterConfigurationError,
                                                            InterruptedException,
                                                            ExecutionException,

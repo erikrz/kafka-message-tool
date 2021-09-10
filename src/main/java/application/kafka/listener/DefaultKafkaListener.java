@@ -15,6 +15,7 @@ import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.errors.WakeupException;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -173,7 +174,7 @@ public class DefaultKafkaListener implements Listener {
 
     private void consume(Consumer<String, String> consumer, long pollTimeout) {
         startWakeUpTask(pollTimeout);
-        final ConsumerRecords<String, String> records = consumer.poll(pollTimeout);
+        final ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(pollTimeout));
         cancelWakeupTask();
 
 

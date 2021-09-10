@@ -9,6 +9,8 @@ import application.logging.Logger;
 import application.utils.AppUtils;
 import com.google.common.base.Throwables;
 import kafka.server.KafkaConfig;
+
+import org.apache.kafka.clients.admin.Admin;
 import org.apache.kafka.clients.admin.Config;
 import org.apache.kafka.clients.admin.ConfigEntry;
 import org.apache.kafka.clients.admin.CreateTopicsResult;
@@ -40,9 +42,9 @@ import static java.util.Collections.singleton;
 
 public class TopicAdmin {
 
-    private org.apache.kafka.clients.admin.AdminClient kafkaClientsAdminClient;
+    private Admin kafkaClientsAdminClient;
 
-    TopicAdmin(org.apache.kafka.clients.admin.AdminClient kafkaClientsAdminClient) {
+    TopicAdmin(Admin kafkaClientsAdminClient) {
         this.kafkaClientsAdminClient = kafkaClientsAdminClient;
     }
 
@@ -119,7 +121,7 @@ public class TopicAdmin {
     }
 
     private static boolean topicExistsCheckWithClusterQuery(String topicName,
-                                                            org.apache.kafka.clients.admin.AdminClient
+                                                            Admin
                                                                 kafkaClientsAdminClient) throws Exception {
 
         try {
