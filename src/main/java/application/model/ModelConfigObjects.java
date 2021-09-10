@@ -1,11 +1,11 @@
 package application.model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class ModelConfigObjects<T extends ModelConfigObject> implements ModelObjectCollection<T>{
 

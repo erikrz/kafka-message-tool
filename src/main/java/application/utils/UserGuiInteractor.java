@@ -1,6 +1,9 @@
 package application.utils;
 
+import java.util.Optional;
+
 import com.google.common.base.CaseFormat;
+
 import application.constants.ApplicationConstants;
 import application.customfxwidgets.ConfigEntriesView;
 import javafx.application.Platform;
@@ -12,8 +15,6 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.stage.Window;
-
-import java.util.Optional;
 
 public class UserGuiInteractor implements UserInteractor {
 

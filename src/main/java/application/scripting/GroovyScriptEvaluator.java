@@ -1,15 +1,15 @@
 package application.scripting;
 
-import application.exceptions.ExecutionStopRequested;
-import application.exceptions.KafkaToolError;
-import application.logging.Logger;
-
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.SimpleScriptContext;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.SimpleScriptContext;
+
+import application.exceptions.ExecutionStopRequested;
+import application.exceptions.KafkaToolError;
+import application.logging.Logger;
 
 public class GroovyScriptEvaluator {
 

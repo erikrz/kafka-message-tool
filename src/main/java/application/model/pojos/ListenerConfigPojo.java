@@ -1,10 +1,10 @@
 package application.model.pojos;
 
-import application.model.XmlElementNames;
-import lombok.EqualsAndHashCode;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import application.model.XmlElementNames;
+import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
 @XmlRootElement(name = XmlElementNames.LISTENER_CONFIG)

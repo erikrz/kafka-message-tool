@@ -1,5 +1,9 @@
 package application.model;
 
+import java.util.UUID;
+
+import org.apache.commons.lang3.StringUtils;
+
 import application.constants.ApplicationConstants;
 import application.model.modelobjects.KafkaBrokerConfig;
 import application.model.modelobjects.KafkaListenerConfig;
@@ -9,9 +13,6 @@ import application.model.pojos.BrokerConfigPojo;
 import application.model.pojos.ListenerConfigPojo;
 import application.model.pojos.SenderConfigPojo;
 import application.model.pojos.TopicConfigPojo;
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.UUID;
 
 public class FromPojoConverter {
 

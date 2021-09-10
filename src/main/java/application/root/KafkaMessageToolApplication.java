@@ -1,5 +1,9 @@
 package application.root;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import javax.swing.JTextArea;
+
 import application.Main;
 import application.constants.ApplicationConstants;
 import application.customfxwidgets.CustomFxWidgetsLoader;
@@ -35,10 +39,6 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import javax.swing.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 
 public class KafkaMessageToolApplication implements ApplicationRoot {

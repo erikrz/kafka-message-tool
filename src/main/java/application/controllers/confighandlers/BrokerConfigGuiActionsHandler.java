@@ -1,11 +1,13 @@
 package application.controllers.confighandlers;
 
+import java.util.Optional;
+
 import application.constants.ApplicationConstants;
 import application.controllers.ControllerProvider;
 import application.controllers.helpers.ListViewActionsHandler;
+import application.controllers.helpers.TabPaneSelectionInformer;
 import application.controllers.helpers.TemplateGuiActionsHandler;
 import application.customfxwidgets.brokerconfig.BrokerConfigView;
-import application.controllers.helpers.TabPaneSelectionInformer;
 import application.model.FromPojoConverter;
 import application.model.ModelDataProxy;
 import application.model.ToPojoConverter;
@@ -13,8 +15,6 @@ import application.model.modelobjects.KafkaBrokerConfig;
 import application.utils.UserInteractor;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
-
-import java.util.Optional;
 
 public class BrokerConfigGuiActionsHandler extends TemplateGuiActionsHandler<KafkaBrokerConfig> {
 

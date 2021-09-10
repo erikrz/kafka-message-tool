@@ -1,11 +1,5 @@
 package application.scripting.codearea;
 
-import javafx.concurrent.Task;
-import org.fxmisc.richtext.CodeArea;
-import org.fxmisc.richtext.LineNumberFactory;
-import org.fxmisc.richtext.model.StyleSpans;
-import org.fxmisc.richtext.model.StyleSpansBuilder;
-
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Collections;
@@ -14,6 +8,13 @@ import java.util.concurrent.Executor;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.fxmisc.richtext.CodeArea;
+import org.fxmisc.richtext.LineNumberFactory;
+import org.fxmisc.richtext.model.StyleSpans;
+import org.fxmisc.richtext.model.StyleSpansBuilder;
+
+import javafx.concurrent.Task;
 
 public class CodeAreaConfigurator {
 

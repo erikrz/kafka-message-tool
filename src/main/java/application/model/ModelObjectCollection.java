@@ -1,10 +1,10 @@
 
 package application.model;
 
-import javafx.collections.ObservableList;
-
 import java.util.List;
 import java.util.Optional;
+
+import javafx.collections.ObservableList;
 
 public interface ModelObjectCollection<ModelObject>{
     ObservableList<ModelObject> getObservables();

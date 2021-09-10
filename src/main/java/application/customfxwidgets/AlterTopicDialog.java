@@ -1,5 +1,7 @@
 package application.customfxwidgets;
 
+import java.io.IOException;
+
 import application.constants.ApplicationConstants;
 import application.kafka.dto.TopicAlterableProperties;
 import application.utils.GuiUtils;
@@ -13,8 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-
-import java.io.IOException;
 
 public class AlterTopicDialog extends AnchorPane {
 

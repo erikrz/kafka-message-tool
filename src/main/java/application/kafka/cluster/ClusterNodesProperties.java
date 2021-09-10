@@ -1,13 +1,13 @@
 package application.kafka.cluster;
 
-import kafka.server.KafkaConfig;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import kafka.server.KafkaConfig;
 
 public class ClusterNodesProperties {
     private static final Set<String> EMPTY_SET = Collections.emptySet();

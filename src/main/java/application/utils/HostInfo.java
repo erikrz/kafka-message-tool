@@ -1,9 +1,10 @@
 
 package application.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import org.apache.commons.lang3.StringUtils;
 
 public class HostInfo {
     private StringProperty hostname = new SimpleStringProperty("");

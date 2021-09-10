@@ -1,9 +1,9 @@
 
 package application.kafka.dto;
 
-import org.apache.kafka.clients.admin.ConfigEntry;
-
 import java.util.Set;
+
+import org.apache.kafka.clients.admin.ConfigEntry;
 
 public class ClusterNodeInfo {
 

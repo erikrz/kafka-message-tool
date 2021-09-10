@@ -1,10 +1,10 @@
 
 package application.logging;
 
-import org.apache.commons.lang3.exception.ExceptionUtils;
-
 import java.util.HashSet;
 import java.util.Set;
+
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 public class Logger {
 

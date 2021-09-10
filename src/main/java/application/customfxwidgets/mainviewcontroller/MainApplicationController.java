@@ -1,5 +1,9 @@
 package application.customfxwidgets.mainviewcontroller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import application.constants.GuiStrings;
 import application.controllers.ControllerProvider;
 import application.controllers.helpers.ModelObjectGuiActionsHandler;
@@ -30,10 +34,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainApplicationController extends VBox {
 

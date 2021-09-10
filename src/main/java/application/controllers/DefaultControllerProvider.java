@@ -1,41 +1,42 @@
 package application.controllers;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Supplier;
+
+import org.fxmisc.flowless.VirtualizedScrollPane;
+import org.fxmisc.richtext.CodeArea;
+import org.fxmisc.richtext.StyleClassedTextArea;
+
 import application.customfxwidgets.brokerconfig.BrokerConfigView;
 import application.customfxwidgets.listenerconfig.ListenerConfigView;
 import application.customfxwidgets.listenerconfig.ToFileSaver;
-import application.kafka.cluster.KafkaClusterProxies;
-import application.logging.CyclicStringBuffer;
-import application.logging.FixedNumberRecordsCountLogger;
-import application.persistence.ApplicationSettings;
-import application.root.Restartables;
-import application.scripting.GroovyScriptEvaluator;
-import application.scripting.MessageTemplateSender;
 import application.customfxwidgets.senderconfig.SenderConfigView;
 import application.customfxwidgets.topicconfig.TopicConfigView;
 import application.displaybehaviour.ModelConfigObjectsGuiInformer;
 import application.kafka.cluster.ClusterStatusChecker;
-import application.kafka.sender.KafkaMessageSender;
+import application.kafka.cluster.KafkaClusterProxies;
 import application.kafka.listener.Listeners;
+import application.kafka.sender.KafkaMessageSender;
+import application.logging.CyclicStringBuffer;
+import application.logging.FixedNumberRecordsCountLogger;
 import application.logging.Logger;
 import application.model.ModelConfigObject;
 import application.model.modelobjects.KafkaBrokerConfig;
 import application.model.modelobjects.KafkaListenerConfig;
 import application.model.modelobjects.KafkaSenderConfig;
 import application.model.modelobjects.KafkaTopicConfig;
+import application.persistence.ApplicationSettings;
+import application.root.Restartables;
+import application.scripting.GroovyScriptEvaluator;
+import application.scripting.MessageTemplateSender;
+import application.scripting.codearea.SyntaxHighlightingCodeAreaConfigurator;
 import application.utils.AppUtils;
 import application.utils.UserInteractor;
-import application.scripting.codearea.SyntaxHighlightingCodeAreaConfigurator;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
-import org.fxmisc.flowless.VirtualizedScrollPane;
-import org.fxmisc.richtext.CodeArea;
-import org.fxmisc.richtext.StyleClassedTextArea;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Supplier;
 
 public class DefaultControllerProvider implements ControllerProvider {
     private final Map<String /*uuid*/, BrokerConfigView> brokerControllers = new HashMap<>();

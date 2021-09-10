@@ -1,10 +1,10 @@
 package application.controllers.helpers;
 
-import application.logging.Logger;
-import application.model.ModelConfigObject;
-
 import java.io.IOException;
 import java.util.Optional;
+
+import application.logging.Logger;
+import application.model.ModelConfigObject;
 
 abstract public class TemplateGuiActionsHandler<ModelObject extends ModelConfigObject> implements ModelObjectGuiActionsHandler {
 

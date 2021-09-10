@@ -1,5 +1,6 @@
-import application.logging.CyclicStringBuffer;
 import org.testng.annotations.Test;
+
+import application.logging.CyclicStringBuffer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

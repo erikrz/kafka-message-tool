@@ -1,8 +1,5 @@
 package application.customfxwidgets.listenerconfig;
 
-import application.utils.UserInteractor;
-import javafx.stage.FileChooser;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -10,6 +7,9 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.function.Supplier;
+
+import application.utils.UserInteractor;
+import javafx.stage.FileChooser;
 
 public class ToFileSaver {
 

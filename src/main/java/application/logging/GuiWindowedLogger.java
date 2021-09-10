@@ -1,7 +1,8 @@
 package application.logging;
 
-import application.utils.TimestampUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+
+import application.utils.TimestampUtils;
 
 
 public class GuiWindowedLogger implements ToolLogger {

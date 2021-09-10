@@ -1,9 +1,9 @@
 package application.globals;
 
+import java.net.URL;
+
 import application.logging.Logger;
 import javafx.scene.image.Image;
-
-import java.net.URL;
 
 public class AppGlobals {
     private static final String APPLICATION_ICON_PNG = "/kafka-logo.png";

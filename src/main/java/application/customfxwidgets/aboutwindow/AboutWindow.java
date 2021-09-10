@@ -1,5 +1,7 @@
 package application.customfxwidgets.aboutwindow;
 
+import java.io.IOException;
+
 import application.constants.ApplicationConstants;
 import application.utils.ApplicationVersionProvider;
 import javafx.application.Application;
@@ -16,8 +18,6 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-
-import java.io.IOException;
 
 import static application.customfxwidgets.CustomFxWidgetsLoader.loadAnchorPane;
 

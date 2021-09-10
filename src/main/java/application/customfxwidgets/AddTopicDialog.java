@@ -1,5 +1,9 @@
 package application.customfxwidgets;
 
+import java.io.IOException;
+
+import org.apache.commons.lang3.StringUtils;
+
 import application.constants.ApplicationConstants;
 import application.kafka.cluster.TopicCleanupPolicy;
 import application.kafka.dto.TopicToAdd;
@@ -18,9 +22,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import org.apache.commons.lang3.StringUtils;
-
-import java.io.IOException;
 
 public class AddTopicDialog extends AnchorPane {
 

@@ -1,5 +1,16 @@
 package application.customfxwidgets.topicconfig;
 
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.StringUtils;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
+
+import com.sun.javafx.scene.control.skin.TextFieldSkin;
+
 import application.customfxwidgets.CustomFxWidgetsLoader;
 import application.customfxwidgets.Displayable;
 import application.customfxwidgets.TopicConfigComboBoxConfigurator;
@@ -14,12 +25,11 @@ import application.kafka.dto.TopicAggregatedSummary;
 import application.logging.Logger;
 import application.model.modelobjects.KafkaBrokerConfig;
 import application.model.modelobjects.KafkaTopicConfig;
-import application.utils.GuiUtils;
 import application.utils.ConfigNameGenerator;
+import application.utils.GuiUtils;
 import application.utils.TooltipCreator;
 import application.utils.ValidatorUtils;
 import application.utils.kafka.KafkaBrokerHostInfo;
-import com.sun.javafx.scene.control.skin.TextFieldSkin;
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringExpression;
@@ -37,14 +47,6 @@ import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
-import org.apache.commons.lang3.StringUtils;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
-import org.controlsfx.control.textfield.TextFields;
-
-import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class TopicConfigView extends AnchorPane implements Displayable {

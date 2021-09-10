@@ -1,10 +1,11 @@
 package validationspecification;
 
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 import application.model.modelobjects.KafkaSenderConfig;
 import application.utils.ValidationStatus;
 import application.utils.Validations;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -1,5 +1,12 @@
 package pojoconversions;
 
+import java.util.Optional;
+
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 import application.model.FromPojoConverter;
 import application.model.KafkaOffsetResetType;
 import application.model.ModelDataProxy;
@@ -11,12 +18,6 @@ import application.model.pojos.BrokerConfigPojo;
 import application.model.pojos.ListenerConfigPojo;
 import application.model.pojos.SenderConfigPojo;
 import application.model.pojos.TopicConfigPojo;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;

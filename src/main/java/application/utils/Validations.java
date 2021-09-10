@@ -1,11 +1,12 @@
 package application.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import application.kafka.cluster.KafkaClusterProxies;
 import application.kafka.cluster.KafkaClusterProxy;
 import application.model.modelobjects.KafkaBrokerConfig;
 import application.model.modelobjects.KafkaSenderConfig;
 import application.model.modelobjects.KafkaTopicConfig;
-import org.apache.commons.lang3.StringUtils;
 
 public class Validations {
     public static ValidationStatus validateForCalculatingPartition(KafkaSenderConfig config,

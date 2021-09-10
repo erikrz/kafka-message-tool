@@ -1,7 +1,8 @@
 package configs;
 
-import application.model.modelobjects.KafkaListenerConfig;
 import org.testng.annotations.Test;
+
+import application.model.modelobjects.KafkaListenerConfig;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

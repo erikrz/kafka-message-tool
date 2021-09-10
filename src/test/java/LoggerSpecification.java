@@ -1,11 +1,10 @@
-
-import application.logging.LogLevel;
-import autofixture.publicinterface.Any;
-import application.logging.ToolLogger;
-import application.logging.Logger;
-
 import org.mockito.Mockito;
 import org.testng.annotations.Test;
+
+import application.logging.LogLevel;
+import application.logging.Logger;
+import application.logging.ToolLogger;
+import autofixture.publicinterface.Any;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;

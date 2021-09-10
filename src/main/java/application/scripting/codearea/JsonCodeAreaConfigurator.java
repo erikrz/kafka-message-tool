@@ -1,10 +1,10 @@
 package application.scripting.codearea;
 
-import org.fxmisc.richtext.CodeArea;
-
 import java.util.concurrent.Executor;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.fxmisc.richtext.CodeArea;
 
 public class JsonCodeAreaConfigurator {
 

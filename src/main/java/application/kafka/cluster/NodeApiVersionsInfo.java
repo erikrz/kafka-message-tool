@@ -1,28 +1,20 @@
 package application.kafka.cluster;
 
-import org.apache.kafka.common.protocol.ApiKeys;
-import org.apache.kafka.common.requests.ApiVersionsResponse;
+import org.apache.kafka.clients.admin.ConfigEntry;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class NodeApiVersionsInfo {
-    private final List<ApiVersionsResponse.ApiVersion> apiVersions = new ArrayList<>();
 
-    public NodeApiVersionsInfo(List<ApiVersionsResponse.ApiVersion> apiVersions) {
-        this.apiVersions.addAll(apiVersions);
-    }
+    private final ConfigEntry protocolVersion;
 
-    private boolean isApiSupportedById(short apiKeyId) {
-        for (ApiVersionsResponse.ApiVersion version : apiVersions) {
-            if (version.apiKey == apiKeyId) {
-                return true;
-            }
-        }
-        return false;
+    public NodeApiVersionsInfo(ConfigEntry configEntry) {
+        this.protocolVersion = configEntry;
     }
 
     public boolean doesApiSupportDescribeConfig() {
-        return isApiSupportedById(ApiKeys.DESCRIBE_CONFIGS.id);
+        if (protocolVersion.value().startsWith("0.11")) {
+            return true;
+        }
+        return Integer.parseInt(protocolVersion.value().substring(0, 1)) > 0;
     }
 }

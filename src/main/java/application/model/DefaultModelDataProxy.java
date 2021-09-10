@@ -1,5 +1,9 @@
 package application.model;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import application.model.modelobjects.KafkaBrokerConfig;
 import application.model.modelobjects.KafkaListenerConfig;
 import application.model.modelobjects.KafkaSenderConfig;
@@ -8,10 +12,6 @@ import application.model.pojos.BrokerConfigPojo;
 import application.model.pojos.ListenerConfigPojo;
 import application.model.pojos.SenderConfigPojo;
 import application.model.pojos.TopicConfigPojo;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class DefaultModelDataProxy implements ModelDataProxy {
     private final DataModel dataModel;

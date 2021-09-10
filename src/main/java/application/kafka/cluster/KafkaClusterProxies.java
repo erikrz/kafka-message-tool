@@ -1,15 +1,15 @@
 package application.kafka.cluster;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
+
 import application.exceptions.ClusterConfigurationError;
 import application.utils.HostInfo;
 import application.utils.HostPortValue;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeoutException;
 
 
 public class KafkaClusterProxies {

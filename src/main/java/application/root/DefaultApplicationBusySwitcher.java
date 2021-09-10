@@ -1,11 +1,11 @@
 package application.root;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.stage.Stage;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class DefaultApplicationBusySwitcher implements ApplicationBusySwitcher {
 

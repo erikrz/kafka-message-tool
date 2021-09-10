@@ -1,5 +1,7 @@
 package application.displaybehaviour;
 
+import java.util.List;
+
 import application.model.ModelConfigObject;
 import application.model.modelobjects.KafkaBrokerConfig;
 import application.model.modelobjects.KafkaListenerConfig;
@@ -11,8 +13,6 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-
-import java.util.List;
 
 public class DefaultModelConfigObjectsGuiInformer implements ModelConfigObjectsGuiInformer {
     private final TabPane tabPane;
