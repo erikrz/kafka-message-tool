@@ -3,8 +3,6 @@ package application.utils;
 import java.lang.reflect.Method;
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.sun.javafx.scene.control.skin.TableViewSkin;
-
 import application.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -12,6 +10,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
+import javafx.scene.control.skin.TableViewSkin;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.KeyCode;
@@ -27,7 +26,8 @@ public class TableUtils {
 
     static {
         try {
-            columnToFitMethod = TableViewSkin.class.getDeclaredMethod("resizeColumnToFitContent", TableColumn.class, int.class);
+            columnToFitMethod =
+                    TableViewSkin.class.getDeclaredMethod("resizeColumnToFitContent", TableColumn.class, int.class);
             columnToFitMethod.setAccessible(true);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
@@ -48,29 +48,29 @@ public class TableUtils {
             });
         }
     }
-//    public static void autoFitTable(TableView tableView) {
-//        System.out.println("Installing listener");
-//        tableView.getItems().addListener(new ListChangeListener<Object>() {
-//            @Override
-//            public void onChanged(Change<?> c) {
-//                for (Object column : tableView.getColumns()) {
-//                    try {
-//                        System.out.println("Column to fit (action): " + columnToFitMethod);
-//                        final Skin<?> skin = tableView.getSkin();
-//                        System.out.println("Skin : " + skin);
-//                        if(skin==null)
-//                        {
-//                            System.out.println("Skin is null");
-//                            continue;
-//                        }
-//                        columnToFitMethod.invoke(skin, column, -1);
-//                    } catch (IllegalAccessException | InvocationTargetException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        });
-//    }
+    //    public static void autoFitTable(TableView tableView) {
+    //        System.out.println("Installing listener");
+    //        tableView.getItems().addListener(new ListChangeListener<Object>() {
+    //            @Override
+    //            public void onChanged(Change<?> c) {
+    //                for (Object column : tableView.getColumns()) {
+    //                    try {
+    //                        System.out.println("Column to fit (action): " + columnToFitMethod);
+    //                        final Skin<?> skin = tableView.getSkin();
+    //                        System.out.println("Skin : " + skin);
+    //                        if(skin==null)
+    //                        {
+    //                            System.out.println("Skin is null");
+    //                            continue;
+    //                        }
+    //                        columnToFitMethod.invoke(skin, column, -1);
+    //                    } catch (IllegalAccessException | InvocationTargetException e) {
+    //                        e.printStackTrace();
+    //                    }
+    //                }
+    //            }
+    //        });
+    //    }
 
     public static void autoResizeColumns(TableView<?> table) {
         //Set the right policy

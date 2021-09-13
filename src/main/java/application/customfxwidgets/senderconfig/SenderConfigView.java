@@ -9,8 +9,6 @@ import org.controlsfx.control.StatusBar;
 import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
-import com.sun.javafx.scene.control.skin.TextFieldSkin;
-
 import application.constants.GuiStrings;
 import application.customfxwidgets.CustomFxWidgetsLoader;
 import application.customfxwidgets.Displayable;
@@ -51,6 +49,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.skin.TextFieldSkin;
 import javafx.scene.layout.AnchorPane;
 
 
@@ -163,11 +162,11 @@ public class SenderConfigView extends AnchorPane implements Displayable {
 
         final StringExpression windowTitle = new ReadOnlyStringWrapper("Message sender configuration");
         displayBehaviour = new DetachableDisplayBehaviour(parentPane,
-                                                          windowTitle,
-                                                          this,
-                                                          detachPaneButton.selectedProperty(),
-                                                          config,
-                                                          guiInformer);
+                windowTitle,
+                this,
+                detachPaneButton.selectedProperty(),
+                config,
+                guiInformer);
 
         configureMessageNameTextField();
         configureMessageContentTextArea();
@@ -182,7 +181,7 @@ public class SenderConfigView extends AnchorPane implements Displayable {
         comboBoxConfigurator = new TopicConfigComboBoxConfigurator<>(topicConfigComboBox, config);
         comboBoxConfigurator.configure();
         taskExecutor = new MessageSenderTaskExecutor(sendMsgPushButton.disableProperty(),
-                                                     stopSendingButton.disableProperty());
+                stopSendingButton.disableProperty());
     }
 
     @Override
@@ -203,12 +202,13 @@ public class SenderConfigView extends AnchorPane implements Displayable {
     private void initialize() {
         bodyTemplateTab.setText(GuiStrings.MESSAGE_BODY_TEMPLATE_NAME);
         bodyTemplateTab.setTooltip(TooltipCreator.createFrom(
-            GuiStrings.MESSAGE_DEFINITION_TOOL_TIP));
+                GuiStrings.MESSAGE_DEFINITION_TOOL_TIP));
 
         scriptingTab.setText(GuiStrings.GROOVY_SCRIPTING_TAB_NAME);
 
         beforeAllMsgSharedScriptTab.setText(GuiStrings.BEFORE_FIRST_MSGS_SHARED_SCRIPT_TAB_NAME);
-        beforeAllMsgSharedScriptTab.setTooltip(TooltipCreator.createFrom(GuiStrings.BEFORE_FIRST_MSG_SHARED_TAB_TOOLTIP));
+        beforeAllMsgSharedScriptTab.setTooltip(
+                TooltipCreator.createFrom(GuiStrings.BEFORE_FIRST_MSG_SHARED_TAB_TOOLTIP));
 
         beforeAllMsgScriptTab.setText(GuiStrings.BEFORE_FIRST_MSGS_SCRIPT_TAB_NAME);
         beforeAllMsgScriptTab.setTooltip(TooltipCreator.createFrom(GuiStrings.BEFORE_FIRST_MSG_TAB_TOOLTIP));
@@ -223,23 +223,21 @@ public class SenderConfigView extends AnchorPane implements Displayable {
     }
 
     private void configureNameGenerator() {
-        generateNameMenuItem.setOnAction(event->{
+        generateNameMenuItem.setOnAction(event -> {
             final String newName = ConfigNameGenerator.generateNewSenderConfigName(config);
             messageNameTextField.setText(newName);
         });
     }
 
     private void addAdditionalEntryToConfigNameContextMenu() {
-        TextFieldSkin customContextSkin = new TextFieldSkin(messageNameTextField) {
-            @Override
-            public void populateContextMenu(ContextMenu contextMenu) {
-                super.populateContextMenu(contextMenu);
-                contextMenu.getItems().add(0, new SeparatorMenuItem());
-                contextMenu.getItems().add(0, generateNameMenuItem);
-            }
-        };
+        TextFieldSkin customContextSkin = new TextFieldSkin(messageNameTextField);
         messageNameTextField.setSkin(customContextSkin);
-
+        if (messageNameTextField.getContextMenu() == null) {
+            messageNameTextField.setContextMenu(new ContextMenu(new SeparatorMenuItem(), generateNameMenuItem));
+        } else {
+            messageNameTextField.getContextMenu().getItems().add(new SeparatorMenuItem());
+            messageNameTextField.getContextMenu().getItems().add(generateNameMenuItem);
+        }
     }
 
     private void configureScriptsTextAreas() {
@@ -249,7 +247,8 @@ public class SenderConfigView extends AnchorPane implements Displayable {
     }
 
     private void configureTextAreasTextChangeActions() {
-        final StringProperty sharedScriptProperty = applicationSettings.appSettings().runBeforeFirstMessageSharedScriptContentProperty();
+        final StringProperty sharedScriptProperty =
+                applicationSettings.appSettings().runBeforeFirstMessageSharedScriptContentProperty();
         beforeAllmessagesSharedScriptCodeArea.appendText(sharedScriptProperty.get());
 
 
@@ -267,8 +266,8 @@ public class SenderConfigView extends AnchorPane implements Displayable {
             }
 
             beforeAllmessagesSharedScriptCodeArea.replaceText(0,
-                                                              beforeAllmessagesSharedScriptCodeArea.getLength(),
-                                                              newValue);
+                    beforeAllmessagesSharedScriptCodeArea.getLength(),
+                    newValue);
         });
 
         beforeAllMessagesScriptCodeArea.appendText(config.runBeforeAllMessagesScriptProperty().get());
@@ -295,16 +294,17 @@ public class SenderConfigView extends AnchorPane implements Displayable {
 
 
     private void configureRepeatCountSpinner() {
-        ValidatorUtils.configureSpinner(repeatCountSpinner, config.repeatCountProperty(), MIN_REPEAT_COUNT, MAX_REPEAT_COUNT);
+        ValidatorUtils.configureSpinner(repeatCountSpinner, config.repeatCountProperty(), MIN_REPEAT_COUNT,
+                MAX_REPEAT_COUNT);
     }
 
     private void configureMessageNameTextField() {
         messageNameTextField.setText(config.getName());
 
         GuiUtils.configureTextFieldToAcceptOnlyValidData(messageNameTextField,
-                                                         config::setName,
-                                                         ValidatorUtils::isStringIdentifierValid,
-                                                         refreshCallback);
+                config::setName,
+                ValidatorUtils::isStringIdentifierValid,
+                refreshCallback);
     }
 
     private void configureMessageContentTextArea() {
@@ -335,7 +335,8 @@ public class SenderConfigView extends AnchorPane implements Displayable {
     }
 
     private void displayProbableAssignedPartitionForMessageSentToTopic(String messageKey) {
-        final ValidationStatus validationStatus = Validations.validateForCalculatingPartition(config, kafkaClusterProxies);
+        final ValidationStatus validationStatus =
+                Validations.validateForCalculatingPartition(config, kafkaClusterProxies);
         if (!validationStatus.isSuccess()) {
             showInfoWhyTargetPartitionCouldNotBeCalculated(validationStatus.validationFailureMessage());
             return;
@@ -346,7 +347,8 @@ public class SenderConfigView extends AnchorPane implements Displayable {
         final KafkaClusterProxy kafkaClusterProxy = kafkaClusterProxies.get(brokerConfig.getHostInfo());
         final int partitions = kafkaClusterProxy.partitionsForTopic(topicConfig.getTopicName());
         final int expectedAssignedPartitions = KafkaPartitionUtils.partition(messageKey, partitions);
-        final String msg = String.format("Expected assigned partition for key '%s' is %d", messageKey, expectedAssignedPartitions);
+        final String msg =
+                String.format("Expected assigned partition for key '%s' is %d", messageKey, expectedAssignedPartitions);
         statusBarNotifier.displayMessageWithFadeTimeout(msg, MESSAGE_FADE_MS);
 
     }
@@ -375,7 +377,7 @@ public class SenderConfigView extends AnchorPane implements Displayable {
         final KafkaBrokerConfig brokerConfig = topicConfig.getRelatedConfig();
         if (brokerConfig == null) {
             Logger.error(String.format("Invalid topic config '%s' (broker config not assigned)",
-                                       topicConfig.getTopicName()));
+                    topicConfig.getTopicName()));
             return;
         }
 
@@ -388,12 +390,12 @@ public class SenderConfigView extends AnchorPane implements Displayable {
         final Instant now = Instant.now();
         msgTemplateSender.send(config,
                 statusBarNotifier,
-                               applicationSettings.appSettings().getRunBeforeFirstMessageSharedScriptContent(),
-                               sendingSimulationModeCheckBox.isSelected());
+                applicationSettings.appSettings().getRunBeforeFirstMessageSharedScriptContent(),
+                sendingSimulationModeCheckBox.isSelected());
         final Instant now1 = Instant.now();
         final Duration between = Duration.between(now, now1);
         Logger.info(String.format("Sending messages duration: %s",
-                                  DurationFormatUtils.formatDuration(between.toMillis(), "HH:mm:ss", true)));
+                DurationFormatUtils.formatDuration(between.toMillis(), "HH:mm:ss", true)));
 
     }
 

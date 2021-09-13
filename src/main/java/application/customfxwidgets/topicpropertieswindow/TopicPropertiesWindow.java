@@ -173,7 +173,8 @@ public final class TopicPropertiesWindow extends AnchorPane {
 
     private void initializeStage() {
         final Scene scene = new Scene(this);
-        scene.getStylesheets().add(getClass().getResource(ApplicationConstants.GLOBAL_CSS_FILE_NAME).toExternalForm());
+        scene.getStylesheets().add(TopicPropertiesWindow.class.getClassLoader().getResource(
+                ApplicationConstants.GLOBAL_CSS_FILE_NAME).toExternalForm());
         scene.setRoot(this);
         stage.setScene(scene);
         stage.centerOnScreen();

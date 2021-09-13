@@ -1,4 +1,3 @@
-
 package application.utils;
 
 import java.time.Instant;
@@ -13,13 +12,14 @@ public class TimestampUtils {
     public static String nowFullTimestamp() {
         return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS").format(LocalDateTime.now());
     }
+
     public static String nowTimeTimestamp() {
         return DateTimeFormatter.ofPattern("HH:mm:ss.SSS").format(LocalDateTime.now());
     }
 
     public static String timestampFromEpochMili(long epochMili) {
         return DATE_TIME_FORMATTER
-            .format((LocalDateTime.ofInstant(Instant.ofEpochMilli(epochMili),
-                                             ZoneId.systemDefault())));
+                .format((LocalDateTime.ofInstant(Instant.ofEpochMilli(epochMili),
+                        ZoneId.systemDefault())));
     }
 }

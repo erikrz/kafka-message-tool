@@ -107,6 +107,7 @@ public class KakfaTopicConfigSpecification {
         // THEN
         assertThat(toolTip).isEqualTo("topic       :'test'");
     }
+
     @Test
     public void shouldGenerateTooltipInfoFromTopicConfigWithDefautBrokerConfigConfigured() {
         // GIVEN
@@ -119,7 +120,7 @@ public class KakfaTopicConfigSpecification {
 
         // THEN
         assertThat(toolTip).isEqualTo("topic       :'test'\n" +
-                                      "broker host : localhost:9092");
+                "broker host : localhost:9092");
     }
 
     @Test

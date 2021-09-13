@@ -1,4 +1,3 @@
-
 package application.kafka.sender;
 
 import application.model.MessageOnTopicDto;

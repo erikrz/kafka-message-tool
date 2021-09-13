@@ -1,14 +1,13 @@
 package application.model.pojos;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import application.model.XmlElementNames;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
 @XmlRootElement(name = XmlElementNames.BROKER_CONFIG)
-public class BrokerConfigPojo implements Copyable<BrokerConfigPojo>{
+public class BrokerConfigPojo implements Copyable<BrokerConfigPojo> {
 
     private String uuid;
     private String configName;

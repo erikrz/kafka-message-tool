@@ -126,7 +126,7 @@ public class AddTopicDialog extends AnchorPane {
 
     private void prepareStage() {
         final Scene scene = new Scene(this);
-        scene.getStylesheets().add(getClass().getResource(ApplicationConstants.GLOBAL_CSS_FILE_NAME).toExternalForm());
+        scene.getStylesheets().add(AddTopicDialog.class.getClassLoader().getResource(ApplicationConstants.GLOBAL_CSS_FILE_NAME).toExternalForm());
         scene.setRoot(this);
         stage.setScene(scene);
         stage.setTitle("Creating new topic...");

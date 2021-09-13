@@ -1,4 +1,3 @@
-
 package application.utils;
 
 import org.apache.commons.lang3.StringUtils;
@@ -52,8 +51,8 @@ public class HostInfo {
     @Override
     public String toString() {
         return "HostInfo{" +
-            "hostname=" + getHostname() +
-            ", port=" + getPort() +
-            '}';
+                "hostname=" + getHostname() +
+                ", port=" + getPort() +
+                '}';
     }
 }

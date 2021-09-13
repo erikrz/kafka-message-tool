@@ -1,12 +1,11 @@
 package application.root;
 
-import com.sun.javafx.scene.control.skin.TextAreaSkin;
-
 import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.skin.TextAreaSkin;
 
 public class FxTextAreaWrapper implements TextAreaWrapper {
 
@@ -40,15 +39,13 @@ public class FxTextAreaWrapper implements TextAreaWrapper {
     @Override
     public void setPopupSaveToAction(Executable saveContentToFile) {
         saveToFilePopupMenuItem.setOnAction(event -> saveContentToFile.execute());
-
-        TextAreaSkin customContextSkin = new TextAreaSkin(fxTextArea) {
-            @Override
-            public void populateContextMenu(ContextMenu contextMenu) {
-                super.populateContextMenu(contextMenu);
-                contextMenu.getItems().add(0, new SeparatorMenuItem());
-                contextMenu.getItems().add(0, saveToFilePopupMenuItem);
-            }
-        };
+        TextAreaSkin customContextSkin = new TextAreaSkin(fxTextArea);
         fxTextArea.setSkin(customContextSkin);
+        if (fxTextArea.getContextMenu() == null) {
+            fxTextArea.setContextMenu(new ContextMenu(new SeparatorMenuItem(), saveToFilePopupMenuItem));
+        } else {
+            fxTextArea.getContextMenu().getItems().add(new SeparatorMenuItem());
+            fxTextArea.getContextMenu().getItems().add(saveToFilePopupMenuItem);
+        }
     }
 }

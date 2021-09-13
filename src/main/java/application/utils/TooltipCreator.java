@@ -14,18 +14,10 @@ import javafx.beans.property.StringProperty;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Tooltip;
 
-
 public class TooltipCreator {
 
-    private static final double OPEN_DELAY_MS = 100.0d;
-    private static final double VISIBLE_DURATION_MS = Double.MAX_VALUE;
-    private static final double CLOSE_DELAY_MS = 100d;
-
     static {
-        updateTooltipBehavior(OPEN_DELAY_MS,
-                              VISIBLE_DURATION_MS,
-                              CLOSE_DELAY_MS,
-                              false);
+        updateTooltipBehavior(false);
     }
 
     public static Tooltip createFrom(KafkaTopicConfig topicConfig, ModelDataProxy dataProxy) {
@@ -84,11 +76,7 @@ public class TooltipCreator {
     // hack from stack overflow to change display tooltip behaviour
     // https://stackoverflow.com/questions/26854301/how-to-control-the-javafx-tooltips-delay/27739605
 
-    private static void updateTooltipBehavior(
-        double openDelayMs,
-        double visibleDurationMs,
-        double closeDelayMs,
-        boolean hideOnExit) {
+    private static void updateTooltipBehavior(boolean hideOnExit) {
         try {
             // Get the non public field "BEHAVIOR"
             Field fieldBehavior = Tooltip.class.getDeclaredField("BEHAVIOR");
@@ -97,18 +85,11 @@ public class TooltipCreator {
             // Get the value of the static field
             Object objBehavior = fieldBehavior.get(null);
             // Get the constructor of the private static inner class TooltipBehavior
-            Constructor<?> constructor = objBehavior.getClass().getDeclaredConstructor(
-                javafx.util.Duration.class, javafx.util.Duration.class, javafx.util.Duration.class, boolean.class
-            );
+            Constructor<?> constructor = objBehavior.getClass().getDeclaredConstructor(boolean.class);
             // Make the constructor accessible to be able to invoke it
             constructor.setAccessible(true);
             // Create a new instance of the private static inner class TooltipBehavior
-            Object tooltipBehavior = constructor.newInstance(
-                new javafx.util.Duration(openDelayMs),
-                new javafx.util.Duration(visibleDurationMs),
-                new javafx.util.Duration(closeDelayMs),
-                hideOnExit
-            );
+            Object tooltipBehavior = constructor.newInstance(hideOnExit);
             // Set the new instance of TooltipBehavior
             fieldBehavior.set(null, tooltipBehavior);
         } catch (Exception e) {

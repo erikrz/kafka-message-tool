@@ -1,9 +1,8 @@
 package application.model.pojos;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import application.model.XmlElementNames;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.EqualsAndHashCode;
 
 import static application.model.XmlElementNames.BROKER_UUID;
@@ -12,7 +11,7 @@ import static application.model.XmlElementNames.UUID;
 
 @EqualsAndHashCode
 @XmlRootElement(name = XmlElementNames.TOPIC_CONFIG)
-public class TopicConfigPojo implements Copyable<TopicConfigPojo>{
+public class TopicConfigPojo implements Copyable<TopicConfigPojo> {
 
     private String configName;
     private String uuid;

@@ -1,4 +1,3 @@
-
 package application.kafka.listener;
 
 import java.util.HashSet;

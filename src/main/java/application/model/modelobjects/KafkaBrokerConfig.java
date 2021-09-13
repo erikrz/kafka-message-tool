@@ -1,13 +1,13 @@
 package application.model.modelobjects;
 
 import java.util.UUID;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang3.StringUtils;
 
 import application.model.ModelConfigObject;
 import application.utils.kafka.KafkaBrokerHostInfo;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -17,7 +17,7 @@ public class KafkaBrokerConfig implements ModelConfigObject, ToolTipInfoProvider
     private static final String DEFAULT_KAFKA_HOSTNAME = "localhost";
 
     private final KafkaBrokerHostInfo hostInfo = new KafkaBrokerHostInfo(DEFAULT_KAFKA_HOSTNAME,
-                                                                         DEFAULT_KAFKA_PORT);
+            DEFAULT_KAFKA_PORT);
     private final StringProperty name = new SimpleStringProperty();
     private final StringProperty port = hostInfo.portProperty();
     private final StringProperty hostname = hostInfo.hostnameProperty();

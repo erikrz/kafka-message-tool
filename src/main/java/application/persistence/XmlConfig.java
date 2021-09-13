@@ -1,15 +1,15 @@
 package application.persistence;
 
 import java.util.List;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import application.model.XmlElementNames;
 import application.model.pojos.BrokerConfigPojo;
 import application.model.pojos.ListenerConfigPojo;
 import application.model.pojos.SenderConfigPojo;
 import application.model.pojos.TopicConfigPojo;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElementWrapper;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = XmlElementNames.APPLICATION_CONFIG)
 public class XmlConfig {

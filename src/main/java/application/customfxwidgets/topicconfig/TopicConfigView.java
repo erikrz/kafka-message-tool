@@ -9,8 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
-import com.sun.javafx.scene.control.skin.TextFieldSkin;
-
 import application.customfxwidgets.CustomFxWidgetsLoader;
 import application.customfxwidgets.Displayable;
 import application.customfxwidgets.TopicConfigComboBoxConfigurator;
@@ -46,14 +44,17 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.skin.TextFieldSkin;
 import javafx.scene.layout.AnchorPane;
 
 
 public class TopicConfigView extends AnchorPane implements Displayable {
     private static final String FXML_FILE = "TopicConfigView.fxml";
     private static final PseudoClass OK_TOPIC_EXISTS_PSEUDO_CLASS = PseudoClass.getPseudoClass("ok_topic_exists");
-    private static final PseudoClass TOPIC_WILL_BE_AUTOCREATED_PSEUDO_CLASS = PseudoClass.getPseudoClass("warn_topic_will_be_autocreated");
-    private static final PseudoClass CANNOT_USE_TOPIC_PSEUDO_CLASS = PseudoClass.getPseudoClass("error_cannot_use_topic");
+    private static final PseudoClass TOPIC_WILL_BE_AUTOCREATED_PSEUDO_CLASS =
+            PseudoClass.getPseudoClass("warn_topic_will_be_autocreated");
+    private static final PseudoClass CANNOT_USE_TOPIC_PSEUDO_CLASS =
+            PseudoClass.getPseudoClass("error_cannot_use_topic");
     private final KafkaTopicConfig config;
     private final DisplayBehaviour displayBehaviour;
     private final ClusterStatusChecker statusChecker;
@@ -125,23 +126,21 @@ public class TopicConfigView extends AnchorPane implements Displayable {
 
     private void configureNameGenerator() {
         //saveToFilePopupMenuItem.setOnAction(event -> toFileSaver.saveContentToFile());
-        generateNameMenuItem.setOnAction(event->{
+        generateNameMenuItem.setOnAction(event -> {
             final String newName = ConfigNameGenerator.generateNewTopicConfigName(config);
             topicConfigNameField.setText(newName);
         });
     }
 
     private void addAdditionalEntryToConfigNameContextMenu() {
-        TextFieldSkin customContextSkin = new TextFieldSkin(topicConfigNameField) {
-            @Override
-            public void populateContextMenu(ContextMenu contextMenu) {
-                super.populateContextMenu(contextMenu);
-                contextMenu.getItems().add(0, new SeparatorMenuItem());
-                contextMenu.getItems().add(0, generateNameMenuItem);
-            }
-        };
+        TextFieldSkin customContextSkin = new TextFieldSkin(topicConfigNameField);
         topicConfigNameField.setSkin(customContextSkin);
-
+        if (topicConfigNameField.getContextMenu() == null) {
+            topicConfigNameField.setContextMenu(new ContextMenu(new SeparatorMenuItem(), generateNameMenuItem));
+        } else {
+            topicConfigNameField.getContextMenu().getItems().add(new SeparatorMenuItem());
+            topicConfigNameField.getContextMenu().getItems().add(generateNameMenuItem);
+        }
     }
 
     private void setupSuggestionProviderForTextField() {
@@ -178,7 +177,7 @@ public class TopicConfigView extends AnchorPane implements Displayable {
         GuiUtils.configureTextFieldToAcceptOnlyValidData(topicNameField,
                 config::setTopicName,
                 ValidatorUtils::isStringIdentifierValid,
-                                                         refreshCallback);
+                refreshCallback);
     }
 
     private void resetBrokerConfigToFireUpAllCallbacksForTheFirstTimeToSetupControls() {
@@ -206,8 +205,9 @@ public class TopicConfigView extends AnchorPane implements Displayable {
         updateTopicNameTextFieldAppearance(config.getRelatedConfig());
     }
 
-    private void setCallbackForChangingTopicNameAppearanceWhenBrokerConfigInternalPropertiesChanges(KafkaBrokerConfig oldValue,
-                                                                                                    KafkaBrokerConfig newValue) {
+    private void setCallbackForChangingTopicNameAppearanceWhenBrokerConfigInternalPropertiesChanges(
+            KafkaBrokerConfig oldValue,
+            KafkaBrokerConfig newValue) {
 
         if (oldValue != null) {
             oldValue.hostNameProperty().removeListener(this::stringPropertyCallbackForUpdatingTextFieldAppearance);
@@ -231,10 +231,12 @@ public class TopicConfigView extends AnchorPane implements Displayable {
         setTopicNameTextFieldStylePropertiesBasedOnClusterConfig(proxy);
     }
 
-    private void setCallbackForUpdatingTopicNameTextFieldBackgroundIfCurrentClusterSummaryChanges(KafkaBrokerConfig oldValue,
-                                                                                                  KafkaBrokerConfig newValue) {
+    private void setCallbackForUpdatingTopicNameTextFieldBackgroundIfCurrentClusterSummaryChanges(
+            KafkaBrokerConfig oldValue,
+            KafkaBrokerConfig newValue) {
         if (oldValue != null) {
-            final ObjectProperty<KafkaClusterProxy> oldProxy = kafkaClusterProxies.getAsProperty(oldValue.getHostInfo());
+            final ObjectProperty<KafkaClusterProxy> oldProxy =
+                    kafkaClusterProxies.getAsProperty(oldValue.getHostInfo());
             Logger.trace(String.format("removing listener for cluster proxy property for %s", oldValue.getHostInfo()));
             oldProxy.removeListener(this::updateTopicNameTextFieldPropertiesCallback);
         }
@@ -266,7 +268,7 @@ public class TopicConfigView extends AnchorPane implements Displayable {
         GuiUtils.configureTextFieldToAcceptOnlyValidData(topicConfigNameField,
                 config::setName,
                 ValidatorUtils::isStringIdentifierValid,
-                                                         refreshCallback);
+                refreshCallback);
     }
 
     @FXML
@@ -371,7 +373,8 @@ public class TopicConfigView extends AnchorPane implements Displayable {
             topicNameField.setTooltip(null);
             return;
         }
-        topicNameField.setTooltip(TooltipCreator.createFrom(String.format("Topic '%s' existence undetermined.", topicName)));
+        topicNameField.setTooltip(
+                TooltipCreator.createFrom(String.format("Topic '%s' existence undetermined.", topicName)));
     }
 
 }

@@ -1,4 +1,3 @@
-
 package application.utils.kafka;
 
 import application.utils.HostInfo;
