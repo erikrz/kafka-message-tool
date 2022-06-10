@@ -1,3 +1,8 @@
+[v.1.1.0]
+ - improvement : moved to Java 11
+ - improvement : added compatibility to most recent Kafka versions (3.2)
+ - improvement : fix startup Error if config file does not exist. Creates default config file in user.home/Documents/KafkaMessageTool.
+
 [v.1.0.4.0]
  - feature : added consumer group view inside broker config view
 
@@ -35,7 +40,7 @@
 - improvement - performance improvement - can now receive 10k messages on msg listener without gui freeze
 
 [v.1.0.1.0]
-- feautre - added cleanup.policy option (delete/compacted) to CreateTopic dialog
+- feature - added cleanup.policy option (delete/compacted) to CreateTopic dialog
 
 [v.1.0.0.0]
 First working version

@@ -25,7 +25,6 @@ public class DefaultApplicationSettings implements ApplicationSettings {
         xmlConfig.load();
     }
 
-
     @Override
     public void save() {
         xmlConfig.save();

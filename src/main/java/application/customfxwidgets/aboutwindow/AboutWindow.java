@@ -22,11 +22,21 @@ import javafx.stage.Window;
 import static application.customfxwidgets.CustomFxWidgetsLoader.loadAnchorPane;
 
 public class AboutWindow extends AnchorPane {
-    private static final String FXML_FILE = "AboutWindow.fxml";
+
     public static final int BIG_FONT_SIZE = 20;
+
     public static final int MEDIUM_FONT_SIZE = 15;
-    private final Hyperlink sourceCodePage = new Hyperlink(ApplicationConstants.GITHUB_WEBSITE);
-    private final Stage stage = new Stage();
+
+    private static final Font BIG_HELVETICA_FONT = Font.font("Helvetica", FontWeight.BOLD, BIG_FONT_SIZE);
+
+    private static final Font MEDIUM_HELVETICA_FONT = Font.font("Helvetica", FontWeight.BOLD, MEDIUM_FONT_SIZE);
+    private static final String FXML_FILE = "AboutWindow.fxml";
+
+    private static final Hyperlink ORIGINAL_SOURCE_CODE_URL =
+            new Hyperlink(ApplicationConstants.ORIGINAL_GITHUB_WEBSITE);
+
+    private static final Hyperlink FORK_SOURCE_CODE_URL = new Hyperlink(ApplicationConstants.FORK_GITHUB_WEBSITE);
+    private final Stage stage;
     private final Application fxApplication;
 
     @FXML
@@ -37,7 +47,7 @@ public class AboutWindow extends AnchorPane {
 
     public AboutWindow(Window owner, Application fxApplication) throws IOException {
         this.fxApplication = fxApplication;
-
+        this.stage = new Stage();
         loadAnchorPane(this, FXML_FILE);
         setupStage(owner);
         initAboutContent();
@@ -50,21 +60,21 @@ public class AboutWindow extends AnchorPane {
     }
 
     private void configureCloseButton() {
-        closeButton.setOnAction((e) -> {
-            stage.close();
-        });
+        closeButton.setOnAction(e -> stage.close());
     }
 
     private void configureLinks() {
-        sourceCodePage.setOnAction(event -> {
-            fxApplication.getHostServices().showDocument(sourceCodePage.getText());
+        ORIGINAL_SOURCE_CODE_URL.setOnAction(event -> {
+            fxApplication.getHostServices().showDocument(ORIGINAL_SOURCE_CODE_URL.getText());
             event.consume();
         });
     }
 
     private void setupStage(Window owner) {
         final Scene scene = new Scene(this);
-        scene.getStylesheets().add(AboutWindow.class.getClassLoader().getResource(ApplicationConstants.GLOBAL_CSS_FILE_NAME).toExternalForm());
+        scene.getStylesheets().add(
+                AboutWindow.class.getClassLoader().getResource(ApplicationConstants.GLOBAL_CSS_FILE_NAME)
+                        .toExternalForm());
         scene.setRoot(this);
         stage.setScene(scene);
         stage.setTitle("About...");
@@ -78,34 +88,42 @@ public class AboutWindow extends AnchorPane {
     private void initAboutContent() {
         final Text appNameText = getAppNameText();
         final Text appVersionText = getAppVersionText();
-        final Text authorText = getAuthorText();
+        final Text originalAuthorText = getOriginalAuthorText();
+        final Text forkAuthorText = getForkAuthorText();
         textFlow.setTextAlignment(TextAlignment.CENTER);
         textFlow.getChildren().addAll(appNameText, new Text("\n"),
-                                      appVersionText,  new Text("\n\n"),
-                                      authorText, new Text("\n\n"),
-                                      new Text("Source: " ), sourceCodePage);
+                appVersionText, new Text("\n\n"),
+                forkAuthorText, new Text("\n\n"),
+                new Text("Fork Source: "), FORK_SOURCE_CODE_URL, new Text("\n\n"),
+                originalAuthorText, new Text("\n\n"),
+                new Text("Original Source: "), ORIGINAL_SOURCE_CODE_URL);
 
     }
 
     private Text getAppVersionText() {
         final Text text = new Text(String.format("[v %s]", ApplicationVersionProvider.get()));
-        text.setFont(Font.font("Helvetica", FontWeight.BOLD, BIG_FONT_SIZE));
+        text.setFont(BIG_HELVETICA_FONT);
         text.setTextAlignment(TextAlignment.CENTER);
         return text;
     }
 
-    private Text getAuthorText() {
-        Text text2 = new Text("Author: " + ApplicationConstants.AUTHOR);
-        text2.setFont(Font.font("Helvetica", FontWeight.BOLD, MEDIUM_FONT_SIZE));
+    private Text getForkAuthorText() {
+        Text text2 = new Text("Fork Author: " + ApplicationConstants.FORK_AUTHOR);
+        text2.setFont(MEDIUM_HELVETICA_FONT);
+        return text2;
+    }
+
+    private Text getOriginalAuthorText() {
+        Text text2 = new Text("Original Author: " + ApplicationConstants.ORIGINAL_AUTHOR);
+        text2.setFont(MEDIUM_HELVETICA_FONT);
         return text2;
     }
 
     private Text getAppNameText() {
         Text appVersionText = new Text(ApplicationConstants.APPLICATION_NAME);
-        appVersionText.setFont(Font.font("Helvetica", FontWeight.BOLD, BIG_FONT_SIZE));
+        appVersionText.setFont(BIG_HELVETICA_FONT);
         appVersionText.setTextAlignment(TextAlignment.CENTER);
         return appVersionText;
     }
-
 
 }
