@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.Optional;
 import javax.swing.JTextArea;
 
-import com.sun.javafx.scene.control.skin.TextFieldSkin;
-
 import application.customfxwidgets.CustomFxWidgetsLoader;
 import application.customfxwidgets.Displayable;
 import application.customfxwidgets.TopicConfigComboBoxConfigurator;
@@ -44,6 +42,7 @@ import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.skin.TextFieldSkin;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
@@ -109,7 +108,7 @@ public class ListenerConfigView extends AnchorPane implements Displayable {
         this.toFileSaver = toFileSaver;
         this.fixedRecordsLogger = fixedRecordsLogger;
         partitionAssignmentHandler = new PartitionAssignmentChangeHandler(
-            new FXNodeBlinker(Color.BLACK), config);
+                new FXNodeBlinker(Color.BLACK), config);
 
         CustomFxWidgetsLoader.loadAnchorPane(this, FXML_FILE);
 
@@ -120,11 +119,11 @@ public class ListenerConfigView extends AnchorPane implements Displayable {
 
         final StringExpression windowTitle = new ReadOnlyStringWrapper("Kafka listener configuration");
         displayBehaviour = new DetachableDisplayBehaviour(parentPane,
-                                                          windowTitle,
-                                                          this,
-                                                          detachPaneButton.selectedProperty(),
-                                                          config,
-                                                          guiInformer);
+                windowTitle,
+                this,
+                detachPaneButton.selectedProperty(),
+                config,
+                guiInformer);
         configureTopicConfigComboBox();
         configureOffsetResetComboBox();
         configureMessageNameTextField();
@@ -166,16 +165,14 @@ public class ListenerConfigView extends AnchorPane implements Displayable {
     }
 
     private void addAdditionalEntryToConfigNameContextMenu() {
-        TextFieldSkin customContextSkin = new TextFieldSkin(listenerNameTextField) {
-            @Override
-            public void populateContextMenu(ContextMenu contextMenu) {
-                super.populateContextMenu(contextMenu);
-                contextMenu.getItems().add(0, new SeparatorMenuItem());
-                contextMenu.getItems().add(0, generateNameMenuItem);
-            }
-        };
+        TextFieldSkin customContextSkin = new TextFieldSkin(listenerNameTextField);
         listenerNameTextField.setSkin(customContextSkin);
-
+        if (listenerNameTextField.getContextMenu() == null) {
+            listenerNameTextField.setContextMenu(new ContextMenu(new SeparatorMenuItem(), generateNameMenuItem));
+        } else {
+            listenerNameTextField.getContextMenu().getItems().add(new SeparatorMenuItem());
+            listenerNameTextField.getContextMenu().getItems().add(generateNameMenuItem);
+        }
     }
 
     private void configurePartitionsAssignmentsChangedLabel() {
@@ -202,15 +199,15 @@ public class ListenerConfigView extends AnchorPane implements Displayable {
 
     private void addAdditionalOptionsToTextAreaPopupMenu() {
 
-//        TextAreaSkin customContextSkin = new TextAreaSkin(outputTextArea) {
-//            @Override
-//            public void populateContextMenu(ContextMenu contextMenu) {
-//                super.populateContextMenu(contextMenu);
-//                contextMenu.getItems().add(0, new SeparatorMenuItem());
-//                contextMenu.getItems().add(0, saveToFilePopupMenuItem);
-//            }
-//        };
-//        outputTextArea.setSkin(customContextSkin);
+        //        TextAreaSkin customContextSkin = new TextAreaSkin(outputTextArea) {
+        //            @Override
+        //            public void populateContextMenu(ContextMenu contextMenu) {
+        //                super.populateContextMenu(contextMenu);
+        //                contextMenu.getItems().add(0, new SeparatorMenuItem());
+        //                contextMenu.getItems().add(0, saveToFilePopupMenuItem);
+        //            }
+        //        };
+        //        outputTextArea.setSkin(customContextSkin);
     }
 
     private void configureReceiveMsgLimitControls() {
@@ -238,15 +235,15 @@ public class ListenerConfigView extends AnchorPane implements Displayable {
     private void configureFetchTimeoutField() {
         fetchTimeoutTextField.textProperty().set(config.getPollTimeout());
         GuiUtils.configureTextFieldToAcceptOnlyValidData(fetchTimeoutTextField,
-                                                         config::setPollTimeout,
-                                                         ValidatorUtils::isTimeoutInMsValid);
+                config::setPollTimeout,
+                ValidatorUtils::isTimeoutInMsValid);
     }
 
     private void configureConsumerGroupField() {
         consumerGroupTextField.setText(config.getConsumerGroup());
         GuiUtils.configureTextFieldToAcceptOnlyValidData(consumerGroupTextField,
-                                                         config::setConsumerGroup,
-                                                         ValidatorUtils::isStringIdentifierValid);
+                config::setConsumerGroup,
+                ValidatorUtils::isStringIdentifierValid);
     }
 
     private void setKafkaListenerBinding() {
@@ -262,7 +259,7 @@ public class ListenerConfigView extends AnchorPane implements Displayable {
                                              AssignedPartitionsInfo oldValue,
                                              AssignedPartitionsInfo newValue) {
         Platform.runLater(() -> partitionAssignmentHandler
-            .updatePartitionsAssignmentLabelFor(newValue));
+                .updatePartitionsAssignmentLabelFor(newValue));
     }
 
 

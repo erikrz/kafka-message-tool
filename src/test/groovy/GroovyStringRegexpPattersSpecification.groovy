@@ -79,7 +79,7 @@ class GroovyStringRegexpPattersSpecification {
 
     @Test
     void shouldFindGstringPatternWithSingleQuotationMarkAsBoundary() {
-        def groupName= "singleQuoteGroup"
+        def groupName = "singleQuoteGroup"
         def pattern = Pattern.compile("(?<${groupName}>\"([^\"\\\\]|\\\\.)*\")");
 
 
@@ -96,7 +96,7 @@ class GroovyStringRegexpPattersSpecification {
 
     @Test
     void shouldFindGstringPatternWithSingleApostropheAsBoundary() {
-        def groupName= "singleApostropheGroup"
+        def groupName = "singleApostropheGroup"
         def pattern = Pattern.compile("(?<${groupName}>\'([^\'\\\\]|\\\\.)*\')");
         // GIVEN
         def inputs = [
@@ -120,7 +120,6 @@ class GroovyStringRegexpPattersSpecification {
                     pattern, it, groupName)
         }
     }
-
 
 
 }

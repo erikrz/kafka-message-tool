@@ -2,10 +2,10 @@ package pojoconversions;
 
 import java.io.StringReader;
 import java.io.StringWriter;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
 
 import org.testng.annotations.Test;
 
@@ -23,12 +23,12 @@ public class PojoSerializationSpecification {
         final Class pojoClass = BrokerConfigPojo.class;
         // GIVEN
         String xml =
-            "<BrokerConfig>" +
-                "<ConfigName>a</ConfigName>" +
-                "<BrokerHostname>b</BrokerHostname>" +
-                "<BrokerPort>1</BrokerPort>" +
-                "<Uuid>d</Uuid>" +
-                "</BrokerConfig>";
+                "<BrokerConfig>" +
+                        "<ConfigName>a</ConfigName>" +
+                        "<BrokerHostname>b</BrokerHostname>" +
+                        "<BrokerPort>1</BrokerPort>" +
+                        "<Uuid>d</Uuid>" +
+                        "</BrokerConfig>";
 
         // WHEN (unmarshalling)
         BrokerConfigPojo pojo = (BrokerConfigPojo) unmarshall(xml, pojoClass);
@@ -53,12 +53,12 @@ public class PojoSerializationSpecification {
         final Class pojoClass = TopicConfigPojo.class;
         // GIVEN
         String xml =
-            "<TopicConfig>" +
-                "<ConfigName>zz</ConfigName>" +
-                "<TopicName>pp</TopicName>" +
-                "<BrokerUuid>12</BrokerUuid>" +
-                "<Uuid>xx</Uuid>" +
-                "</TopicConfig>";
+                "<TopicConfig>" +
+                        "<ConfigName>zz</ConfigName>" +
+                        "<TopicName>pp</TopicName>" +
+                        "<BrokerUuid>12</BrokerUuid>" +
+                        "<Uuid>xx</Uuid>" +
+                        "</TopicConfig>";
 
         // WHEN (unmarshalling)
         TopicConfigPojo pojo = (TopicConfigPojo) unmarshall(xml, pojoClass);
@@ -83,18 +83,18 @@ public class PojoSerializationSpecification {
         final Class pojoClass = SenderConfigPojo.class;
         // GIVEN
         String xml =
-            "<SenderConfig>" +
-                "<ConfigName>zz</ConfigName>" +
-                "<Uuid>xx</Uuid>" +
-                "<Content>pp</Content>" +
-                "<TopicConfigUuid>12</TopicConfigUuid>" +
-                "<RepeatCount>2</RepeatCount>"+
-                "<MessageKeyEnabled>true</MessageKeyEnabled>" +
-                "<RunBeforeAllMessagesScript>aaa</RunBeforeAllMessagesScript>" +
-                "<RunBeforeEachMessageScript>def</RunBeforeEachMessageScript>" +
-                "<MessageKey>abba</MessageKey>" +
-                "<SendingSimulationModeEnabled>true</SendingSimulationModeEnabled>" +
-                "</SenderConfig>";
+                "<SenderConfig>" +
+                        "<ConfigName>zz</ConfigName>" +
+                        "<Uuid>xx</Uuid>" +
+                        "<Content>pp</Content>" +
+                        "<TopicConfigUuid>12</TopicConfigUuid>" +
+                        "<RepeatCount>2</RepeatCount>" +
+                        "<MessageKeyEnabled>true</MessageKeyEnabled>" +
+                        "<RunBeforeAllMessagesScript>aaa</RunBeforeAllMessagesScript>" +
+                        "<RunBeforeEachMessageScript>def</RunBeforeEachMessageScript>" +
+                        "<MessageKey>abba</MessageKey>" +
+                        "<SendingSimulationModeEnabled>true</SendingSimulationModeEnabled>" +
+                        "</SenderConfig>";
 
         // WHEN (unmarshalling)
         SenderConfigPojo pojo = (SenderConfigPojo) unmarshall(xml, pojoClass);
@@ -125,16 +125,16 @@ public class PojoSerializationSpecification {
         final Class pojoClass = ListenerConfigPojo.class;
         // GIVEN
         String xml =
-            "<ListenerConfig>" +
-                "<ConfigName>zz</ConfigName>" +
-                "<Uuid>xx</Uuid>" +
-                "<TopicConfigUuid>12</TopicConfigUuid>" +
-                "<ConsumerGroup>pp</ConsumerGroup>" +
-                "<PollTimeout>1234</PollTimeout>" +
-                "<OffsetConfigProperty>none</OffsetConfigProperty>" +
-                "<ReceivedMsgLimitEnabled>true</ReceivedMsgLimitEnabled>" +
-                "<ReceivedMsgLimitCount>45</ReceivedMsgLimitCount>" +
-                "</ListenerConfig>";
+                "<ListenerConfig>" +
+                        "<ConfigName>zz</ConfigName>" +
+                        "<Uuid>xx</Uuid>" +
+                        "<TopicConfigUuid>12</TopicConfigUuid>" +
+                        "<ConsumerGroup>pp</ConsumerGroup>" +
+                        "<PollTimeout>1234</PollTimeout>" +
+                        "<OffsetConfigProperty>none</OffsetConfigProperty>" +
+                        "<ReceivedMsgLimitEnabled>true</ReceivedMsgLimitEnabled>" +
+                        "<ReceivedMsgLimitCount>45</ReceivedMsgLimitCount>" +
+                        "</ListenerConfig>";
 
         // WHEN (unmarshalling)
         ListenerConfigPojo pojo = (ListenerConfigPojo) unmarshall(xml, pojoClass);
@@ -151,7 +151,6 @@ public class PojoSerializationSpecification {
         assertThat(pojo.getReceivedMsgLimitCount()).isEqualTo("45");
 
 
-
         // WHEN (marshalling)
         final String toXml = marshall(pojo, pojoClass);
 
@@ -159,7 +158,6 @@ public class PojoSerializationSpecification {
         ListenerConfigPojo pojo2 = (ListenerConfigPojo) unmarshall(toXml, pojoClass);
         assertThat(pojo).isEqualTo(pojo2);
     }
-
 
 
     private Object unmarshall(String xml, Class configClass) throws JAXBException {

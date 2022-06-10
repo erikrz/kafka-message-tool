@@ -10,6 +10,7 @@ public class ConsumerGroupDetailRecord {
     private final String host;
     private final String clientId;
     private final String consumerGroupId;
+
     public ConsumerGroupDetailRecord(String topicName,
                                      String partitionNum,
                                      String currentOffset,

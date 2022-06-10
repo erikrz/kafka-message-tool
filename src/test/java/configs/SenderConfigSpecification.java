@@ -14,6 +14,7 @@ public class SenderConfigSpecification {
         config.assignNewUuid();
         assertThat(oldUuid).isNotEqualTo(config.getUuid());
     }
+
     @Test
     public void shouldReturnObjectTypeName() {
         assertThat(new KafkaSenderConfig().getObjectTypeName()).isEqualTo("Message sender configuration");

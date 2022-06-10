@@ -1,4 +1,3 @@
-
 package application.utils;
 
 import java.net.InetAddress;
@@ -36,8 +35,8 @@ public class HostnameUtils {
     public static boolean isHostnameReachable(String hostname, int timeoutMs) {
 
         Logger.debug(String.format("Checking if hostname '%s' is available (timeout:%d ms)",
-                                   hostname,
-                                   timeoutMs));
+                hostname,
+                timeoutMs));
         FutureTask<Boolean> booleanFutureTask = createCheckReachabilityTask(hostname, timeoutMs);
         boolean result = false;
         try {

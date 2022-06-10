@@ -1,9 +1,9 @@
 package application.persistence;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import application.model.XmlElementNames;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import lombok.EqualsAndHashCode;
@@ -12,7 +12,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 @XmlRootElement(name = XmlElementNames.GUI_SETTINGS)
-public class GuiSettings{
+public class GuiSettings {
 
     private static final double DEFAULT_MAIN_SPLIT_PANE_DIVIDER_POSITION = 0.75f;
     private static final double DEFAULT_UPPER_SPLIT_PANE_DIVIDER_POSITION = 0.26f;
@@ -22,8 +22,10 @@ public class GuiSettings{
 
     private final DoubleProperty mainWindowWidthProperty = new SimpleDoubleProperty(DEFAULT_WINDOW_WIDTH);
     private final DoubleProperty mainWindowHeightProperty = new SimpleDoubleProperty(DEFAULT_WINDOW_HEIGHT);
-    private final DoubleProperty mainWindowSplitPaneDividerPosition = new SimpleDoubleProperty(DEFAULT_MAIN_SPLIT_PANE_DIVIDER_POSITION);
-    private final DoubleProperty upperSplitPaneDividerPosition = new SimpleDoubleProperty(DEFAULT_UPPER_SPLIT_PANE_DIVIDER_POSITION);
+    private final DoubleProperty mainWindowSplitPaneDividerPosition =
+            new SimpleDoubleProperty(DEFAULT_MAIN_SPLIT_PANE_DIVIDER_POSITION);
+    private final DoubleProperty upperSplitPaneDividerPosition =
+            new SimpleDoubleProperty(DEFAULT_UPPER_SPLIT_PANE_DIVIDER_POSITION);
 
 
     @XmlElement(name = XmlElementNames.MAIN_WINDOW_WIDTH)
@@ -89,7 +91,7 @@ public class GuiSettings{
 
 
     public void fillFrom(GuiSettings a) {
-        if(a == null) {
+        if (a == null) {
             return;
         }
         setMainWindowHeight(a.getMainWindowHeight());

@@ -1,4 +1,3 @@
-
 package application.logging;
 
 import java.util.HashSet;
@@ -123,10 +122,10 @@ public class Logger {
 
     private static String getLogLocation(LogLocationInfo info) {
         return String.format("%s.%s(%s:%d)",
-                             info.getClassName(),
-                             info.getMethodName(),
-                             info.getFileName(),
-                             info.getLineNumber());
+                info.getClassName(),
+                info.getMethodName(),
+                info.getFileName(),
+                info.getLineNumber());
     }
 
 

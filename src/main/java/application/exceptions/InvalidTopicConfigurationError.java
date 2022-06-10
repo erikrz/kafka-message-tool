@@ -1,4 +1,3 @@
-
 package application.exceptions;
 
 public class InvalidTopicConfigurationError extends KafkaToolError {

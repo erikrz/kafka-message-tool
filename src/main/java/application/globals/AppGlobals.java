@@ -6,7 +6,7 @@ import application.logging.Logger;
 import javafx.scene.image.Image;
 
 public class AppGlobals {
-    private static final String APPLICATION_ICON_PNG = "/kafka-logo.png";
+    private static final String APPLICATION_ICON_PNG = "kafka-logo.png";
     private Image applicationIcon;
     private final static AppGlobals INSTANCE = new AppGlobals();
 
@@ -19,7 +19,7 @@ public class AppGlobals {
     }
 
     private void loadAppIconIfPossible() {
-        final URL fileUrl = getClass().getResource(APPLICATION_ICON_PNG);
+        final URL fileUrl = AppGlobals.class.getClassLoader().getResource(APPLICATION_ICON_PNG);
         if (fileUrl == null) {
             Logger.error(String.format("Could not set application action from file '%s'", APPLICATION_ICON_PNG));
             return;

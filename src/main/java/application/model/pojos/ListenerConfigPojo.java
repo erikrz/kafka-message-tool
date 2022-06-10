@@ -1,14 +1,14 @@
 package application.model.pojos;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import application.model.XmlElementNames;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
 @XmlRootElement(name = XmlElementNames.LISTENER_CONFIG)
-public class ListenerConfigPojo implements Copyable<ListenerConfigPojo>{
+public class ListenerConfigPojo implements Copyable<ListenerConfigPojo> {
     private String configName;
     private String uuid;
     private String topicConfigUuid;
@@ -90,12 +90,12 @@ public class ListenerConfigPojo implements Copyable<ListenerConfigPojo>{
     }
 
 
-    @XmlElement(name= XmlElementNames.RECEIVED_MSG_LIMIT_COUNT)
+    @XmlElement(name = XmlElementNames.RECEIVED_MSG_LIMIT_COUNT)
     public void setReceivedMsgLimitCount(String receivedMsgLimitCount) {
         this.receivedMsgLimitCount = receivedMsgLimitCount;
     }
 
-    @XmlElement(name= XmlElementNames.RECEIVED_MSG_LIMIT_ENABLED)
+    @XmlElement(name = XmlElementNames.RECEIVED_MSG_LIMIT_ENABLED)
     public void setReceivedMsgLimitEnabled(boolean receivedMsgLimitEnabled) {
         this.receivedMsgLimitEnabled = receivedMsgLimitEnabled;
     }

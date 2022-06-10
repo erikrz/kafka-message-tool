@@ -1,4 +1,3 @@
-
 /*
 .label, .check-box {
     -fx-font-size: 12px;
@@ -13,10 +12,14 @@
 }
 */
 
+* {
+    -fx-font-family: 'serif'
+}
+
 .button {
     -fx-text-fill: white;
     -fx-font-family: "Arial Narrow";
-     -fx-font-weight: bold;
+    -fx-font-weight: bold;
     -fx-background-color: linear-gradient(#0096C9, #007CA7);
 
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
@@ -44,11 +47,11 @@
 }
 
 .tab {
-   /* -fx-font-weight: bold; */
+    /* -fx-font-weight: bold; */
     -fx-font-size: 12px;
 }
 
-.text-area{
+.text-area {
     -fx-font-family: "Consolas";
     -fx-font-size: 12px;
 }
@@ -73,8 +76,8 @@
 
 .log_line_gray {
     -fx-fill: gray;
-     -fx-font-family: "Courier New";
-        -fx-font-size: 1em;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 1em;
 }
 
 .log_line_blue {

@@ -1,4 +1,3 @@
-
 package application.kafka.dto;
 
 public final class TopicAggregatedSummary {

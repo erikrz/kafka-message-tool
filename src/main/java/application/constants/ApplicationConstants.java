@@ -1,4 +1,3 @@
-
 package application.constants;
 
 import groovy.transform.CompileStatic;
@@ -10,7 +9,7 @@ public class ApplicationConstants {
     public static final String AUTHOR = "Grzegorz Wolszczak";
     public static final String GITHUB_WEBSITE = "https://github.com/grzegorz-wolszczak/kafka-message-tool";
     public static final String INVALID_TEXT_FIELD_INPUT_PSEUDO_CLASS_NAME = "error";
-    public static final String GLOBAL_CSS_FILE_NAME = "/fx_global.css";
+    public static final String GLOBAL_CSS_FILE_NAME = "fx_global.css";
     public static final String VERSION_PROPERTIES_FILE_NAME = "/version.properties";
     public static final String DEFAULT_FETCH_TIMEOUT = "5000";
     public static final String DEFAULT_CONSUMER_GROUP_ID = "kmt-cg";
@@ -23,8 +22,8 @@ public class ApplicationConstants {
     public static final long DELETE_TOPIC_FUTURE_GET_TIMEOUT_MS = 2000L;
     public static final String DEFAULT_NEW_TOPIC_NAME = "test";
     public static final String DEFAULT_NEW_TOPIC_CONFIG_NAME = "<empty name>";
-    public static final String GROOVY_KEYWORDS_STYLES_CSS = "/groovy_keywords_styles.css";
-    public static final String JSON_STYLES_CSS = "/json_styles.css";
+    public static final String GROOVY_KEYWORDS_STYLES_CSS = "groovy_keywords_styles.css";
+    public static final String JSON_STYLES_CSS = "json_styles.css";
     public static final String DEFAULT_BROKER_CONFIG_NAME = "<new broker config>";
     public static final String DEFAULT_PORT_AS_STRING = "9092";
     public static final String DEFAULT_HOSTNAME = "localhost";

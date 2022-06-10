@@ -53,7 +53,7 @@ public class TopicAdmin {
 
         Logger.trace(String.format("Deleting topic '%s'", topicName));
         final DeleteTopicsResult result = kafkaClientsAdminClient.deleteTopics(Collections.singletonList(topicName));
-        for (Map.Entry<String, KafkaFuture<Void>> entry : result.values().entrySet()) {
+        for (Map.Entry<String, KafkaFuture<Void>> entry : result.topicNameValues().entrySet()) {
             entry.getValue().get(ApplicationConstants.DELETE_TOPIC_FUTURE_GET_TIMEOUT_MS, TimeUnit.MILLISECONDS);
         }
     }
@@ -127,7 +127,7 @@ public class TopicAdmin {
 
         try {
             final DescribeTopicsResult result = kafkaClientsAdminClient.describeTopics(singleton(topicName));
-            result.all().get(ApplicationConstants.FUTURE_GET_TIMEOUT_MS, TimeUnit.MILLISECONDS);
+            result.allTopicNames().get(ApplicationConstants.FUTURE_GET_TIMEOUT_MS, TimeUnit.MILLISECONDS);
             return true;
         } catch (ExecutionException e) {
             if (Throwables.getRootCause(e) instanceof UnknownTopicOrPartitionException) {
@@ -148,8 +148,8 @@ public class TopicAdmin {
 
         final Set<String> topicNames = listTopicsResult.names().get(ApplicationConstants.FUTURE_GET_TIMEOUT_MS, TimeUnit.MILLISECONDS);
         final DescribeTopicsResult describeTopicsResult = kafkaClientsAdminClient.describeTopics(topicNames);
-        final Map<String, TopicDescription> stringTopicDescriptionMap = describeTopicsResult.all().get(ApplicationConstants.FUTURE_GET_TIMEOUT_MS,
-                                                                                                       TimeUnit.MILLISECONDS);
+        final Map<String, TopicDescription> stringTopicDescriptionMap = describeTopicsResult.allTopicNames()
+                .get(ApplicationConstants.FUTURE_GET_TIMEOUT_MS, TimeUnit.MILLISECONDS);
 
         for (Map.Entry<String, TopicDescription> entry : stringTopicDescriptionMap.entrySet()) {
             final TopicDescription topicDescription = entry.getValue();
