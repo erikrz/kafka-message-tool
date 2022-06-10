@@ -2,6 +2,8 @@ package application.persistence;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import application.constants.ApplicationConstants;
@@ -16,10 +18,13 @@ import jakarta.xml.bind.Unmarshaller;
 
 public class XmlFileConfig implements LoadableSavable {
 
-    private final String configFilePath = Paths.get(ApplicationConstants.CONFIG_FILE_NAME).toAbsolutePath().toString();
+    private final Path configFileDir = Paths.get(ApplicationConstants.CONFIG_FILE_DIR);
+    private final Path configFilePath =
+            Paths.get(ApplicationConstants.CONFIG_FILE_DIR, ApplicationConstants.CONFIG_FILE_NAME);
     private final ModelDataProxy modelDataProxy;
     private final FromPojoConverter converter;
-
+    private final GuiSettings guiSettings;
+    private final GlobalSettings globalSettings;
     public GuiSettings getGuiSettings() {
         return guiSettings;
     }
@@ -27,9 +32,6 @@ public class XmlFileConfig implements LoadableSavable {
     public GlobalSettings getGlobalSettings() {
         return globalSettings;
     }
-
-    private GuiSettings guiSettings;
-    private GlobalSettings globalSettings;
 
     public XmlFileConfig(ModelDataProxy modelDataProxy,
                          FromPojoConverter converter,
@@ -70,7 +72,7 @@ public class XmlFileConfig implements LoadableSavable {
         final JAXBContext jaxbContext = JAXBContext.newInstance(XmlConfig.class);
         final Marshaller marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        marshaller.marshal(xmlConfig, new File(configFilePath));
+        marshaller.marshal(xmlConfig, configFilePath.toFile());
         Logger.debug("OK: Config file saved.");
     }
 
@@ -95,7 +97,24 @@ public class XmlFileConfig implements LoadableSavable {
     }
 
     private void loadConfigFile() throws JAXBException {
-        final File file = new File(configFilePath);
+        File configurationFileDir = configFileDir.toFile();
+        if (configurationFileDir.exists()) {
+            Logger.debug(configurationFileDir + " already exists");
+        } else if (configurationFileDir.mkdirs()) {
+            Logger.debug(configurationFileDir + " was created");
+        } else {
+            Logger.debug(configurationFileDir + " was not created");
+        }
+
+        final File file = configFilePath.toFile();
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                Logger.error("Could not create initial configuration file. Exception happened: \n", e);
+            }
+            save();
+        }
         final JAXBContext jaxbContext = JAXBContext.newInstance(XmlConfig.class);
         final Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         final XmlConfig xmlConfig = (XmlConfig) jaxbUnmarshaller.unmarshal(file);
@@ -110,12 +129,12 @@ public class XmlFileConfig implements LoadableSavable {
     }
 
     private void loadConfigs(XmlConfig xmlConfig) {
-    /* Warning!!! the order of this function matters,
-     broker configs must be read BEFORE topic configs,
-     topic configs must be read BEFORE messages configs and listener configs
-    The order is important because these object depend on each other in that order
-    broker_config <- topic_config <- message_config/listener_config
-     */
+        /* Warning!!! the order of this function matters,
+         broker configs must be read BEFORE topic configs,
+         topic configs must be read BEFORE messages configs and listener configs
+        The order is important because these object depend on each other in that order
+        broker_config <- topic_config <- message_config/listener_config
+         */
         loadBrokerConfigs(xmlConfig);
         loadTopicConfigs(xmlConfig);
         loadMessages(xmlConfig);
