@@ -24,8 +24,8 @@ public class SenderConfigGuiActionsHandler extends TemplateGuiActionsHandler<Kaf
     private final ModelDataProxy modelDataProxy;
     private final ControllerProvider controllerProvider;
     private final AnchorPane parentPane;
-    private KafkaMessageSender sender;
-    private ListView<KafkaTopicConfig> topicConfigs;
+    private final KafkaMessageSender sender;
+    private final ListView<KafkaTopicConfig> topicConfigs;
     private final FromPojoConverter fromPojoConverter;
 
     public SenderConfigGuiActionsHandler(TabPaneSelectionInformer tabSelectionInformer,
@@ -51,10 +51,10 @@ public class SenderConfigGuiActionsHandler extends TemplateGuiActionsHandler<Kaf
     @Override
     protected void loadController(KafkaSenderConfig config) {
         final SenderConfigView controller = controllerProvider.getSenderConfigGuiController(config,
-                                                                                            parentPane,
-                                                                                            sender,
-                                                                                            listViewActionsHandler::refresh,
-                                                                                            topicConfigs.getItems());
+                parentPane,
+                sender,
+                listViewActionsHandler::refresh,
+                topicConfigs.getItems());
 
         controller.display();
     }

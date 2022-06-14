@@ -17,7 +17,8 @@ import application.utils.HostInfo;
 import application.utils.kafka.KafkaProducers;
 
 public final class DefaultKafkaMessageSender implements KafkaMessageSender {
-    public static final String KAFKA_STRING_SERIALIZER_CLASS_NAME = "org.apache.kafka.common.serialization.StringSerializer";
+    public static final String KAFKA_STRING_SERIALIZER_CLASS_NAME =
+            "org.apache.kafka.common.serialization.StringSerializer";
     private static final int KAFKA_SENDER_SEND_TIMEOUT_MS = 3000;
     private static final int KAFKA_PRODUCER_MAX_BLOCK_MS = 1501;
     private KafkaProducer<String, String> producer;

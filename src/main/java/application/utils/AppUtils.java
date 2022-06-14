@@ -15,9 +15,7 @@ public class AppUtils {
 
     public static String configEntriesToPrettyString(Collection<ConfigEntry> entries) {
         StringBuilder b = new StringBuilder();
-        entries.forEach(entry -> {
-            b.append(String.format("%s\n", entry));
-        });
+        entries.forEach(entry -> b.append(String.format("%s\n", entry)));
         return b.toString();
     }
 

@@ -26,7 +26,9 @@ public class SettingsWindow extends AnchorPane {
 
     private void setupStage(Window owner) {
         final Scene scene = new Scene(this);
-        scene.getStylesheets().add(SettingsWindow.class.getClassLoader().getResource(ApplicationConstants.GLOBAL_CSS_FILE_NAME).toExternalForm());
+        scene.getStylesheets()
+                .add(SettingsWindow.class.getClassLoader().getResource(ApplicationConstants.GLOBAL_CSS_FILE_NAME)
+                        .toExternalForm());
         scene.setRoot(this);
         stage.setScene(scene);
         stage.setTitle("Settings");

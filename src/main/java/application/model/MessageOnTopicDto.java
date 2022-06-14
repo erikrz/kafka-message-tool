@@ -56,12 +56,12 @@ public final class MessageOnTopicDto {
         String msgKey = config.isMessageKeyEnabled() ? config.getMessageKey() : null;
 
         return new MessageOnTopicDto(brokerConfig.getHostInfo(),
-                                     msgKey,
-                                     topicConfig.getTopicName(),
-                                     message,
-                                     shouldSimulateSending,
-                                     msgNum,
-                                     totalMsgCount);
+                msgKey,
+                topicConfig.getTopicName(),
+                message,
+                shouldSimulateSending,
+                msgNum,
+                totalMsgCount);
     }
 
     public HostInfo getBrokerHostInfo() {

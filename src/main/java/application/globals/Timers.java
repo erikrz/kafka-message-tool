@@ -6,15 +6,15 @@ import java.util.Timer;
 
 public class Timers {
 
-    private static Set<Timer> timers = new HashSet<Timer>();
+    private static final Set<Timer> TIMERS = new HashSet<>();
 
     public static Timer newTimer(String name) {
         final Timer timer = new Timer(name);
-        timers.add(timer);
+        TIMERS.add(timer);
         return timer;
     }
 
-    public static void stop(){
-        timers.forEach(Timer::cancel);
+    public static void stop() {
+        TIMERS.forEach(Timer::cancel);
     }
 }

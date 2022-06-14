@@ -13,16 +13,18 @@ import javafx.beans.property.SimpleObjectProperty;
 
 
 public class KafkaClusterProxies {
-    private final Map<HostPortValue, KafkaClusterProxy> hostPortToProxy = new HashMap<>();
-    private final Map<HostInfo, ObjectProperty<KafkaClusterProxy>> hostInfoToBrokerProperty = new HashMap<>();
+    private final Map<HostPortValue, KafkaClusterProxy> hostPortToProxy;
+    private final Map<HostInfo, ObjectProperty<KafkaClusterProxy>> hostInfoToBrokerProperty;
 
     public KafkaClusterProxies() {
+        hostPortToProxy = new HashMap<>();
+        hostInfoToBrokerProperty = new HashMap<>();
     }
 
     public KafkaClusterProxy getRefreshed(HostInfo hostInfo) throws InterruptedException,
-                                                                    ExecutionException,
-                                                                    TimeoutException,
-                                                                    ClusterConfigurationError {
+            ExecutionException,
+            TimeoutException,
+            ClusterConfigurationError {
         // setting to 'null' first because getting new object might result in exception
         // in that case we want getAsProperty() return empty proxy (null)
         getAsProperty(hostInfo).set(null);
@@ -43,12 +45,12 @@ public class KafkaClusterProxies {
     }
 
     private KafkaClusterProxy getNewOrRefreshed(HostInfo hostInfo) throws ClusterConfigurationError,
-                                                                          ExecutionException,
-                                                                          TimeoutException,
-                                                                          InterruptedException {
+            ExecutionException,
+            TimeoutException,
+            InterruptedException {
         final HostPortValue hostPort = HostPortValue.from(hostInfo);
         final KafkaClusterProxy newProxy = KafkaClusterProxyFactory.create(hostPort,
-                                                                           hostPortToProxy.getOrDefault(hostPort, null));
+                hostPortToProxy.getOrDefault(hostPort, null));
         hostPortToProxy.put(hostPort, newProxy);
         return newProxy;
     }

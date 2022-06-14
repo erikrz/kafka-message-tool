@@ -6,8 +6,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class HostInfo {
-    private StringProperty hostname = new SimpleStringProperty("");
-    private StringProperty port = new SimpleStringProperty("0");
+    private final StringProperty hostname = new SimpleStringProperty("");
+    private final StringProperty port = new SimpleStringProperty("0");
 
     public HostInfo(String hostname, int port) {
         setHostname(hostname);

@@ -52,8 +52,8 @@ public class AlterTopicDialog extends AnchorPane {
 
         final IntegerProperty referenceProperty = topicToAdd.retentionMillisecondsProperty();
         ValidatorUtils.configureSpinner(retentionMillisecondsSpinner, referenceProperty,
-                                        MIN_RETENTION_MS,
-                                        MAX_RETENTION_MS);
+                MIN_RETENTION_MS,
+                MAX_RETENTION_MS);
 
     }
 
@@ -85,7 +85,9 @@ public class AlterTopicDialog extends AnchorPane {
 
     private void prepareStage() {
         final Scene scene = new Scene(this);
-        scene.getStylesheets().add(AlterTopicDialog.class.getClassLoader().getResource(ApplicationConstants.GLOBAL_CSS_FILE_NAME).toExternalForm());
+        scene.getStylesheets()
+                .add(AlterTopicDialog.class.getClassLoader().getResource(ApplicationConstants.GLOBAL_CSS_FILE_NAME)
+                        .toExternalForm());
         scene.setRoot(this);
         stage.setScene(scene);
         stage.setTitle(String.format("Altering topic '%s'", topicAlterableProperties.getTopicName()));

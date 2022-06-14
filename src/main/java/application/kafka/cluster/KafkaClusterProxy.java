@@ -51,10 +51,10 @@ public interface KafkaClusterProxy {
 
     void refresh(TopicAdmin topicAdmin,
                  Admin kafkaClientAdminClient) throws
-                                                           ClusterConfigurationError,
-                                                           InterruptedException,
-                                                           ExecutionException,
-                                                           TimeoutException;
+            ClusterConfigurationError,
+            InterruptedException,
+            ExecutionException,
+            TimeoutException;
 
     TopicAlterableProperties getAlterableTopicProperties(String topicName);
 

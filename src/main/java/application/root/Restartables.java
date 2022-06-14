@@ -8,7 +8,7 @@ public class Restartables implements Restartable {
     private final List<Restartable> restartables = new ArrayList<>();
 
     public <T extends Restartable> T register(T object) {
-        if(!restartables.contains(object)) {
+        if (!restartables.contains(object)) {
             restartables.add(object);
         }
         return object;

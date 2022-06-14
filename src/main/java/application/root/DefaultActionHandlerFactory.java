@@ -22,10 +22,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class DefaultActionHandlerFactory implements ActionHandlerFactory {
-    private UserInteractor interactor;
-    private ModelDataProxy modelDataProxy;
-    private Stage appStage;
-    private ApplicationPorts applicationPorts;
+    private final UserInteractor interactor;
+    private final ModelDataProxy modelDataProxy;
+    private final Stage appStage;
+    private final ApplicationPorts applicationPorts;
 
     public DefaultActionHandlerFactory(UserInteractor interactor,
                                        ModelDataProxy modelDataProxy,
@@ -37,67 +37,71 @@ public class DefaultActionHandlerFactory implements ActionHandlerFactory {
     }
 
     @Override
-    public TemplateGuiActionsHandler<KafkaBrokerConfig> createBrokerConfigListViewActionHandler(AnchorPane rightContentPane,
-                                                                                                TabPane masterTabPane,
-                                                                                                Tab tab,
-                                                                                                ListView<KafkaBrokerConfig> listView,
-                                                                                                ControllerProvider repository) {
+    public TemplateGuiActionsHandler<KafkaBrokerConfig> createBrokerConfigListViewActionHandler(
+            AnchorPane rightContentPane,
+            TabPane masterTabPane,
+            Tab tab,
+            ListView<KafkaBrokerConfig> listView,
+            ControllerProvider repository) {
         return new BrokerConfigGuiActionsHandler(new TabPaneSelectionInformer(masterTabPane, tab),
-                                                 new ListViewActionsHandler<>(interactor, listView),
-                                                 interactor,
-                                                 modelDataProxy,
-                                                 repository,
-                                                 rightContentPane,
-                                                 appStage);
+                new ListViewActionsHandler<>(interactor, listView),
+                interactor,
+                modelDataProxy,
+                repository,
+                rightContentPane,
+                appStage);
     }
 
     @Override
-    public TemplateGuiActionsHandler<KafkaTopicConfig> createTopicConfigListViewActionHandler(AnchorPane rightContentPane,
-                                                                                              TabPane masterTabPane,
-                                                                                              Tab tab,
-                                                                                              ListView<KafkaTopicConfig> listView,
-                                                                                              ControllerProvider repository,
-                                                                                              ListView<KafkaBrokerConfig> brokerConfigListView) {
+    public TemplateGuiActionsHandler<KafkaTopicConfig> createTopicConfigListViewActionHandler(
+            AnchorPane rightContentPane,
+            TabPane masterTabPane,
+            Tab tab,
+            ListView<KafkaTopicConfig> listView,
+            ControllerProvider repository,
+            ListView<KafkaBrokerConfig> brokerConfigListView) {
         return new TopicConfigGuiActionsHandler(new TabPaneSelectionInformer(masterTabPane, tab),
-                                                new ListViewActionsHandler<>(interactor, listView),
-                                                modelDataProxy,
-                                                repository,
-                                                rightContentPane,
-                                                brokerConfigListView);
+                new ListViewActionsHandler<>(interactor, listView),
+                modelDataProxy,
+                repository,
+                rightContentPane,
+                brokerConfigListView);
     }
 
 
     @Override
-    public TemplateGuiActionsHandler<KafkaSenderConfig> createSenderConfigListViewActionHandler(AnchorPane rightContentPane,
-                                                                                                TabPane masterTabPane,
-                                                                                                Tab tab,
-                                                                                                ListView<KafkaSenderConfig> listView,
-                                                                                                ListView<KafkaTopicConfig> topicConfigListView,
-                                                                                                ControllerProvider repository) {
+    public TemplateGuiActionsHandler<KafkaSenderConfig> createSenderConfigListViewActionHandler(
+            AnchorPane rightContentPane,
+            TabPane masterTabPane,
+            Tab tab,
+            ListView<KafkaSenderConfig> listView,
+            ListView<KafkaTopicConfig> topicConfigListView,
+            ControllerProvider repository) {
         return new SenderConfigGuiActionsHandler(new TabPaneSelectionInformer(masterTabPane, tab),
-                                                 new ListViewActionsHandler<>(interactor, listView),
-                                                 modelDataProxy,
-                                                 repository,
-                                                 rightContentPane,
-                                                 topicConfigListView,
-                                                 applicationPorts.getSender());
+                new ListViewActionsHandler<>(interactor, listView),
+                modelDataProxy,
+                repository,
+                rightContentPane,
+                topicConfigListView,
+                applicationPorts.getSender());
     }
 
     @Override
-    public TemplateGuiActionsHandler<KafkaListenerConfig> createListenerConfigListViewActionHandler(AnchorPane rightContentPane,
-                                                                                                    TabPane masterTabPane,
-                                                                                                    Tab tab,
-                                                                                                    ListView<KafkaListenerConfig> listView,
-                                                                                                    ListView<KafkaTopicConfig> topicConfigListView,
-                                                                                                    ControllerProvider repository) {
+    public TemplateGuiActionsHandler<KafkaListenerConfig> createListenerConfigListViewActionHandler(
+            AnchorPane rightContentPane,
+            TabPane masterTabPane,
+            Tab tab,
+            ListView<KafkaListenerConfig> listView,
+            ListView<KafkaTopicConfig> topicConfigListView,
+            ControllerProvider repository) {
         return new ListenerConfigGuiActionsHandler(new TabPaneSelectionInformer(masterTabPane, tab),
-                                                   new ListViewActionsHandler<>(interactor, listView),
-                                                   modelDataProxy,
-                                                   repository,
-                                                   rightContentPane,
-                                                   topicConfigListView,
-                                                   applicationPorts.getListeners(),
-                                                   new ToFileSaver(interactor));
+                new ListViewActionsHandler<>(interactor, listView),
+                modelDataProxy,
+                repository,
+                rightContentPane,
+                topicConfigListView,
+                applicationPorts.getListeners(),
+                new ToFileSaver(interactor));
     }
 
 

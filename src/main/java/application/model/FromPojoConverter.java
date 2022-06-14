@@ -67,12 +67,12 @@ public class FromPojoConverter {
         c.setMessageKeyEnabled(pojo.isMessageKeyEnabled());
         if (StringUtils.isNotBlank(pojo.getRepeatCount())) {
             c.setRepeatCount(getUnsignedIntegerAsStringOrDefault(pojo.getRepeatCount(),
-                                                                 DEFAULT_REPEAT_COUNT));
+                    DEFAULT_REPEAT_COUNT));
         }
         if (StringUtils.isNotBlank(pojo.getTopicConfigUuid())) {
             final String topicConfigUuid = pojo.getTopicConfigUuid();
             modelProxy.getTopicConfigByUuid(topicConfigUuid)
-                .ifPresent(c::setRelatedConfig);
+                    .ifPresent(c::setRelatedConfig);
         }
         if (StringUtils.isNotBlank(pojo.getRunBeforeAllMessagesScript())) {
             c.setRunBeforeAllMessagesScript(pojo.getRunBeforeAllMessagesScript());
@@ -103,11 +103,11 @@ public class FromPojoConverter {
         if (StringUtils.isNotBlank(pojo.getTopicConfigUuid())) {
             final String topicConfigUuid = pojo.getTopicConfigUuid();
             modelProxy.getTopicConfigByUuid(topicConfigUuid)
-                .ifPresent(c::setRelatedConfig);
+                    .ifPresent(c::setRelatedConfig);
         }
         if (StringUtils.isNotBlank(pojo.getPollTimeout())) {
             c.setPollTimeout(getUnsignedIntegerValueAsStringOrDefault(pojo.getPollTimeout(),
-                                                                      DEFAULT_POLL_TIMEOUT));
+                    DEFAULT_POLL_TIMEOUT));
         }
 
         if (StringUtils.isNotBlank(pojo.getOffsetResetConfig())) {
@@ -140,7 +140,7 @@ public class FromPojoConverter {
 
         if (StringUtils.isNotBlank(pojo.getBrokerUuid())) {
             modelProxy.getBrokerConfigByUuid(pojo.getBrokerUuid())
-                .ifPresent(c::setRelatedConfig);
+                    .ifPresent(c::setRelatedConfig);
         }
         return c;
     }

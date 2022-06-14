@@ -14,13 +14,14 @@ import application.utils.HostPortValue;
 public class KafkaClusterProxyFactory {
 
     public static KafkaClusterProxy create(HostPortValue hostPort,
-                                                  KafkaClusterProxy previous) throws ClusterConfigurationError,
-                                                                                            ExecutionException,
-                                                                                            TimeoutException,
-                                                                                            InterruptedException {
-        KafkaClusterProxy proxy = null;
+                                           KafkaClusterProxy previous) throws ClusterConfigurationError,
+            ExecutionException,
+            TimeoutException,
+            InterruptedException {
+        KafkaClusterProxy proxy;
         if (previous != null) {
-            Logger.trace(String.format("[Proxy create] Reusing already existing broker proxy for '%s'", hostPort.toHostString()));
+            Logger.trace(String.format("[Proxy create] Reusing already existing broker proxy for '%s'",
+                    hostPort.toHostString()));
             proxy = previous;
         } else {
             Logger.trace(String.format("[Proxy create] Creating new broker proxy for '%s'", hostPort.toHostString()));
@@ -33,9 +34,9 @@ public class KafkaClusterProxyFactory {
     }
 
     public static void reinitialize(HostPortValue hostPort, KafkaClusterProxy proxy) throws ClusterConfigurationError,
-                                                                                                   ExecutionException,
-                                                                                                   TimeoutException,
-                                                                                                   InterruptedException {
+            ExecutionException,
+            TimeoutException,
+            InterruptedException {
         final Admin kafkaClientAdminClient = createKafkaClientAdminClient(hostPort);
         final TopicAdmin topicAdmin = new TopicAdmin(kafkaClientAdminClient);
         proxy.refresh(topicAdmin, kafkaClientAdminClient);

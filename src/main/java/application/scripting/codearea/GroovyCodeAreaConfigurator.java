@@ -8,9 +8,8 @@ import org.fxmisc.richtext.CodeArea;
 
 public class GroovyCodeAreaConfigurator {
 
-    private static final String[] GROOVY_KEYWORDS = new String[]{
-        "as", "assert", "break", "case", "catch", "class", "const",
-        "continue", "def", "default", "do", "else", "enum", "extends", "false",
+    private static final String[] GROOVY_KEYWORDS = new String[] {"as", "assert", "break", "case", "catch", "class",
+        "const", "continue", "def", "default", "do", "else", "enum", "extends", "false",
         "finally", "for", "goto", "if", "implements", "import",
         "in", "instanceof", "interface", "new", "null", "package", "return",
         "super", "switch", "this", "throw", "throws", "trait", "true", "try", "while"
@@ -26,20 +25,20 @@ public class GroovyCodeAreaConfigurator {
     private static final String COMMENT_PATTERN = "//[^\n]*" + "|" + "/\\*(.|\\R)*?\\*/";
 
     private static final Pattern PATTERN = Pattern.compile(
-        "(?<KEYWORD>" + KEYWORD_PATTERN + ")"
-            + "|(?<PAREN>" + PAREN_PATTERN + ")"
-            + "|(?<BRACE>" + BRACE_PATTERN + ")"
-            + "|(?<BRACKET>" + BRACKET_PATTERN + ")"
-            + "|(?<SEMICOLON>" + SEMICOLON_PATTERN + ")"
-            + "|(?<STRING>" + STRING_PATTERN + ")"
-            + "|(?<COMMENT>" + COMMENT_PATTERN + ")"
+            "(?<KEYWORD>" + KEYWORD_PATTERN + ")"
+                    + "|(?<PAREN>" + PAREN_PATTERN + ")"
+                    + "|(?<BRACE>" + BRACE_PATTERN + ")"
+                    + "|(?<BRACKET>" + BRACKET_PATTERN + ")"
+                    + "|(?<SEMICOLON>" + SEMICOLON_PATTERN + ")"
+                    + "|(?<STRING>" + STRING_PATTERN + ")"
+                    + "|(?<COMMENT>" + COMMENT_PATTERN + ")"
     );
 
     public static void configure(CodeArea codeArea, Executor executor) {
         CodeAreaConfigurator.configureCodeArea(codeArea,
-                                               PATTERN,
-                                               GroovyCodeAreaConfigurator::getStyleClass,
-                                               executor);
+                PATTERN,
+                GroovyCodeAreaConfigurator::getStyleClass,
+                executor);
 
 
     }
@@ -47,13 +46,13 @@ public class GroovyCodeAreaConfigurator {
 
     private static String getStyleClass(Matcher matcher) {
         return matcher.group("KEYWORD") != null ? "groovy_keyword" :
-            matcher.group("PAREN") != null ? "groovy_paren" :
-                matcher.group("BRACE") != null ? "groovy_brace" :
-                    matcher.group("BRACKET") != null ? "groovy_bracket" :
-                        matcher.group("SEMICOLON") != null ? "groovy_semicolon" :
-                            matcher.group("STRING") != null ? "groovy_string" :
-                                matcher.group("COMMENT") != null ? "groovy_comment" :
-                                    null;
+                matcher.group("PAREN") != null ? "groovy_paren" :
+                        matcher.group("BRACE") != null ? "groovy_brace" :
+                                matcher.group("BRACKET") != null ? "groovy_bracket" :
+                                        matcher.group("SEMICOLON") != null ? "groovy_semicolon" :
+                                                matcher.group("STRING") != null ? "groovy_string" :
+                                                        matcher.group("COMMENT") != null ? "groovy_comment" :
+                                                                null;
     }
 
 }

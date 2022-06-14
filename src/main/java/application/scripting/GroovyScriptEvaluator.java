@@ -22,7 +22,8 @@ public class GroovyScriptEvaluator {
         engine = new ScriptEngineManager().getEngineByName(ENGINE_NAME);
         resetScriptContext();
     }
-    public void resetScriptContext(){
+
+    public void resetScriptContext() {
         ctx = new SimpleScriptContext();
         engine.setContext(ctx);
     }
@@ -41,8 +42,9 @@ public class GroovyScriptEvaluator {
             final Object result = evaluateScriptTask.get(EVALUATE_GROOVY_SCRIPT_TIMEOUT_SEC, TimeUnit.SECONDS);
             Logger.trace(String.format("Evaluation result: %s", result));
         } catch (TimeoutException e) {
-            throw new KafkaToolError(String.format("EvaluationTimeout. Could not evaluate groovy script within %d seconds.",
-                                                   EVALUATE_GROOVY_SCRIPT_TIMEOUT_SEC));
+            throw new KafkaToolError(
+                    String.format("EvaluationTimeout. Could not evaluate groovy script within %d seconds.",
+                            EVALUATE_GROOVY_SCRIPT_TIMEOUT_SEC));
 
         } catch (InterruptedException e) {
             // this exception can happen if user clicks "stop" button

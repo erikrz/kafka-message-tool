@@ -55,22 +55,26 @@ public class DefaultModelDataProxy implements ModelDataProxy {
 
     @Override
     public List<BrokerConfigPojo> brokerConfigPojos() {
-        return dataModel.getBrokerConfigs().getObservables().stream().map(ToPojoConverter::toPojoFrom).collect(Collectors.toList());
+        return dataModel.getBrokerConfigs().getObservables().stream().map(ToPojoConverter::toPojoFrom)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<TopicConfigPojo> topicConfigPojos() {
-        return dataModel.getTopicConfigs().getObservables().stream().map(ToPojoConverter::toPojoFrom).collect(Collectors.toList());
+        return dataModel.getTopicConfigs().getObservables().stream().map(ToPojoConverter::toPojoFrom)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<ListenerConfigPojo> listenerConfigPojos() {
-        return dataModel.getListenerConfigs().getObservables().stream().map(ToPojoConverter::toPojoFrom).collect(Collectors.toList());
+        return dataModel.getListenerConfigs().getObservables().stream().map(ToPojoConverter::toPojoFrom)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<SenderConfigPojo> messagesConfigPojos() {
-        return dataModel.getSenderConfigs().getObservables().stream().map(ToPojoConverter::toPojoFrom).collect(Collectors.toList());
+        return dataModel.getSenderConfigs().getObservables().stream().map(ToPojoConverter::toPojoFrom)
+                .collect(Collectors.toList());
     }
 
 }

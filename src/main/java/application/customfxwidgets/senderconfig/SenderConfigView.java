@@ -75,8 +75,8 @@ public class SenderConfigView extends AnchorPane implements Displayable {
     private final StyleClassedTextArea beforeAllMessagesScriptCodeArea;
     private final StyleClassedTextArea beforeEachMessagesScriptCodeArea;
     private final StyleClassedTextArea messageContentTextArea;
-    private KafkaClusterProxies kafkaClusterProxies;
-    private ApplicationSettings applicationSettings;
+    private final KafkaClusterProxies kafkaClusterProxies;
+    private final ApplicationSettings applicationSettings;
     private StatusBarNotifier statusBarNotifier;
     @FXML
     private TextField messageNameTextField;

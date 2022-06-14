@@ -51,10 +51,10 @@ public class BrokerConfigGuiActionsHandler extends TemplateGuiActionsHandler<Kaf
     @Override
     protected void loadController(KafkaBrokerConfig config) {
         final BrokerConfigView controller = controllerProvider.getBrokerConfigGuiController(config,
-                                                                                            parentPane,
-                                                                                            listViewActionsHandler::refresh,
-                                                                                            interactor,
-                                                                                            parentWindow);
+                parentPane,
+                listViewActionsHandler::refresh,
+                interactor,
+                parentWindow);
         controller.display();
     }
 

@@ -47,9 +47,9 @@ public class TopicConfigGuiActionsHandler extends TemplateGuiActionsHandler<Kafk
     protected void loadController(KafkaTopicConfig config) {
 
         final TopicConfigView controller = controllerProvider.getTopicConfigGuiController(config,
-                                                                                          parentPane,
-                                                                                          listViewActionsHandler::refresh,
-                                                                                          brokerConfigs.getItems());
+                parentPane,
+                listViewActionsHandler::refresh,
+                brokerConfigs.getItems());
 
         controller.display();
     }

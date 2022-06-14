@@ -133,17 +133,19 @@ public final class ClusterStateSummary {
     }
 
     public String getTopicPropertyByName(String topicName, String propertyName) {
-        final Optional<ClusterTopicInfo> found = topicsInfo.stream().filter(e -> e.getTopicName().equals(topicName)).findFirst();
-        if (!found.isPresent()) {
+        final Optional<ClusterTopicInfo> found =
+                topicsInfo.stream().filter(e -> e.getTopicName().equals(topicName)).findFirst();
+        if (found.isEmpty()) {
             throw new RuntimeException(String.format("Topic with name '%s' not found", topicName));
         }
         final ClusterTopicInfo clusterTopicInfo = found.get();
         final Optional<ConfigEntry> propertyFound = clusterTopicInfo
-            .getConfigEntries()
-            .stream()
-            .filter(e -> e.name().equalsIgnoreCase(propertyName)).findFirst();
-        if (!propertyFound.isPresent()) {
-            throw new RuntimeException(String.format("Could not find property '%s' for topic '%s' ", propertyName, topicName));
+                .getConfigEntries()
+                .stream()
+                .filter(e -> e.name().equalsIgnoreCase(propertyName)).findFirst();
+        if (propertyFound.isEmpty()) {
+            throw new RuntimeException(
+                    String.format("Could not find property '%s' for topic '%s' ", propertyName, topicName));
         }
         return propertyFound.get().value();
 
@@ -157,19 +159,19 @@ public final class ClusterStateSummary {
 
 
             List<TopicsOffsetInfo> topicOffsets = topicOffsetInfo
-                .stream()
-                .filter(e -> e.getConsumerGroup().equals(consumerGroupId)).collect(Collectors.toList());
+                    .stream()
+                    .filter(e -> e.getConsumerGroup().equals(consumerGroupId)).collect(Collectors.toList());
 
             final List<AssignedConsumerInfo> assignedConsumers = assignedConsumersInfo
-                .stream()
-                .filter(e -> e.getConsumerGroupId().equals(consumerGroupId)).collect(Collectors.toList());
+                    .stream()
+                    .filter(e -> e.getConsumerGroupId().equals(consumerGroupId)).collect(Collectors.toList());
 
             topicOffsets.forEach(to -> {
                 final Optional<AssignedConsumerInfo> optAssignedConsumer = assignedConsumers
-                    .stream()
-                    .filter(c -> c.getPartition().equals(to.getPartition()) &&
-                        c.getTopic().equals(to.getTopicName()))
-                    .findFirst();
+                        .stream()
+                        .filter(c -> c.getPartition().equals(to.getPartition()) &&
+                                c.getTopic().equals(to.getTopicName()))
+                        .findFirst();
 
                 String consumerId = "-";
                 String host = "-";
@@ -183,14 +185,14 @@ public final class ClusterStateSummary {
                 }
 
                 result.add(new ConsumerGroupDetailRecord(to.getTopicName(),
-                                                         to.getPartition(),
-                                                         to.getCurrentOffset(),
-                                                         to.getEndOffset(),
-                                                         to.getLag(),
-                                                         consumerId,
-                                                         host,
-                                                         clientId,
-                                                         consumerGroupId));
+                        to.getPartition(),
+                        to.getCurrentOffset(),
+                        to.getEndOffset(),
+                        to.getLag(),
+                        consumerId,
+                        host,
+                        clientId,
+                        consumerGroupId));
             });
         });
 

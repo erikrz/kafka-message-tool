@@ -7,7 +7,8 @@ import groovy.transform.CompileStatic;
 @CompileStatic
 public class ApplicationConstants {
     public static final String APPLICATION_NAME = "Kafka Message Tool";
-    public static final String CONFIG_FILE_DIR = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "KafkaMessageTool";
+    public static final String CONFIG_FILE_DIR =
+            System.getProperty("user.home") + File.separator + "Documents" + File.separator + "KafkaMessageTool";
     public static final String CONFIG_FILE_NAME = "KafkaMessageToolConfig.xml";
     public static final String FORK_AUTHOR = "Erik Ríos";
     public static final String ORIGINAL_AUTHOR = "Grzegorz Wolszczak";

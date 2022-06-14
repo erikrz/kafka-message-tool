@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class DefaultApplicationBusySwitcher implements ApplicationBusySwitcher {
 
-    private Stage stage;
+    private final Stage stage;
     private final Set<Node> nodes = new HashSet<>();
 
     public DefaultApplicationBusySwitcher(Stage stage) {
@@ -34,6 +34,6 @@ public class DefaultApplicationBusySwitcher implements ApplicationBusySwitcher {
     }
 
     private void setControlsDisabledState(boolean value) {
-        nodes.forEach(n->n.setDisable(value));
+        nodes.forEach(n -> n.setDisable(value));
     }
 }

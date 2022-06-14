@@ -19,7 +19,7 @@ public class SwingTextAreaWrapper implements TextAreaWrapper {
     private final JTextArea textArea;
     private final SwingNode node;
     private final JPopupMenu popupMenu = new JPopupMenu();
-    private JMenuItem saveToFileMenu = new JMenuItem("Save to file");
+    private final JMenuItem saveToFileMenu = new JMenuItem("Save to file");
 
     public SwingTextAreaWrapper(JTextArea textArea) {
         this.textArea = textArea;

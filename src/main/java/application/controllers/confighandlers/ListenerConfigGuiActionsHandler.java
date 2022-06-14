@@ -22,14 +22,12 @@ public class ListenerConfigGuiActionsHandler extends TemplateGuiActionsHandler<K
 
     private final ListViewActionsHandler<KafkaListenerConfig> listViewActionsHandler;
     private final ModelDataProxy modelDataProxy;
-
-
     private final ControllerProvider controllerProvider;
     private final AnchorPane parentPane;
     private final FromPojoConverter fromPojoConverter;
-    private ToFileSaver toFileSaver;
-    private ListView<KafkaTopicConfig> topicConfigs;
-    private Listeners activeConsumers;
+    private final ToFileSaver toFileSaver;
+    private final ListView<KafkaTopicConfig> topicConfigs;
+    private final Listeners activeConsumers;
 
     public ListenerConfigGuiActionsHandler(TabPaneSelectionInformer tabSelectionInformer,
                                            ListViewActionsHandler<KafkaListenerConfig> listViewActionsHandler,
@@ -56,11 +54,11 @@ public class ListenerConfigGuiActionsHandler extends TemplateGuiActionsHandler<K
     protected void loadController(KafkaListenerConfig config) {
 
         final ListenerConfigView controller = controllerProvider.getListenerConfigGuiController(config,
-                                                                                                parentPane,
-                                                                                                activeConsumers,
-                                                                                                listViewActionsHandler::refresh,
-                                                                                                topicConfigs.getItems(),
-                                                                                                toFileSaver);
+                parentPane,
+                activeConsumers,
+                listViewActionsHandler::refresh,
+                topicConfigs.getItems(),
+                toFileSaver);
         controller.display();
     }
 

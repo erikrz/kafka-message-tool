@@ -15,13 +15,13 @@ public class ApplicationVersionProvider {
         try {
             Properties prop = new Properties();
             try (InputStream stream = ApplicationVersionProvider.class
-                .getResourceAsStream(fileName)) {
+                    .getResourceAsStream(fileName)) {
                 prop.load(stream);
             }
             return prop.getProperty("version", VERSION_NOT_FOUND);
         } catch (Throwable e) {
             //e.printStackTrace();
-            Logger.error(String.format("Could not find/loadOnAnchorPane file %s",fileName));
+            Logger.error(String.format("Could not find/loadOnAnchorPane file %s", fileName));
             return VERSION_NOT_FOUND;
         }
     }

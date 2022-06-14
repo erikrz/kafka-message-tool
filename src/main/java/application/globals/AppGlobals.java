@@ -7,8 +7,8 @@ import javafx.scene.image.Image;
 
 public class AppGlobals {
     private static final String APPLICATION_ICON_PNG = "kafka-logo.png";
+    private static final AppGlobals INSTANCE = new AppGlobals();
     private Image applicationIcon;
-    private final static AppGlobals INSTANCE = new AppGlobals();
 
     public static Image getApplicationIcon() {
         return INSTANCE.applicationIcon;
@@ -29,8 +29,8 @@ public class AppGlobals {
             applicationIcon = new Image(url);
         } catch (Exception ex) {
             Logger.error(
-                String.format(
-                    "Could not set application action from url '%s'", fileUrl), ex);
+                    String.format(
+                            "Could not set application action from url '%s'", fileUrl), ex);
         }
     }
 }

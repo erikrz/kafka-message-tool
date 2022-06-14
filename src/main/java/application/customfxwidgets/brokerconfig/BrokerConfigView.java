@@ -70,7 +70,7 @@ public class BrokerConfigView extends AnchorPane implements Displayable {
 
     private static final String FXML_FILE = "BrokerConfigView.fxml";
     private final ClusterStatusChecker statusChecker;
-    private KafkaClusterProxies kafkaClusterProxies;
+    private final KafkaClusterProxies kafkaClusterProxies;
     @FXML
     private TextField brokerConfigNameField;
 
@@ -144,17 +144,17 @@ public class BrokerConfigView extends AnchorPane implements Displayable {
     @FXML
     private TabPane clusterConfigEntriesTabPane;
 
-    private KafkaBrokerConfig config;
-    private Window parentWindow;
-    private Runnable rerfeshCallback;
+    private final KafkaBrokerConfig config;
+    private final Window parentWindow;
+    private final Runnable rerfeshCallback;
 
     private ObjectProperty<KafkaClusterProxy> kafkaBrokerProxyProperty = new SimpleObjectProperty<>();
 
-    private ConfigEntriesViewPreferences clusterPropertiesViewPreferences = new ConfigEntriesViewPreferences();
-    private ConfigEntriesViewPreferences topicPropertiesViewPreferences = new ConfigEntriesViewPreferences();
-    private UserInteractor userInteractor;
+    private final ConfigEntriesViewPreferences clusterPropertiesViewPreferences = new ConfigEntriesViewPreferences();
+    private final ConfigEntriesViewPreferences topicPropertiesViewPreferences = new ConfigEntriesViewPreferences();
+    private final UserInteractor userInteractor;
 
-    private DisplayBehaviour displayBehaviour;
+    private final DisplayBehaviour displayBehaviour;
 
     public BrokerConfigView(KafkaBrokerConfig config,
                             AnchorPane parentPane,
@@ -177,11 +177,11 @@ public class BrokerConfigView extends AnchorPane implements Displayable {
         final StringExpression windowTitle = composeConfigWindowTitle();
 
         displayBehaviour = new DetachableDisplayBehaviour(parentPane,
-                                                          windowTitle,
-                                                          this,
-                                                          detachPaneButton.selectedProperty(),
-                                                          config,
-                                                          guiInformer);
+                windowTitle,
+                this,
+                detachPaneButton.selectedProperty(),
+                config,
+                guiInformer);
         GuiUtils.expandNodeToAnchorPaneBorders(this);
 
         configureGuiControls();
@@ -239,37 +239,38 @@ public class BrokerConfigView extends AnchorPane implements Displayable {
 
     private StringExpression composeConfigWindowTitle() {
         return new ReadOnlyStringWrapper("Broker configuration")
-            .concat(" '").concat(config.nameProperty()).concat("' (")
-            .concat(config.hostNameProperty())
-            .concat(":")
-            .concat(config.portProperty())
-            .concat(")");
+                .concat(" '").concat(config.nameProperty()).concat("' (")
+                .concat(config.hostNameProperty())
+                .concat(":")
+                .concat(config.portProperty())
+                .concat(")");
     }
 
     private void configureGuiControls() {
         brokerConfigNameField.setText(config.getName());
         GuiUtils.configureTextFieldToAcceptOnlyValidData(brokerConfigNameField,
-                                                         config::setName,
-                                                         ValidatorUtils::isStringIdentifierValid,
-                                                         rerfeshCallback);
+                config::setName,
+                ValidatorUtils::isStringIdentifierValid,
+                rerfeshCallback);
 
 
         kafkaBrokerHostnameField.setText(config.getHostname());
         GuiUtils.configureTextFieldToAcceptOnlyValidData(kafkaBrokerHostnameField,
-                                                         config::setHostname,
-                                                         ValidatorUtils::isStringIdentifierValid,
-                                                         rerfeshCallback);
+                config::setHostname,
+                ValidatorUtils::isStringIdentifierValid,
+                rerfeshCallback);
 
 
         kafkaBrokerPortField.setText(config.getPort());
         GuiUtils.configureTextFieldToAcceptOnlyValidData(kafkaBrokerPortField,
-                                                         config::setPort,
-                                                         ValidatorUtils::isPortValid,
-                                                         rerfeshCallback);
+                config::setPort,
+                ValidatorUtils::isPortValid,
+                rerfeshCallback);
         ValidatorUtils.configureTextFieldToAcceptOnlyDecimalValues(kafkaBrokerPortField);
 
 
-        unassignedConsumersTab.setTooltip(TooltipCreator.createFrom("Active consumers for which kafka broker did not assign any partition."));
+        unassignedConsumersTab.setTooltip(
+                TooltipCreator.createFrom("Active consumers for which kafka broker did not assign any partition."));
         clusterStatusTitledPane.setVisible(false);
     }
 
@@ -288,27 +289,37 @@ public class BrokerConfigView extends AnchorPane implements Displayable {
     private void initializeUnassignedConsumersTableView() {
         TableUtils.installCopyPasteHandlerForSingleCell(unassignedConsumerListTableView);
         unassignedClientIdColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getClientId()));
-        unassignedConsumerGroupColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getConsumerGroupId()));
+        unassignedConsumerGroupColumn.setCellValueFactory(param ->
+                new SimpleStringProperty(param.getValue().getConsumerGroupId()));
         unassignedConsumerHostColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getHost()));
-        unassignedConsumerIdColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getConsumerId()));
+        unassignedConsumerIdColumn.setCellValueFactory(param ->
+                new SimpleStringProperty(param.getValue().getConsumerId()));
     }
 
     private void initializeAssignedConsumersTableView() {
         TableUtils.installCopyPasteHandlerForSingleCell(assignedConsumerListTableView);
-        assignedConsumerClientIdColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getClientId()));
-        assignedConsumerGroupColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getConsumerGroupId()));
-        assignedConsumerPartitionColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getPartition()));
-        assignedConsumerNextMsgOffsetColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getOffset()));
+        assignedConsumerClientIdColumn.setCellValueFactory(param ->
+                new SimpleStringProperty(param.getValue().getClientId()));
+        assignedConsumerGroupColumn.setCellValueFactory(param ->
+                new SimpleStringProperty(param.getValue().getConsumerGroupId()));
+        assignedConsumerPartitionColumn.setCellValueFactory(param ->
+                new SimpleStringProperty(param.getValue().getPartition()));
+        assignedConsumerNextMsgOffsetColumn.setCellValueFactory(param ->
+                new SimpleStringProperty(param.getValue().getOffset()));
         assignedConsumerHostColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getHost()));
-        assignedConsumerIdColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getConsumerId()));
+        assignedConsumerIdColumn.setCellValueFactory(param ->
+                new SimpleStringProperty(param.getValue().getConsumerId()));
     }
 
     private void initializeTopicDetailTableView() {
         TableUtils.installCopyPasteHandlerForSingleCell(topicsTableView);
         topicNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getTopicName()));
-        partitionCountColumn.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getPartitionsCount()).asObject());
-        activeAssignedConsumersColumn.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getConsumersCount()).asObject());
-        consumerGroupsCountColumn.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getConsumerGroupsCount()).asObject());
+        partitionCountColumn.setCellValueFactory(param ->
+                new SimpleIntegerProperty(param.getValue().getPartitionsCount()).asObject());
+        activeAssignedConsumersColumn.setCellValueFactory(param ->
+                new SimpleIntegerProperty(param.getValue().getConsumersCount()).asObject());
+        consumerGroupsCountColumn.setCellValueFactory(param ->
+                new SimpleIntegerProperty(param.getValue().getConsumerGroupsCount()).asObject());
     }
 
     private void refreshGuiControlsContentCallback() {
@@ -356,7 +367,7 @@ public class BrokerConfigView extends AnchorPane implements Displayable {
 
     private void refreshBrokerStatus(boolean shouldShowWarningOnInvalidConfig) {
         statusChecker.updateStatus(config.getHostInfo(),
-                                   shouldShowWarningOnInvalidConfig);
+                shouldShowWarningOnInvalidConfig);
     }
 
 
@@ -420,9 +431,9 @@ public class BrokerConfigView extends AnchorPane implements Displayable {
         final MenuItem topicPropertiesMenuItem = createMenuItemForShowingTopicProperties();
 
         final ContextMenu contextMenu = getTopicManagementContextMenu(deleteTopicMenuItem,
-                                                                      createTopicMenuItem,
-                                                                      alterTopicMenuItem,
-                                                                      topicPropertiesMenuItem);
+                createTopicMenuItem,
+                alterTopicMenuItem,
+                topicPropertiesMenuItem);
 
         row.contextMenuProperty().bind(new ReadOnlyObjectWrapper<>(contextMenu));
         topicPropertiesMenuItem.disableProperty().bind(row.emptyProperty());
@@ -442,10 +453,10 @@ public class BrokerConfigView extends AnchorPane implements Displayable {
                                                       MenuItem topicPropertiesMenuItem) {
         final ContextMenu contextMenu = new ContextMenu();
         contextMenu.getItems().setAll(createTopicMenuItem,
-                                      deleteTopicMenuItem,
-                                      alterTopicMenuItem,
-                                      new SeparatorMenuItem(),
-                                      topicPropertiesMenuItem);
+                deleteTopicMenuItem,
+                alterTopicMenuItem,
+                new SeparatorMenuItem(),
+                topicPropertiesMenuItem);
         return contextMenu;
     }
 
@@ -516,10 +527,11 @@ public class BrokerConfigView extends AnchorPane implements Displayable {
 
         final Set<ConfigEntry> topicProperties = kafkaClusterProxy.getTopicProperties(topicName);
         try {
-            ConfigEntriesView entriesView = new ConfigEntriesView("Topic properties", topicProperties, topicPropertiesViewPreferences);
+            ConfigEntriesView entriesView =
+                    new ConfigEntriesView("Topic properties", topicProperties, topicPropertiesViewPreferences);
             final TopicPropertiesWindow topicPropertiesWindow = TopicPropertiesWindow.get(topicName,
-                                                                                          entriesView,
-                                                                                          kafkaClusterProxy.getTopicOffsetsInfo());
+                    entriesView,
+                    kafkaClusterProxy.getTopicOffsetsInfo());
             topicPropertiesWindow.show();
 
 
@@ -530,9 +542,9 @@ public class BrokerConfigView extends AnchorPane implements Displayable {
 
     private String getTopicDeleteWarningMessageForUser() {
         return " *** NOTE ***\n" +
-            " * Topic delete operation may not be immediate.\n" +
-            " * It may take several seconds for all the brokers to become aware that the topic is gone.\n" +
-            " * During this time kafka cluster may continue to return information about the deleted topics as if they still exist.";
+                " * Topic delete operation may not be immediate.\n" +
+                " * It may take several seconds for all the brokers to become aware that the topic is gone.\n" +
+                " * During this time kafka cluster may continue to return information about the deleted topics as if they still exist.";
     }
 
     private void deleteTopic(KafkaClusterProxy proxy,
@@ -540,9 +552,9 @@ public class BrokerConfigView extends AnchorPane implements Displayable {
         final String topicName = summary.getTopicName();
 
         final boolean deletionConfired = userInteractor
-            .getYesNoDecision("Deleting topic...",
-                              String.format("Are you sure you want to delete topic '%s' ?", topicName),
-                              getTopicDeleteWarningMessageForUser());
+                .getYesNoDecision("Deleting topic...",
+                        String.format("Are you sure you want to delete topic '%s' ?", topicName),
+                        getTopicDeleteWarningMessageForUser());
         if (!deletionConfired) {
             return;
         }
@@ -566,7 +578,8 @@ public class BrokerConfigView extends AnchorPane implements Displayable {
 
             ConfigEntriesView clusterPropertiesTableView;
             try {
-                clusterPropertiesTableView = new ConfigEntriesView("Node properties", entries, clusterPropertiesViewPreferences);
+                clusterPropertiesTableView =
+                        new ConfigEntriesView("Node properties", entries, clusterPropertiesViewPreferences);
             } catch (IOException e) {
                 e.printStackTrace();
                 continue;

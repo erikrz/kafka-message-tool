@@ -23,10 +23,8 @@ public class KafkaProducers {
         return producer;
     }
 
-    public static void close(){
-        PRODUCERS_FOR_PROPERTIES.forEach((key, producer)->{
-            producer.close();
-        });
+    public static void close() {
+        PRODUCERS_FOR_PROPERTIES.forEach((key, producer) -> producer.close());
     }
 
 }

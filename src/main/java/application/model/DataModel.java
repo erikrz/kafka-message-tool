@@ -6,7 +6,7 @@ import application.model.modelobjects.KafkaSenderConfig;
 import application.model.modelobjects.KafkaTopicConfig;
 
 // not sure yet where to hold this objects
-public class DataModel{
+public class DataModel {
 
     private final ModelObjectCollection<KafkaBrokerConfig> brokerConfigs = new ModelConfigObjects<>("Brokers");
     private final ModelObjectCollection<KafkaTopicConfig> topicConfigs = new ModelConfigObjects<>("Topics");

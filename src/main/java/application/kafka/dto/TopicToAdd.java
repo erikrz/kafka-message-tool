@@ -54,9 +54,9 @@ public class TopicToAdd {
     @Override
     public String toString() {
         return "TopicToAdd{" +
-            "topicName=" + topicName.get() +
-            ", partitions=" + partitions.get() +
-            ", replicationFactor=" + replicationFactor.get() +
-            '}';
+                "topicName=" + topicName.get() +
+                ", partitions=" + partitions.get() +
+                ", replicationFactor=" + replicationFactor.get() +
+                '}';
     }
 }

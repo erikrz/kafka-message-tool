@@ -9,7 +9,7 @@ import application.utils.Validations;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-public class ForSendingMessage extends ValidationTestBase{
+public class ForSendingMessage extends ValidationTestBase {
     @BeforeMethod
     private void setUpAllConfigs() {
         configureValidSenderConfigWithBrokerProxy();
@@ -63,7 +63,8 @@ public class ForSendingMessage extends ValidationTestBase{
         ValidationStatus s = Validations.validateForCalculatingPartition(senderConfig, clusterProxies);
 
         // THEN
-        assertThat(s.validationFailureMessage()).isEqualTo(String.format("Topic '%s' does not exist on broker", topicName));
+        assertThat(s.validationFailureMessage()).isEqualTo(
+                String.format("Topic '%s' does not exist on broker", topicName));
 
     }
 

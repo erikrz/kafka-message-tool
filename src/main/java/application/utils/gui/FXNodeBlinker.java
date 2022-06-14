@@ -44,7 +44,6 @@ public class FXNodeBlinker {
         }
 
 
-
         final KeyFrame firstKeyFrame = new KeyFrame(Duration.seconds(0.01), evt -> {
             nodeToBlink.changeColor(blinkColor);
         });

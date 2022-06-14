@@ -46,9 +46,9 @@ public class DefaultControllerProvider implements ControllerProvider {
     private final ClusterStatusChecker statusChecker;
     private final ModelConfigObjectsGuiInformer guiInformer;
     private final SyntaxHighlightingCodeAreaConfigurator syntaxHighlightConfigurator;
-    private KafkaClusterProxies kafkaClusterProxies;
-    private ApplicationSettings applicationSettings;
-    private Restartables restartables;
+    private final KafkaClusterProxies kafkaClusterProxies;
+    private final ApplicationSettings applicationSettings;
+    private final Restartables restartables;
 
     public DefaultControllerProvider(ModelConfigObjectsGuiInformer guiInformer,
                                      ClusterStatusChecker statusChecker,
@@ -74,13 +74,13 @@ public class DefaultControllerProvider implements ControllerProvider {
         return getControllerFor(config, brokerControllers, () -> {
             try {
                 return new BrokerConfigView(config,
-                                            parentPane,
-                                            guiInformer,
-                                            parentWindow,
-                                            refeshCallback,
-                                            guiInteractor,
-                                            statusChecker,
-                                            kafkaClusterProxies);
+                        parentPane,
+                        guiInformer,
+                        parentWindow,
+                        refeshCallback,
+                        guiInteractor,
+                        statusChecker,
+                        kafkaClusterProxies);
             } catch (IOException e) {
                 Logger.error(e);
                 return null;
@@ -99,16 +99,17 @@ public class DefaultControllerProvider implements ControllerProvider {
 
         return getControllerFor(config, listenersControllers, () -> {
             try {
-                final FixedNumberRecordsCountLogger fixedRecordsLogger = new FixedNumberRecordsCountLogger(new CyclicStringBuffer());
+                final FixedNumberRecordsCountLogger fixedRecordsLogger =
+                        new FixedNumberRecordsCountLogger(new CyclicStringBuffer());
                 restartables.register(fixedRecordsLogger);
                 return new ListenerConfigView(config,
-                                              parentPane,
-                                              guiInformer,
-                                              activeConsumers,
-                                              refreshCallback,
-                                              topicConfigs,
-                                              toFileSaver,
-                                              fixedRecordsLogger);
+                        parentPane,
+                        guiInformer,
+                        activeConsumers,
+                        refreshCallback,
+                        topicConfigs,
+                        toFileSaver,
+                        fixedRecordsLogger);
             } catch (IOException e) {
                 Logger.error(e);
                 return null;
@@ -124,12 +125,12 @@ public class DefaultControllerProvider implements ControllerProvider {
         return getControllerFor(config, topicControllers, () -> {
             try {
                 return new TopicConfigView(config,
-                                           parentPane,
-                                           guiInformer,
-                                           refreshCallback,
-                                           brokerConfigs,
-                                           statusChecker,
-                                           kafkaClusterProxies);
+                        parentPane,
+                        guiInformer,
+                        refreshCallback,
+                        brokerConfigs,
+                        statusChecker,
+                        kafkaClusterProxies);
             } catch (IOException e) {
                 Logger.error(e);
                 return null;
@@ -148,7 +149,7 @@ public class DefaultControllerProvider implements ControllerProvider {
         return getControllerFor(config, messageControllers, () -> {
             try {
                 final MessageTemplateSender msgTemplateEvaluator = new MessageTemplateSender(sender,
-                                                                                             new GroovyScriptEvaluator());
+                        new GroovyScriptEvaluator());
 
                 final CodeArea beforeAllCodeAreaShared = new CodeArea();
                 final VirtualizedScrollPane<StyleClassedTextArea> beforeAllMessagesSharedScriptScrollPane =
@@ -156,16 +157,16 @@ public class DefaultControllerProvider implements ControllerProvider {
 
                 final CodeArea beforeAllCodeArea = new CodeArea();
                 final VirtualizedScrollPane<StyleClassedTextArea> beforeAllMessagesScriptScrollPane =
-                    new VirtualizedScrollPane<>(beforeAllCodeArea);
+                        new VirtualizedScrollPane<>(beforeAllCodeArea);
 
 
                 final CodeArea beforeEachCodeArea = new CodeArea();
                 final VirtualizedScrollPane<StyleClassedTextArea> beforeEachMessageScriptScrollPane =
-                    new VirtualizedScrollPane<>(beforeEachCodeArea);
+                        new VirtualizedScrollPane<>(beforeEachCodeArea);
 
                 final CodeArea messageContentCodeArea = new CodeArea();
                 final VirtualizedScrollPane<StyleClassedTextArea> messageContentScrollPane =
-                    new VirtualizedScrollPane<>(messageContentCodeArea);
+                        new VirtualizedScrollPane<>(messageContentCodeArea);
 
                 syntaxHighlightConfigurator.configureGroovySyntaxHighlighting(beforeAllCodeAreaShared);
                 syntaxHighlightConfigurator.configureGroovySyntaxHighlighting(beforeAllCodeArea);
@@ -173,17 +174,17 @@ public class DefaultControllerProvider implements ControllerProvider {
                 syntaxHighlightConfigurator.configureJsonSyntaxHighlighting(messageContentCodeArea);
 
                 return new SenderConfigView(config,
-                                            parentPane,
-                                            guiInformer,
-                                            refreshCallback,
-                                            topicConfigs,
-                                            msgTemplateEvaluator,
-                                            beforeAllMessagesSharedScriptScrollPane,
-                                            beforeAllMessagesScriptScrollPane,
-                                            beforeEachMessageScriptScrollPane,
-                                            messageContentScrollPane,
-                                            kafkaClusterProxies,
-                                            applicationSettings);
+                        parentPane,
+                        guiInformer,
+                        refreshCallback,
+                        topicConfigs,
+                        msgTemplateEvaluator,
+                        beforeAllMessagesSharedScriptScrollPane,
+                        beforeAllMessagesScriptScrollPane,
+                        beforeEachMessageScriptScrollPane,
+                        messageContentScrollPane,
+                        kafkaClusterProxies,
+                        applicationSettings);
             } catch (IOException e) {
                 Logger.error(e);
                 return null;
@@ -203,12 +204,12 @@ public class DefaultControllerProvider implements ControllerProvider {
         if (!controllerMap.containsKey(uuid)) {
             final Controller controller = controllerMap.getOrDefault(uuid, controllerSupplier.get());
             Logger.trace(String.format("Creating new controller, hash: %s, (name: %s, {%s})",
-                                       AppUtils.realHash(controller), config.getName(), uuid));
+                    AppUtils.realHash(controller), config.getName(), uuid));
             controllerMap.put(uuid, controller);
         }
         final Controller controller = controllerMap.get(uuid);
         Logger.trace(String.format("Returning controller,    hash: %s, (name: %s, {%s})",
-                                   AppUtils.realHash(controller), config.getName(), uuid));
+                AppUtils.realHash(controller), config.getName(), uuid));
         return controller;
     }
 
