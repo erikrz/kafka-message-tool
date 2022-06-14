@@ -8,7 +8,7 @@ public class CyclicStringBuffer {
     public static final int DEFAULT_BUFFER_SIZE = 2000;
     private CircularFifoQueue<String> buffer;
 
-    public CyclicStringBuffer(){
+    public CyclicStringBuffer() {
         this(DEFAULT_BUFFER_SIZE);
     }
 
@@ -39,14 +39,7 @@ public class CyclicStringBuffer {
         }
         CircularFifoQueue<String> old = buffer;
         buffer = new CircularFifoQueue<>(size);
-        copyElementsFrom(old);
-    }
-
-    private void copyElementsFrom(CircularFifoQueue<String> old) {
-        final Iterator<String> iterator = old.iterator();
-        while (iterator.hasNext()) {
-            buffer.add(iterator.next());
-        }
+        buffer.addAll(old);
     }
 
     public void clear() {

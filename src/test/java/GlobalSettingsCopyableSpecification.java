@@ -16,7 +16,7 @@ public class GlobalSettingsCopyableSpecification {
         toBeFilled.fillFrom(a);
 
         // THEN
-        assertThat(toBeFilled).isEqualToComparingFieldByFieldRecursively(a);
+        assertThat(toBeFilled).isEqualTo(a).usingRecursiveComparison();
     }
 
     @Test

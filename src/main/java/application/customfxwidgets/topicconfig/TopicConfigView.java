@@ -61,7 +61,7 @@ public class TopicConfigView extends AnchorPane implements Displayable {
     private final TopicConfigComboBoxConfigurator<KafkaBrokerConfig> comboBoxConfigurator;
     private final SuggestionProvider<String> suggestionProvider = SuggestionProvider.create(Collections.emptyList());
     private AutoCompletionBinding<String> stringAutoCompletionBinding;
-    private KafkaClusterProxies kafkaClusterProxies;
+    private final KafkaClusterProxies kafkaClusterProxies;
     @FXML
     private ComboBox<KafkaBrokerConfig> kafkaBrokerComboBox;
     @FXML
@@ -72,7 +72,7 @@ public class TopicConfigView extends AnchorPane implements Displayable {
     private Button connectionCheckButton;
     @FXML
     private ToggleButton detachPaneButton;
-    private Runnable refreshCallback;
+    private final Runnable refreshCallback;
     private final MenuItem generateNameMenuItem = new MenuItem("Generate name");
 
     public TopicConfigView(KafkaTopicConfig config,

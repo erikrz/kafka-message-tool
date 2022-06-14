@@ -22,7 +22,8 @@ public class KafkaListenerConfig implements ModelConfigObject, RelatedConfigHold
     private final StringProperty uuid = new SimpleStringProperty(UUID.randomUUID().toString());
     private final StringProperty consumerGroup = new SimpleStringProperty(DEFAULT_CONSUMER_GROUP_ID);
     private final StringProperty pollTimeout = new SimpleStringProperty(DEFAULT_FETCH_TIMEOUT);
-    private final ObjectProperty<KafkaOffsetResetType> offsetResetConfig = new SimpleObjectProperty<>(KafkaOffsetResetType.EARLIEST);
+    private final ObjectProperty<KafkaOffsetResetType> offsetResetConfig =
+            new SimpleObjectProperty<>(KafkaOffsetResetType.EARLIEST);
     private final BooleanProperty receivedMsgLimitEnabled = new SimpleBooleanProperty(false);
     private final StringProperty receivedMsgLimitCount = new SimpleStringProperty("1");
 

@@ -86,12 +86,12 @@ public class ListenerConfigView extends AnchorPane implements Displayable {
     private Label receivedTotalMsgLabel;
     @FXML
     private TitledPane outputTitlePane;
-    private KafkaListenerConfig config;
-    private Listeners activeConsumers;
-    private Runnable refreshCallback;
-    private ObservableList<KafkaTopicConfig> topicConfigs;
-    private ToFileSaver toFileSaver;
-    private FixedNumberRecordsCountLogger fixedRecordsLogger;
+    private final KafkaListenerConfig config;
+    private final Listeners activeConsumers;
+    private final Runnable refreshCallback;
+    private final ObservableList<KafkaTopicConfig> topicConfigs;
+    private final ToFileSaver toFileSaver;
+    private final FixedNumberRecordsCountLogger fixedRecordsLogger;
     private int totalReceivedMsgCounter = ZERO_RECEIVED_MSGS;
 
 

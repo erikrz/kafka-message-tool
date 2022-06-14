@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class ModelConfigObjects<T extends ModelConfigObject> implements ModelObjectCollection<T>{
+public class ModelConfigObjects<T extends ModelConfigObject> implements ModelObjectCollection<T> {
 
     private final ObservableList<T> objects = FXCollections.observableArrayList();
     private final String name;

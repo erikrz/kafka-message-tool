@@ -61,8 +61,8 @@ public final class ConsumerGroupView extends AnchorPane {
     public void refresh(KafkaClusterProxy proxy) {
         this.proxy = proxy;
         final List<ConsumerGroupName> names = proxy.getConsumerGroupDetails().stream()
-            .map(ConsumerGroupDetailRecord::getConsumerGroupId).distinct().map(ConsumerGroupName::new)
-            .collect(Collectors.toList());
+                .map(ConsumerGroupDetailRecord::getConsumerGroupId).distinct().map(ConsumerGroupName::new)
+                .collect(Collectors.toList());
         consumerGroupNameTable.setItems(FXCollections.observableList(names));
 
     }
@@ -116,11 +116,11 @@ public final class ConsumerGroupView extends AnchorPane {
     private void fillConsumerGroupDetailsViewForName(String consumerGroupId) {
 
         final List<ConsumerGroupDetailRecord> filteredByName = proxy.getConsumerGroupDetails().stream()
-            .filter(e -> e.getConsumerGroupId().equals(consumerGroupId))
-            .collect(Collectors.toList());
+                .filter(e -> e.getConsumerGroupId().equals(consumerGroupId))
+                .collect(Collectors.toList());
         Logger.trace(String.format("Filtered by consumer groupId '%s' - result list size %d: ",
-                                   consumerGroupId,
-                                   filteredByName.size()));
+                consumerGroupId,
+                filteredByName.size()));
 
         consumerGroupPropertiesTable.setItems(FXCollections.observableArrayList(filteredByName));
         //TableUtils.autoResizeColumns(consumerGroupPropertiesTable);

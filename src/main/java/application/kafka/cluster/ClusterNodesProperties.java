@@ -11,18 +11,19 @@ import kafka.server.KafkaConfig;
 
 public class ClusterNodesProperties {
     private static final Set<String> EMPTY_SET = Collections.emptySet();
-    private static final Set<String> CLUSTER_PROPERTIES_THAT_CAN_DIFFER = getClusterPropertiesThatCanDifferBetweenNodes();
+    private static final Set<String> CLUSTER_PROPERTIES_THAT_CAN_DIFFER =
+            getClusterPropertiesThatCanDifferBetweenNodes();
     private final Map<String, Set<String>> nodesConfig = new HashMap<>();
 
     private static Set<String> getClusterPropertiesThatCanDifferBetweenNodes() {
 
         return new HashSet<>(Arrays.asList(
-            KafkaConfig.LogDirsProp(),
-            KafkaConfig.ListenersProp(),
-            KafkaConfig.BrokerIdProp(),
-            // zookeeper.connect can differ if kafka cluster is connected do zookeeper cluster,
-            // not just single zookeeper node
-            KafkaConfig.ZkConnectProp()
+                KafkaConfig.LogDirsProp(),
+                KafkaConfig.ListenersProp(),
+                KafkaConfig.BrokerIdProp(),
+                // zookeeper.connect can differ if kafka cluster is connected do zookeeper cluster,
+                // not just single zookeeper node
+                KafkaConfig.ZkConnectProp()
         ));
     }
 
@@ -75,7 +76,7 @@ public class ClusterNodesProperties {
     }
 
     private TriStateConfigEntryValue getConfigEntryBooleanValue(Set<String> strings) {
-        if (strings.size() == 0) {
+        if (strings.isEmpty()) {
             // if could not get value in settings it might happen that we could not fetch
             // from cluster, e.g. describeCluster was not supported by broker
             //throw new InternalError("Cluster configuration was not fetched yet but we are asking for specific config entry value");

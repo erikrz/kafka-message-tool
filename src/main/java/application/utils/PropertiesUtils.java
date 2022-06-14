@@ -3,7 +3,7 @@ package application.utils;
 import java.util.Enumeration;
 import java.util.Properties;
 
-public class PropertiesUtils{
+public class PropertiesUtils {
 
     public static String prettyProperties(Properties p) {
         StringBuilder b = new StringBuilder();

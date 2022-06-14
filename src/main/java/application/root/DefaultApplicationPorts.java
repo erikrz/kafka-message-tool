@@ -5,7 +5,7 @@ import application.kafka.sender.KafkaMessageSender;
 
 public class DefaultApplicationPorts implements ApplicationPorts {
     private final KafkaMessageSender sender;
-    private Listeners listeners;
+    private final Listeners listeners;
 
     DefaultApplicationPorts(KafkaMessageSender sender, Listeners listeners) {
         this.sender = sender;

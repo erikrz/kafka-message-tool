@@ -84,15 +84,16 @@ public class ValidatorUtils {
         return StringUtils.isNumeric(e) && Integer.parseUnsignedInt(e) <= upperBound;
     }
 
-    public static void configureSpinner(Spinner<Integer> spinner, IntegerProperty referenceProperty, int minValue, int maxValue) {
+    public static void configureSpinner(Spinner<Integer> spinner, IntegerProperty referenceProperty, int minValue,
+                                        int maxValue) {
         spinner.setEditable(true);
         spinner.setTooltip(TooltipCreator.createFrom("Max value: " + maxValue));
         spinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(minValue,
-                                                                                   Integer.MAX_VALUE,
-                                                                                   referenceProperty.get()));
+                Integer.MAX_VALUE,
+                referenceProperty.get()));
         GuiUtils.configureTextFieldToAcceptOnlyValidData(spinner.getEditor(),
-                                                         stringConsumer(referenceProperty),
-                                                         validationFunc(maxValue));
+                stringConsumer(referenceProperty),
+                validationFunc(maxValue));
         configureTextFieldToAcceptOnlyDecimalValues(spinner.getEditor());
     }
 

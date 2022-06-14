@@ -94,7 +94,7 @@ processResources.dependsOn createProperties
 
 javafx {
     version = "11"
-    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.swing' ]
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.swing']
 }
 
 spotbugs {

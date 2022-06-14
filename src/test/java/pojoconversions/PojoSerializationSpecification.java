@@ -2,10 +2,6 @@ package pojoconversions;
 
 import java.io.StringReader;
 import java.io.StringWriter;
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Marshaller;
-import jakarta.xml.bind.Unmarshaller;
 
 import org.testng.annotations.Test;
 
@@ -13,6 +9,10 @@ import application.model.pojos.BrokerConfigPojo;
 import application.model.pojos.ListenerConfigPojo;
 import application.model.pojos.SenderConfigPojo;
 import application.model.pojos.TopicConfigPojo;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

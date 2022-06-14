@@ -32,7 +32,7 @@ public final class TopicPropertiesWindow extends AnchorPane {
     private static final String FXML_FILE = "TopicPropertiesView.fxml";
     private static TopicPropertiesWindow instance;
     ObservableList<TopicsOffsetInfo> privateInfos = FXCollections.observableArrayList();
-    private Stage stage = new Stage();
+    private final Stage stage = new Stage();
     @FXML
     private Button closeButton;
     @FXML
@@ -62,7 +62,7 @@ public final class TopicPropertiesWindow extends AnchorPane {
     private ObservableList<TopicsOffsetInfo> parentInfos;
     private String topicName;
     private ConfigEntriesView entriesView;
-    private ObservableList<TopicsOffsetInfo> observablesOffsetsFromCaller;
+    private final ObservableList<TopicsOffsetInfo> observablesOffsetsFromCaller;
 
     private TopicPropertiesWindow(ObservableList<TopicsOffsetInfo> topicOffsetsInfo) throws IOException {
 
@@ -109,9 +109,9 @@ public final class TopicPropertiesWindow extends AnchorPane {
 
     private void refreshTopicOffsetsView(ObservableList<TopicsOffsetInfo> topicOffsetsInfo) {
         final List<TopicsOffsetInfo> filtered = topicOffsetsInfo
-            .stream()
-            .filter(e -> e.getTopicName().equals(this.topicName))
-            .collect(Collectors.toList());
+                .stream()
+                .filter(e -> e.getTopicName().equals(this.topicName))
+                .collect(Collectors.toList());
         privateInfos.setAll(filtered);
         Platform.runLater(() -> {
             topicOffsetsTableView.getSortOrder().clear();
@@ -124,7 +124,8 @@ public final class TopicPropertiesWindow extends AnchorPane {
         partitionColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getPartition()));
         beginOffsetColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getBeginOffset()));
         endOffsetColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getEndOffset()));
-        totalColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getTopicPartitionMsgCount()));
+        totalColumn.setCellValueFactory(param ->
+                new SimpleStringProperty(param.getValue().getTopicPartitionMsgCount()));
 
         currentOffsetColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCurrentOffset()));
         lagColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getLag()));

@@ -15,7 +15,7 @@ public class FixedNumberRecordsCountLogger implements Restartable {
     private final RepeatableTimer appendTextTimer = new RepeatableTimer();
     private TextAreaWrapper logTextArea;
     private String localBuffer = "";
-    private CyclicStringBuffer cyclicBuffer;
+    private final CyclicStringBuffer cyclicBuffer;
 
     public FixedNumberRecordsCountLogger(CyclicStringBuffer buffer) {
         this(null, buffer);

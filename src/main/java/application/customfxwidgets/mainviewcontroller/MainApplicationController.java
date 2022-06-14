@@ -37,7 +37,8 @@ import javafx.stage.Stage;
 
 public class MainApplicationController extends VBox {
 
-    private static final ObservableList<LogLevel> ALL_LOG_LEVEL_ITEMS = FXCollections.observableArrayList(LogLevel.values());
+    private static final ObservableList<LogLevel> ALL_LOG_LEVEL_ITEMS =
+            FXCollections.observableArrayList(LogLevel.values());
     private final List<ModelObjectGuiActionsHandler> guiActionsHandlers = new ArrayList<>();
     private final Stage appStage;
     private final DataModel dataModel;
@@ -74,12 +75,12 @@ public class MainApplicationController extends VBox {
     @FXML
     private GridPane loggingTabGridPane;
     private ControllerProvider controllerProvider;
-    private Application fxApplication;
-    private ApplicationSettings appSettings;
-    private Node loggingPaneArea;
-    private ControllerRepositoryFactory controllersRepositoryFactory;
-    private DefaultActionHandlerFactory actionHandlerFactory;
-    private ApplicationBusySwitcher busySwitcher;
+    private final Application fxApplication;
+    private final ApplicationSettings appSettings;
+    private final Node loggingPaneArea;
+    private final ControllerRepositoryFactory controllersRepositoryFactory;
+    private final DefaultActionHandlerFactory actionHandlerFactory;
+    private final ApplicationBusySwitcher busySwitcher;
 
     public MainApplicationController(Stage mainStage,
                                      DataModel model,
@@ -138,10 +139,10 @@ public class MainApplicationController extends VBox {
     private void initializeInternalDependencies() {
 
         controllerProvider = controllersRepositoryFactory.createFor(leftViewTabPane,
-                                                                    brokersListView,
-                                                                    topicsListView,
-                                                                    sendersListView,
-                                                                    listenersListView);
+                brokersListView,
+                topicsListView,
+                sendersListView,
+                listenersListView);
     }
 
     private void bindGuiElementsProperties() {
@@ -149,22 +150,22 @@ public class MainApplicationController extends VBox {
         final GuiSettings guiSettings = appSettings.guiSettings();
 
         mainSplitPane.getDividers()
-            .get(0)
-            .positionProperty()
-            .bindBidirectional(guiSettings.mainWindowSplitPaneDividerPositionProperty());
+                .get(0)
+                .positionProperty()
+                .bindBidirectional(guiSettings.mainWindowSplitPaneDividerPositionProperty());
 
         upperSplitPane.getDividers()
-            .get(0)
-            .positionProperty()
-            .bindBidirectional(guiSettings.upperSplitPaneDividerPositionProperty());
+                .get(0)
+                .positionProperty()
+                .bindBidirectional(guiSettings.upperSplitPaneDividerPositionProperty());
 
         logSeverityCombobox.setItems(ALL_LOG_LEVEL_ITEMS);
         logSeverityCombobox.valueProperty().bindBidirectional(appSettings
-                                                                  .appSettings()
-                                                                  .logLevelProperty());
+                .appSettings()
+                .logLevelProperty());
 
         logSeverityCombobox.valueProperty().addListener((ignored01, ignored02, t1) ->
-                                                            Logger.setLogLevel(t1));
+                Logger.setLogLevel(t1));
 
     }
 
@@ -181,33 +182,33 @@ public class MainApplicationController extends VBox {
 
     private void initializeListViewActionHandlers() {
         guiActionsHandlers.add(actionHandlerFactory.createBrokerConfigListViewActionHandler(rightContentPane,
-                                                                                            leftViewTabPane,
-                                                                                            brokersTab,
-                                                                                            brokersListView,
-                                                                                            controllerProvider));
+                leftViewTabPane,
+                brokersTab,
+                brokersListView,
+                controllerProvider));
 
 
         guiActionsHandlers.add(actionHandlerFactory.createTopicConfigListViewActionHandler(rightContentPane,
-                                                                                           leftViewTabPane,
-                                                                                           topicsTab,
-                                                                                           topicsListView,
-                                                                                           controllerProvider,
-                                                                                           brokersListView));
+                leftViewTabPane,
+                topicsTab,
+                topicsListView,
+                controllerProvider,
+                brokersListView));
 
 
         guiActionsHandlers.add(actionHandlerFactory.createSenderConfigListViewActionHandler(rightContentPane,
-                                                                                            leftViewTabPane,
-                                                                                            sendMsgTab,
-                                                                                            sendersListView,
-                                                                                            topicsListView,
-                                                                                            controllerProvider));
+                leftViewTabPane,
+                sendMsgTab,
+                sendersListView,
+                topicsListView,
+                controllerProvider));
 
         guiActionsHandlers.add(actionHandlerFactory.createListenerConfigListViewActionHandler(rightContentPane,
-                                                                                              leftViewTabPane,
-                                                                                              receiveMsgTab,
-                                                                                              listenersListView,
-                                                                                              topicsListView,
-                                                                                              controllerProvider));
+                leftViewTabPane,
+                receiveMsgTab,
+                listenersListView,
+                topicsListView,
+                controllerProvider));
 
 
     }

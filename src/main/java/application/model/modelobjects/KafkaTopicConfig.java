@@ -16,7 +16,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 
-public class KafkaTopicConfig implements ModelConfigObject, ToolTipInfoProvider, RelatedConfigHolder<KafkaBrokerConfig> {
+public class KafkaTopicConfig
+        implements ModelConfigObject, ToolTipInfoProvider, RelatedConfigHolder<KafkaBrokerConfig> {
     private static final ReadOnlyStringProperty TOPIC = new ReadOnlyStringWrapper("topic");
     private final StringProperty topicName = new SimpleStringProperty(ApplicationConstants.DEFAULT_NEW_TOPIC_NAME);
     private final StringProperty name = new SimpleStringProperty(ApplicationConstants.DEFAULT_NEW_TOPIC_CONFIG_NAME);
@@ -140,7 +141,8 @@ public class KafkaTopicConfig implements ModelConfigObject, ToolTipInfoProvider,
     private void bindToolTipInfoProperty() {
         brokerProperty.addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                toolTipInfoProperty.bind(topicExpression.concat("\nbroker host : ").concat(newValue.toolTipInfoProperty()));
+                toolTipInfoProperty.bind(
+                        topicExpression.concat("\nbroker host : ").concat(newValue.toolTipInfoProperty()));
             } else {
                 toolTipInfoProperty.bind(topicExpression);
             }

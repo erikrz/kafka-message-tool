@@ -11,20 +11,21 @@ import kafka.server.KafkaConfig;
 
 public class NodesConfigProperties {
     private static final Set<String> EMPTY_SET = Collections.emptySet();
-    private static final Set<String> CLUSTER_PROPERTIES_THAT_CAN_DIFFER = getClusterPropertiesThatCanDifferBetweenNodes();
+    private static final Set<String> CLUSTER_PROPERTIES_THAT_CAN_DIFFER =
+            getClusterPropertiesThatCanDifferBetweenNodes();
     private final Map<String, Set<String>> nodesConfig = new HashMap<>();
 
     public static Set<String> getClusterPropertiesThatCanDifferBetweenNodes() {
 
         return new HashSet<>(Arrays.asList(
-            KafkaConfig.LogDirsProp(),
-            KafkaConfig.ListenersProp(),
-            KafkaConfig.BrokerIdProp(),
-            KafkaConfig.AdvertisedListenersProp(),
-            // zookeeper.connect can differ if kafka cluster is connected do zookeeper cluster,
-            // not just single zookeeper node
+                KafkaConfig.LogDirsProp(),
+                KafkaConfig.ListenersProp(),
+                KafkaConfig.BrokerIdProp(),
+                KafkaConfig.AdvertisedListenersProp(),
+                // zookeeper.connect can differ if kafka cluster is connected do zookeeper cluster,
+                // not just single zookeeper node
 
-            KafkaConfig.ZkConnectProp()
+                KafkaConfig.ZkConnectProp()
         ));
     }
 

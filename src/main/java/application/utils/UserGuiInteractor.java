@@ -87,10 +87,10 @@ public class UserGuiInteractor implements UserInteractor {
         DialogPane dialogPane = dialog.getDialogPane();
 
         dialogPane.getStylesheets().add(
-            Thread.currentThread()
-                .getClass()
-                .getResource(ApplicationConstants.GLOBAL_CSS_FILE_NAME)
-                .toExternalForm());
+                Thread.currentThread()
+                        .getClass()
+                        .getResource(ApplicationConstants.GLOBAL_CSS_FILE_NAME)
+                        .toExternalForm());
     }
 
     private static Node getTextNodeContent(String content) {

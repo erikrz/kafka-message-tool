@@ -14,8 +14,8 @@ import javafx.scene.control.ComboBox;
 public class TopicConfigComboBoxConfigurator<RelatedConfig extends ModelConfigObject & ToolTipInfoProvider> {
 
     private final RelatedConfigHolder<RelatedConfig> config;
-    private ComboBox<RelatedConfig> comboBox;
-    private ObjectProperty<RelatedConfig> relatedConfigProperty;
+    private final ComboBox<RelatedConfig> comboBox;
+    private final ObjectProperty<RelatedConfig> relatedConfigProperty;
     private ComboBoxUpdateMode comboBoxUpdateMode = ComboBoxUpdateMode.Normal;
 
     public TopicConfigComboBoxConfigurator(ComboBox<RelatedConfig> comboBox,

@@ -6,7 +6,8 @@ import java.util.Optional;
 import application.logging.Logger;
 import application.model.ModelConfigObject;
 
-abstract public class TemplateGuiActionsHandler<ModelObject extends ModelConfigObject> implements ModelObjectGuiActionsHandler {
+abstract public class TemplateGuiActionsHandler<ModelObject extends ModelConfigObject>
+        implements ModelObjectGuiActionsHandler {
 
     private final TabPaneSelectionInformer tabSelectionInformer;
     private final ListViewActionsHandler<ModelObject> listViewActionsHandler;

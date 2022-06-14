@@ -13,7 +13,7 @@ public class HostPortValue {
 
     public static HostPortValue from(HostInfo hostInfo) {
         return new HostPortValue(hostInfo.getHostname(),
-                                 Integer.parseInt(hostInfo.getPort()));
+                Integer.parseInt(hostInfo.getPort()));
     }
 
     public String toHostString() {
@@ -23,9 +23,9 @@ public class HostPortValue {
     @Override
     public String toString() {
         return "HostPortValue{" +
-            "host='" + host + '\'' +
-            ", port=" + port +
-            '}';
+                "host='" + host + '\'' +
+                ", port=" + port +
+                '}';
     }
 
     @Override
@@ -38,7 +38,7 @@ public class HostPortValue {
         }
         HostPortValue that = (HostPortValue) o;
         return port == that.port &&
-            Objects.equals(host, that.host);
+                Objects.equals(host, that.host);
     }
 
     @Override

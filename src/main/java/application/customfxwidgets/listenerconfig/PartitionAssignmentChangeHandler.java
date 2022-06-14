@@ -11,8 +11,8 @@ import javafx.scene.control.Label;
 
 public class PartitionAssignmentChangeHandler {
     public static final String DISCONNECTED_FROM_BROKER_STRING = "<DISCONNECTED FROM BROKER>";
-    private FXNodeBlinker fxNodeBlinker;
-    private KafkaListenerConfig config;
+    private final FXNodeBlinker fxNodeBlinker;
+    private final KafkaListenerConfig config;
     private Label assignedPartitionsLabel;
     private String oldPartitionAssignmentsValue = DISCONNECTED_FROM_BROKER_STRING;
 

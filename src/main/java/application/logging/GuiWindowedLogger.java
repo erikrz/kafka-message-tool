@@ -7,8 +7,7 @@ import application.utils.TimestampUtils;
 
 public class GuiWindowedLogger implements ToolLogger {
 
-    private FixedNumberRecordsCountLogger fixedRecordsLogger;
-
+    private final FixedNumberRecordsCountLogger fixedRecordsLogger;
 
     public GuiWindowedLogger(FixedNumberRecordsCountLogger fixedRecordsLogger) {
         this.fixedRecordsLogger = fixedRecordsLogger;

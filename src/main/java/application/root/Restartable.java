@@ -1,6 +1,7 @@
 package application.root;
 
-public interface Restartable{
+public interface Restartable {
     void start();
+
     void stop();
 }

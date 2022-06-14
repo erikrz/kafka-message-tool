@@ -17,8 +17,8 @@ import lombok.ToString;
 @XmlRootElement(name = XmlElementNames.GLOBAL_SETTINGS)
 public class GlobalSettings {
 
-    private ObjectProperty<LogLevel> logLevel = new SimpleObjectProperty<>(LogLevel.DEBUG);
-    private StringProperty runBeforeFirstMessageSharedScriptContent = new SimpleStringProperty("");
+    private final ObjectProperty<LogLevel> logLevel = new SimpleObjectProperty<>(LogLevel.DEBUG);
+    private final StringProperty runBeforeFirstMessageSharedScriptContent = new SimpleStringProperty("");
 
     @XmlElement(name = XmlElementNames.GLOBAL_LOG_LEVEL)
     public LogLevel getLogLevel() {

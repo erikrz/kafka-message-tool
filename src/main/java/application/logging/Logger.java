@@ -10,7 +10,6 @@ public class Logger {
     private static final Set<ToolLogger> LOGGERS = new HashSet<>();
     private static LogLevel currentLevel = LogLevel.INFO;
 
-
     public static void registerLogger(ToolLogger logger) {
         if (null == logger) {
             return;

@@ -25,6 +25,7 @@ public class XmlFileConfig implements LoadableSavable {
     private final FromPojoConverter converter;
     private final GuiSettings guiSettings;
     private final GlobalSettings globalSettings;
+
     public GuiSettings getGuiSettings() {
         return guiSettings;
     }

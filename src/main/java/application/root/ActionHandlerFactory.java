@@ -32,10 +32,11 @@ public interface ActionHandlerFactory {
                                                                                          ListView<KafkaTopicConfig> topicConfigListView,
                                                                                          ControllerProvider repository);
 
-    TemplateGuiActionsHandler<KafkaListenerConfig> createListenerConfigListViewActionHandler(AnchorPane rightContentPane,
-                                                                                             TabPane masterTabPane,
-                                                                                             Tab tab,
-                                                                                             ListView<KafkaListenerConfig> listView,
-                                                                                             ListView<KafkaTopicConfig> topicConfigListView,
-                                                                                             ControllerProvider repository);
+    TemplateGuiActionsHandler<KafkaListenerConfig> createListenerConfigListViewActionHandler(
+            AnchorPane rightContentPane,
+            TabPane masterTabPane,
+            Tab tab,
+            ListView<KafkaListenerConfig> listView,
+            ListView<KafkaTopicConfig> topicConfigListView,
+            ControllerProvider repository);
 }

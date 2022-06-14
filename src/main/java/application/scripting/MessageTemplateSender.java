@@ -52,17 +52,17 @@ public class MessageTemplateSender {
         final Integer totalMessageCount = config.getRepeatCount();
 
         Logger.info(String.format("Sending message [topic '%s', key '%s'], content template '%s', repeat count: %d",
-                                  config.getRelatedConfig().getTopicName(),
-                                  config.getMessageKey(),
-                                  config.getMsgContentTemplate(),
-                                  totalMessageCount
+                config.getRelatedConfig().getTopicName(),
+                config.getMessageKey(),
+                config.getMsgContentTemplate(),
+                totalMessageCount
         ));
 
         resetScriptEngine();
         runScript(sharedScriptContent);
         runScript(config.getRunBeforeAllMessagesScript());
         kafkaSender.initiateFreshConnection(config.getRelatedConfig().getRelatedConfig().getHostInfo(),
-                                            isSimulationModeEnabled);
+                isSimulationModeEnabled);
         for (int i = 0; i < totalMessageCount; i++) {
             if (Thread.currentThread().isInterrupted()) {
                 return;
@@ -72,10 +72,10 @@ public class MessageTemplateSender {
             final String evaluatedMessage = evaluateMessageContent(config.getMsgContentTemplate());
 
             kafkaSender.sendMessages(MessageOnTopicDto.from(config,
-                                                            evaluatedMessage,
-                                                            isSimulationModeEnabled,
-                                                            i + 1,
-                                                            totalMessageCount));
+                    evaluatedMessage,
+                    isSimulationModeEnabled,
+                    i + 1,
+                    totalMessageCount));
 
         }
     }

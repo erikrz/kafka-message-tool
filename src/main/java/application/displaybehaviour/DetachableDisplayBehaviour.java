@@ -22,8 +22,8 @@ public class DetachableDisplayBehaviour implements DisplayBehaviour {
     private final BooleanProperty isDetachedProperty;
     private final ModelConfigObject trackedModeObject;
     private final DetachedPaneContent detachedPaneContent;
-    private StringExpression windowTitleProperty;
-    private ModelConfigObjectsGuiInformer guiInformer;
+    private final StringExpression windowTitleProperty;
+    private final ModelConfigObjectsGuiInformer guiInformer;
     private final Stage stage = new Stage();
     private double sceneWidth = DEFAULT_WIDHT;
     private double sceneHeight = DEFAULT_HEIGHT;

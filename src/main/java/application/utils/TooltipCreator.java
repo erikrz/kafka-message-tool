@@ -27,7 +27,8 @@ public class TooltipCreator {
         }
         StringBuilder builder = new StringBuilder();
         builder.append(getTopicConfigToolTipText(topicConfig));
-        final Optional<KafkaBrokerConfig> brokerConfigByUuid = dataProxy.getBrokerConfigByUuid(topicConfig.getBrokerUuid());
+        final Optional<KafkaBrokerConfig> brokerConfigByUuid =
+                dataProxy.getBrokerConfigByUuid(topicConfig.getBrokerUuid());
         brokerConfigByUuid.ifPresent(brokerConfig -> {
             builder.append("\n");
             builder.append(getBrokerConfigTooltipText(brokerConfig));

@@ -10,7 +10,7 @@ import javafx.application.Platform;
 public class ClusterStatusChecker {
     private final ApplicationBusySwitcher busySwitcher;
     private final UserInteractor userInteractor;
-    private KafkaClusterProxies kafkaClusterProxies;
+    private final KafkaClusterProxies kafkaClusterProxies;
 
     public ClusterStatusChecker(ApplicationBusySwitcher busySwitcher,
                                 UserInteractor userInteractor,
@@ -23,9 +23,7 @@ public class ClusterStatusChecker {
     public void updateStatus(HostInfo hostInfo,
                              boolean shouldShowWarningOnInvalidConfig) {
         new Thread(() -> {
-            Platform.runLater(() -> {
-                busySwitcher.setAppBusy(true);
-            });
+            Platform.runLater(() -> busySwitcher.setAppBusy(true));
             try {
                 final KafkaClusterProxy proxy = kafkaClusterProxies.getRefreshed(hostInfo);
                 showWarningOnInvalidClusterConfig(proxy, shouldShowWarningOnInvalidConfig);
@@ -33,9 +31,7 @@ public class ClusterStatusChecker {
                 Logger.error(e);
                 showGuiErrorMessage("Could not fetch cluster status.", ThrowableUtils.getMessage(e));
             } finally {
-                Platform.runLater(() -> {
-                    busySwitcher.setAppBusy(false);
-                });
+                Platform.runLater(() -> busySwitcher.setAppBusy(false));
             }
         }, "KMT-Thread-ClusterStatusChecker").start();
     }
@@ -47,9 +43,7 @@ public class ClusterStatusChecker {
     private void showWarningOnInvalidClusterConfig(KafkaClusterProxy proxy,
                                                    boolean shouldShowWarningOnInvalidConfig) {
         if (shouldShowWarningOnInvalidConfig) {
-            proxy.reportInvalidClusterConfigurationTo((msg) -> {
-                Logger.warn("Invalid cluster config\n" + msg);
-            });
+            proxy.reportInvalidClusterConfigurationTo(msg -> Logger.warn("Invalid cluster config\n" + msg));
         }
     }
 }

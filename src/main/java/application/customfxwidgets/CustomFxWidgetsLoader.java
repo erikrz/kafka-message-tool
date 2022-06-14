@@ -10,16 +10,16 @@ import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
 public class CustomFxWidgetsLoader {
-    public static void loadAnchorPane(AnchorPane node, String fxmlFile ) throws IOException {
+    public static void loadAnchorPane(AnchorPane node, String fxmlFile) throws IOException {
         loadOnAnchorPane(node, fxmlFile);
     }
 
-    public static void loadOnAnchorPane(Node node, String fxmlFile ) throws IOException {
+    public static void loadOnAnchorPane(Node node, String fxmlFile) throws IOException {
         load(node, fxmlFile);
         GuiUtils.expandNodeToAnchorPaneBorders(node);
     }
 
-    public static void load(Node node, String fxmlFile ) throws IOException {
+    public static void load(Node node, String fxmlFile) throws IOException {
         URL url = AppUtils.getFxmlResourceFile(fxmlFile);
         FXMLLoader loader = new FXMLLoader(url);
         loader.setRoot(node);

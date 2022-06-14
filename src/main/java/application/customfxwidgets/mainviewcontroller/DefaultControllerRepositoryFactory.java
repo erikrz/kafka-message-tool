@@ -17,11 +17,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
 
 public class DefaultControllerRepositoryFactory implements ControllerRepositoryFactory {
-    private ClusterStatusChecker statusChecker;
-    private SyntaxHighlightingCodeAreaConfigurator syntaxHighlightingConfigurator;
-    private KafkaClusterProxies kafkaClusterProxies;
-    private ApplicationSettings applicationSettings;
-    private Restartables restartables;
+    private final ClusterStatusChecker statusChecker;
+    private final SyntaxHighlightingCodeAreaConfigurator syntaxHighlightingConfigurator;
+    private final KafkaClusterProxies kafkaClusterProxies;
+    private final ApplicationSettings applicationSettings;
+    private final Restartables restartables;
 
     public DefaultControllerRepositoryFactory(ClusterStatusChecker statusChecker,
                                               SyntaxHighlightingCodeAreaConfigurator syntaxHighlightingConfigurator,
@@ -43,16 +43,16 @@ public class DefaultControllerRepositoryFactory implements ControllerRepositoryF
                                         ListView<KafkaListenerConfig> listenersListView) {
 
         final ModelConfigObjectsGuiInformer guiInformer = new DefaultModelConfigObjectsGuiInformer(leftViewTabPane,
-                                                                                                   brokersListView,
-                                                                                                   topicsListView,
-                                                                                                   messagesListView,
-                                                                                                   listenersListView);
+                brokersListView,
+                topicsListView,
+                messagesListView,
+                listenersListView);
         return new DefaultControllerProvider(guiInformer,
-                                             statusChecker,
-                                             syntaxHighlightingConfigurator,
-                                             kafkaClusterProxies,
-                                             applicationSettings,
-                                             restartables);
+                statusChecker,
+                syntaxHighlightingConfigurator,
+                kafkaClusterProxies,
+                applicationSettings,
+                restartables);
 
     }
 }

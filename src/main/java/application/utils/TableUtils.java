@@ -37,15 +37,13 @@ public class TableUtils {
     public static void customResize(TableView<?> view) {
 
         AtomicLong width = new AtomicLong();
-        view.getColumns().forEach(col -> {
-            width.addAndGet((long) col.getWidth());
-        });
+        view.getColumns().forEach(col ->
+                width.addAndGet((long) col.getWidth()));
         double tableWidth = view.getWidth();
 
         if (tableWidth > width.get()) {
-            view.getColumns().forEach(col -> {
-                col.setPrefWidth(col.getWidth() + ((tableWidth - width.get()) / view.getColumns().size()));
-            });
+            view.getColumns().forEach(col ->
+                    col.setPrefWidth(col.getWidth() + ((tableWidth - width.get()) / view.getColumns().size())));
         }
     }
     //    public static void autoFitTable(TableView tableView) {
@@ -75,7 +73,7 @@ public class TableUtils {
     public static void autoResizeColumns(TableView<?> table) {
         //Set the right policy
         table.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
-        table.getColumns().stream().forEach((column) -> {
+        table.getColumns().forEach(column -> {
             //Minimal width = columnheader
             Text t = new Text(column.getText());
             double max = t.getLayoutBounds().getWidth();
@@ -108,7 +106,7 @@ public class TableUtils {
 
         ObservableList<TablePosition> positionList = table.getSelectionModel().getSelectedCells();
 
-        if (positionList.size() == 0) {
+        if (positionList.isEmpty()) {
             return;
         }
         if (positionList.size() > 1) {

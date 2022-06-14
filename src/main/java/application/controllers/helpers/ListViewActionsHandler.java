@@ -11,7 +11,7 @@ import javafx.scene.control.MultipleSelectionModel;
 public class ListViewActionsHandler<AppModelObject extends ModelConfigObject> {
 
     private final ListView<AppModelObject> listView;
-    private UserInteractor interactor;
+    private final UserInteractor interactor;
 
     public ListViewActionsHandler(UserInteractor interactor,
                                   ListView<AppModelObject> listView) {
@@ -41,8 +41,8 @@ public class ListViewActionsHandler<AppModelObject extends ModelConfigObject> {
 
         if (selectedModelObjects.size() > 1) {
             interactor.showError("InternalError",
-                                 String.format("Too many object selected ('%d')",
-                                               selectedModelObjects.size()));
+                    String.format("Too many object selected ('%d')",
+                            selectedModelObjects.size()));
             return false;
         }
         final AppModelObject modelObject = selectedModelObjects.get(0);
@@ -64,7 +64,7 @@ public class ListViewActionsHandler<AppModelObject extends ModelConfigObject> {
 
     private boolean didUserConfirmedDeletion(String objectTypeName, String objectName) {
         return interactor.getYesNoDecision("Confirmation",
-                                           String.format("Deleting %s '%s'", objectTypeName, objectName),
-                                           "Are you sure? ");
+                String.format("Deleting %s '%s'", objectTypeName, objectName),
+                "Are you sure? ");
     }
 }

@@ -73,13 +73,15 @@ public class AddTopicDialog extends AnchorPane {
 
     private void configureReplicationFactorSpinner() {
         final IntegerProperty referenceProperty = topicToAdd.replicationFactorProperty();
-        ValidatorUtils.configureSpinner(replicationFactorSpinner, referenceProperty, MIN_REPLICATION_FACTOR, MAX_REPLICATION_FACTOR);
+        ValidatorUtils.configureSpinner(replicationFactorSpinner, referenceProperty, MIN_REPLICATION_FACTOR,
+                MAX_REPLICATION_FACTOR);
     }
 
     private void configurePartitionSpinner(TopicToAdd topicToAdd) {
 
         final IntegerProperty referenceProperty = topicToAdd.partitionsProperty();
-        ValidatorUtils.configureSpinner(partitionSpinner, referenceProperty, MIN_PARITITION_NUMBER, MAX_PARTITION_NUMBER);
+        ValidatorUtils.configureSpinner(partitionSpinner, referenceProperty, MIN_PARITITION_NUMBER,
+                MAX_PARTITION_NUMBER);
 
     }
 
@@ -126,7 +128,9 @@ public class AddTopicDialog extends AnchorPane {
 
     private void prepareStage() {
         final Scene scene = new Scene(this);
-        scene.getStylesheets().add(AddTopicDialog.class.getClassLoader().getResource(ApplicationConstants.GLOBAL_CSS_FILE_NAME).toExternalForm());
+        scene.getStylesheets()
+                .add(AddTopicDialog.class.getClassLoader().getResource(ApplicationConstants.GLOBAL_CSS_FILE_NAME)
+                        .toExternalForm());
         scene.setRoot(this);
         stage.setScene(scene);
         stage.setTitle("Creating new topic...");

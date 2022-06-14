@@ -5,7 +5,7 @@ public class DefaultApplicationSettings implements ApplicationSettings {
 
     private final XmlFileConfig xmlConfig;
     private final GlobalSettings globalSettings;
-    private GuiSettings guiSettings;
+    private final GuiSettings guiSettings;
 
     public DefaultApplicationSettings(XmlFileConfig xmlConfig) {
 

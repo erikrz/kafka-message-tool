@@ -15,7 +15,7 @@ import javafx.scene.Node;
 public class StatusBarNotifier {
     public static final double PERCENTAGE_MAX = 100.0;
     private DoubleProperty doubleProperty;
-    private StatusBar statusBar;
+    private final StatusBar statusBar;
     private Timer timer = createTimer();
 
 
@@ -24,7 +24,7 @@ public class StatusBarNotifier {
         resetStatusBarOnConstruction();
     }
 
-    private static Timer createTimer(){
+    private static Timer createTimer() {
         return Timers.newTimer("KMT-Thread-StatusBarNotifier");
     }
 
@@ -32,7 +32,8 @@ public class StatusBarNotifier {
     public void setMsgSentProgress(int count, int total) {
         displayProgressOnProgressBar((float) count / (float) total);
         double percentage = percentage(count, total);
-        displayMessageToStatusBar(String.format(Locale.ENGLISH, "Sent messages: %d/%d (%06.3f)%%", count, total, percentage));
+        displayMessageToStatusBar(
+                String.format(Locale.ENGLISH, "Sent messages: %d/%d (%06.3f)%%", count, total, percentage));
     }
 
     public void clearMsgSentProgress() {

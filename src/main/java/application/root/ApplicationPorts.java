@@ -5,6 +5,7 @@ import application.kafka.sender.KafkaMessageSender;
 
 public interface ApplicationPorts extends Restartable {
     KafkaMessageSender getSender();
+
     Listeners getListeners();
 
 }

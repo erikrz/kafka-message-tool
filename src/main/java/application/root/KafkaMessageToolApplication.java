@@ -50,7 +50,7 @@ public class KafkaMessageToolApplication implements ApplicationRoot {
     private ApplicationSettings applicationSettings;
     private Scene scene;
     private ExecutorService executorService;
-    private Main mainApplication;
+    private final Main mainApplication;
 
     public KafkaMessageToolApplication(Main mainApplication) {
         this.mainApplication = mainApplication;
@@ -108,7 +108,8 @@ public class KafkaMessageToolApplication implements ApplicationRoot {
             Platform.exit();
         });
         mainStage.setScene(scene);
-        mainStage.setTitle(String.format(ApplicationConstants.APPLICATION_NAME + " (%s)", ApplicationVersionProvider.get()));
+        mainStage.setTitle(
+                String.format(ApplicationConstants.APPLICATION_NAME + " (%s)", ApplicationVersionProvider.get()));
         GuiUtils.addApplicationIcon(mainStage);
     }
 
@@ -119,13 +120,13 @@ public class KafkaMessageToolApplication implements ApplicationRoot {
         final GuiSettings guiSettings = new GuiSettings();
         final GlobalSettings globalSettings = new GlobalSettings();
         applicationPorts = restartables.register(new DefaultApplicationPorts(new DefaultKafkaMessageSender(),
-                                                                             new KafkaListeners()));
+                new KafkaListeners()));
 
         final ModelDataProxy modelDataProxy = new DefaultModelDataProxy(dataModel);
         final XmlFileConfig xmlFileConfig = new XmlFileConfig(modelDataProxy,
-                                                              new FromPojoConverter(modelDataProxy),
-                                                              guiSettings,
-                                                              globalSettings);
+                new FromPojoConverter(modelDataProxy),
+                guiSettings,
+                globalSettings);
 
 
         final UserGuiInteractor interactor = new UserGuiInteractor(mainStage);
@@ -133,7 +134,7 @@ public class KafkaMessageToolApplication implements ApplicationRoot {
 
         final TextAreaWrapper logTextArea = getTextArea();
         final FixedNumberRecordsCountLogger fixedRecordsLogger = new FixedNumberRecordsCountLogger(logTextArea,
-                                                                                                   new CyclicStringBuffer());
+                new CyclicStringBuffer());
         restartables.register(fixedRecordsLogger);
         Logger.registerLogger(new GuiWindowedLogger(fixedRecordsLogger));
         applicationSettings = new DefaultApplicationSettings(xmlFileConfig);
@@ -143,25 +144,26 @@ public class KafkaMessageToolApplication implements ApplicationRoot {
         executorService = Executors.newSingleThreadExecutor();
         final KafkaClusterProxies kafkaClusterProxies = new KafkaClusterProxies();
         final ControllerRepositoryFactory controllerRepositoryFactory =
-            new DefaultControllerRepositoryFactory(new ClusterStatusChecker(busySwitcher, interactor, kafkaClusterProxies),
-                                                   new SyntaxHighlightingCodeAreaConfigurator(executorService),
-                                                   kafkaClusterProxies,
-                                                   applicationSettings,
-                                                   restartables);
+                new DefaultControllerRepositoryFactory(
+                        new ClusterStatusChecker(busySwitcher, interactor, kafkaClusterProxies),
+                        new SyntaxHighlightingCodeAreaConfigurator(executorService),
+                        kafkaClusterProxies,
+                        applicationSettings,
+                        restartables);
 
         final DefaultActionHandlerFactory actionHandlerFactory = new DefaultActionHandlerFactory(interactor,
-                                                                                                 modelDataProxy,
-                                                                                                 mainStage,
-                                                                                                 applicationPorts);
+                modelDataProxy,
+                mainStage,
+                applicationPorts);
 
         final MainApplicationController mainController = new MainApplicationController(mainStage,
-                                                                                       dataModel,
-                                                                                       getApplication(),
-                                                                                       applicationSettings,
-                                                                                       logTextArea.asNode(),
-                                                                                       controllerRepositoryFactory,
-                                                                                       actionHandlerFactory,
-                                                                                       busySwitcher);
+                dataModel,
+                getApplication(),
+                applicationSettings,
+                logTextArea.asNode(),
+                controllerRepositoryFactory,
+                actionHandlerFactory,
+                busySwitcher);
 
         CustomFxWidgetsLoader.loadOnAnchorPane(mainController, MAIN_APPLICATION_VIEW_FXML_FILE);
 

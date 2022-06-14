@@ -10,7 +10,7 @@ class MessageTemplateSenderSpecification {
     void shouldEvaluateStringExpressionAndNotThrowInTheProcess() {
 
         KafkaMessageSender sender = Mockito.mock(KafkaMessageSender.class)
-        def evaluator = new MessageTemplateSender(sender,new GroovyScriptEvaluator());
+        def evaluator = new MessageTemplateSender(sender, new GroovyScriptEvaluator());
 
         def inputs = ["",
                       '''"''',

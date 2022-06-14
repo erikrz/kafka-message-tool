@@ -32,7 +32,8 @@ public class Validations {
             return ValidationStatus.failure("Topic config not set");
         }
 
-        final ValidationStatus brokerValidationStatus = validateBrokerConfigValidAndStatusIsKnown(topicConfig, clusterProxies);
+        final ValidationStatus brokerValidationStatus =
+                validateBrokerConfigValidAndStatusIsKnown(topicConfig, clusterProxies);
         if (brokerValidationStatus.isFailure()) {
             return brokerValidationStatus;
         }
@@ -43,7 +44,7 @@ public class Validations {
         final String topicName = topicConfig.getTopicName();
         if (!kafkaClusterProxy.hasTopic(topicName)) {
             return ValidationStatus.failure(
-                String.format("Topic '%s' does not exist on broker", topicName)
+                    String.format("Topic '%s' does not exist on broker", topicName)
             );
         }
         return ValidationStatus.success();

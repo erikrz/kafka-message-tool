@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 
 public class GuiUtils {
     private static final PseudoClass INVALID_DATA_PSEUDO_CLASS =
-        PseudoClass.getPseudoClass(ApplicationConstants.INVALID_TEXT_FIELD_INPUT_PSEUDO_CLASS_NAME);
+            PseudoClass.getPseudoClass(ApplicationConstants.INVALID_TEXT_FIELD_INPUT_PSEUDO_CLASS_NAME);
     private static final Runnable NULL_CALLBACK = () -> {
     };
 
@@ -39,9 +39,9 @@ public class GuiUtils {
                                                                Consumer<String> func,
                                                                Function<String, Boolean> validator) {
         configureTextFieldToAcceptOnlyValidData(textField,
-                                                func,
-                                                validator,
-                                                NULL_CALLBACK);
+                func,
+                validator,
+                NULL_CALLBACK);
     }
 
 
@@ -87,13 +87,15 @@ public class GuiUtils {
         children.add(child);
     }
 
-    public static void configureComboBoxToClearSelectedValueIfItsPreviousValueWasRemoved(ComboBox<? extends ModelConfigObject> comboBox) {
+    public static void configureComboBoxToClearSelectedValueIfItsPreviousValueWasRemoved(
+            ComboBox<? extends ModelConfigObject> comboBox) {
         final ObservableList<? extends ModelConfigObject> observables = comboBox.itemsProperty().get();
-        comboBox.getSelectionModel().selectedItemProperty().addListener((ChangeListener<ModelConfigObject>) (observable, oldValue, newValue) -> {
-            if (oldValue != null && !observables.contains(oldValue)) {
-                comboBox.setValue(null);
-            }
-        });
+        comboBox.getSelectionModel().selectedItemProperty()
+                .addListener((ChangeListener<ModelConfigObject>) (observable, oldValue, newValue) -> {
+                    if (oldValue != null && !observables.contains(oldValue)) {
+                        comboBox.setValue(null);
+                    }
+                });
     }
 
     public static void loadCssIfPossible(Scene scene, String fileName) {

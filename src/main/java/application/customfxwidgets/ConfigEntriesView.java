@@ -27,7 +27,7 @@ public class ConfigEntriesView extends TitledPane {
     @FXML
     private TableView<ConfigEntry> configEntriesTableView;
 
-    private ConfigEntriesViewPreferences columnWidths;
+    private final ConfigEntriesViewPreferences columnWidths;
 
 
     public ConfigEntriesView(String title,
@@ -72,7 +72,8 @@ public class ConfigEntriesView extends TitledPane {
         if (columnWidths.valueColumnWidth != ConfigEntriesViewPreferences.INVALID_COLUMN_WIDTH) {
             valueColumn.setPrefWidth(columnWidths.nameColumnWidth);
         }
-        valueColumn.widthProperty().addListener((observable, oldValue, newValue) -> columnWidths.valueColumnWidth = newValue.doubleValue());
+        valueColumn.widthProperty().addListener((observable, oldValue, newValue) ->
+                columnWidths.valueColumnWidth = newValue.doubleValue());
     }
 
     private void configureNameColumn() {
@@ -82,7 +83,8 @@ public class ConfigEntriesView extends TitledPane {
         if (columnWidths.nameColumnWidth != ConfigEntriesViewPreferences.INVALID_COLUMN_WIDTH) {
             nameColumn.setPrefWidth(columnWidths.nameColumnWidth);
         }
-        nameColumn.widthProperty().addListener((observable, oldValue, newValue) -> columnWidths.nameColumnWidth = newValue.doubleValue());
+        nameColumn.widthProperty()
+                .addListener((observable, oldValue, newValue) -> columnWidths.nameColumnWidth = newValue.doubleValue());
     }
 
 }

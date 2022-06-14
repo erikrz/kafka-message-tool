@@ -27,24 +27,24 @@ public class CodeAreaConfigurator {
     ) {
         codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
         codeArea.richChanges()
-            .filter(ch -> !ch.getInserted().equals(ch.getRemoved())) // XXX
+                .filter(ch -> !ch.getInserted().equals(ch.getRemoved())) // XXX
 
-            .successionEnds(Duration.ofMillis(WAIT_PERIOD_TO_START_HIGHLIGHTING_AFTER_LAST_KEY_PRESSED))
-            .supplyTask(() -> CodeAreaConfigurator.computeHighlightingAsync(codeArea,
-                                                                            pattern,
-                                                                            getStyleClassFunction,
-                                                                            executor))
-            .awaitLatest(codeArea.richChanges())
-            .filterMap(t -> {
-                if (t.isSuccess()) {
-                    return Optional.of(t.get());
-                } else {
-                    t.getFailure().printStackTrace();
-                    return Optional.empty();
-                }
-            })
+                .successionEnds(Duration.ofMillis(WAIT_PERIOD_TO_START_HIGHLIGHTING_AFTER_LAST_KEY_PRESSED))
+                .supplyTask(() -> CodeAreaConfigurator.computeHighlightingAsync(codeArea,
+                        pattern,
+                        getStyleClassFunction,
+                        executor))
+                .awaitLatest(codeArea.richChanges())
+                .filterMap(t -> {
+                    if (t.isSuccess()) {
+                        return Optional.of(t.get());
+                    } else {
+                        t.getFailure().printStackTrace();
+                        return Optional.empty();
+                    }
+                })
 
-            .subscribe(highlighting -> codeArea.setStyleSpans(0, highlighting));
+                .subscribe(highlighting -> codeArea.setStyleSpans(0, highlighting));
 
     }
 
